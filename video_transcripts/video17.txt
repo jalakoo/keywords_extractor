@@ -1,0 +1,1321 @@
+- [Alex] So, yeah, this is, the plan is really to,
+to show you all how easy it is to get starting
+with Neo4j Aura and how quickly you can, you know,
+you have a set going.
+So we wanna quickly, in this session,
+show you what Neo4j Aura Free is.
+What does it mean? Where do you get it?
+Where do you need to go? And all of that good stuff.
+Then we pick a data set.
+So we are really hoping for you to share with us,
+if you have any open datasets you'd like us to explore.
+Ideally, you go to Discord and share them with us there,
+but you can also reach out on Twitter and anywhere else.
+I have picked this week's dataset.
+It's a board game dataset from Board Game Geek,
+so we can look at that a little bit later.
+But, you know, if you have anything in that regard,
+any CSV file will really do. We are flexible.
+It just needs to be openly available on the internet.
+Not, not some, not some hidden thing somewhere.
+Then we think about questions we might ask.
+So obviously we want to explore a little bit.
+We go a little bit into modeling.
+We go a little bit into what kind of questions we can,
+we can get from that dataset.
+And that's basically it, that is, that is a start.
+And, and then, you know, we always share at the end,
+our results and how we went - Yes.
+- in a (indistinct) repository.
+So you can always, if you wanna.
+So last week's set's here exactly.
+Here's the NBA dataset we did last week.
+If you want to redo this, you can just go there
+and get the data, get the links, CR queries.
+We will do the same for today's session.
+So you can always repeat what we do.
+- Yeah and you can always re-watch recordings, too.
+So you see here, for example, here,
+- Exactly. - there should be a link
+to the recording from last week.
+So we, everything's going to be captured
+so you can watch this again.
+You can just read through the notes and get help.
+You've got the options there.
+So that's fantastic.
+So quickly, we've also got David from South Africa.
+So since... Oh. 10:00
+- Hey, good morning. - Yeah. 10:00 in the morning.
+Good morning, good morning.
+We've also got Arivend as well,
+joining us also from India.
+So also, hopefully you're on your lunch break, too.
+So bon appétit, enjoy.
+- Yep. Enjoy lunch break. Yes.
+- All right, let's do this.
+Okay, we're gonna load the query.
+So very quickly, what is Neo4j Aura?
+It's Neo4j database's service, so it's up on the cloud.
+So it's a managed service.
+So you don't have to download the instance.
+You don't have to install it and it's look, you know,
+you don't have to configure it all.
+All that's looked after for you.
+It's managed graph infrastructure
+and basically Aura will keep everything up to date.
+So keep it up to date with the versions of Neo4j.
+It will manage backups for you, provide continuous uptime,
+all of that good stuff, overseas monitoring, and so forth.
+So you've got a link there to go to Aura.
+And what we're looking at,
+and this is basically the whole series,
+is we're doing everything on Neo4j Aura Free.
+So it's a free version of Neo4j Aura.
+So there are some limitations.
+So you've got up to 50,000 nodes and 175,000 relationships,
+but you've still got access to Neo4j Bloom & Browser.
+So you can do all of that good stuff. It's free forever.
+And again, you go to the same address
+to get you to the Aura page.
+So what you can do is you can sign up there
+and you can get a free instance of Neo4j Aura,
+so, though, a Neo4j Aura Free version.
+So if you are joining along, so again,
+if you want to keep coming,
+we're here every Monday, same time.
+So if you want to code along with us,
+you're more than welcome to so you can get yourself set up
+and then you are good to go.
+So that's Neo4j Aura, and like Alex said,
+all this is all about getting you up and running.
+What you will find is we will always pick a dataset
+that you can easily pull in with LOTUS-V
+or some of the APOC functions.
+So the idea is you do not need to download anything.
+And the only thing you need to sign in is Aura Free
+so everything else we're going to do it so
+that you can just access it and pull.
+So it should be nice and easy for you
+to be able to play along
+and get a feel for what's going on with Neo4j. So...
+- [Alex] Exactly. And if you have any questions,
+I mean obviously we are here.
+So if you want want to know anything, type it in chat.
+We will probably have some time
+and answer your questions.
+- Yes. Any questions ask away?
+We are both keeping an eye on the chat.
+So chuck them in, we'll pick them up as we go along.
+And, actually, we do have a bit of user participation.
+So Alex talked about, we're looking at a,
+we're looking at a broad game dataset.
+So if you've got any questions you'd want to ask of the data
+or query questions, then let us know.
+So I found some questions from last time.
+"Are we analyzing chess this week?"
+No, but as you probably know, Fountain_hook, I love chess.
+I play a lot of chess.
+So I've played in various competitions and things.
+So watch this space.
+We definitely going to do a chess related one at some point.
+So I just need to dig about and find a good dataset.
+Definitely going to do it. Oh, Chess World Cup.
+Let's see, let's have a look at what we can do
+with the Chess World Cup and have a bit of thinking,
+but that is a good shout out.
+- [Alex] That's a good suggestion. Thank you, Fountain_hook.
+I think that's an interesting set for sure.
+So yeah, this week it's about board games.
+Chess is a board game.
+So technically we probably will touch slightly. (laughs)
+We're gonna touch slightly on chess as well,
+but in this case, it's,
+it's a pull from somebody
+at GitHub that did it.
+It's a few years old, so it's not the most recent pull,
+but the page he scraped
+or they scraped was BoardGameGeek.com,
+which is the biggest board games sites
+- Yeah.
+- and board game community on the internet.
+And it has every board game - Carmen De Link
+- Yeah. - I know, this is the website.
+It comes from somewhere.
+There's a list telling you of all the popular games.
+- Exactly. And then if you quickly click on that,
+on that CSV file again, - Yep.
+- or we can, we can quickly see.
+So yeah, it has an ID. So every game has an ID.
+It has a name, obviously.
+So, for example, here's the first line
+of Twilight Struggle is the video game.
+It has a release,
+year published is the release year 20, 2005.
+Then it has a minimum players and maximum players.
+So this game, this player,
+this game can only be played by two people,
+playing time so that's 180 minutes,
+which is also the suggested time.
+Then the minimum age, so from 13 on you can play this game.
+Users rated means the ratings of every user
+that has this game
+or even knows this game can give it a rating
+from zero to 10.
+And this game got 8.33774. So a pretty good one.
+And that's sort of like the, yeah, the average rating here.
+Then there are owners, traders, wanters.
+So that means people who own this game,
+people who would like to sell or get rid of this game,
+and people who want this game as a wishlist kind of setting.
+I think we can ignore the comments.
+And then I get another data point that's interesting
+for us today will be the weights.
+So weights means the difficulty of this game,
+the complexity sort of as, also a weight from,
+I think this is from some zero to five
+or is it also from zero to 10?
+I'm not sure. I think it's from zero to five.
+- Know what? We can write a Cypher query
+to figure that out shortly. - Yeah. (laughs)
+- So hold that thought. And we can,
+when we load in the data,
+we can actually do something to have a look what that is, so
+- Exactly, yeah. That's a good - Hold that thought.
+Put that question in. - Yeah.
+And the average weight is obviously the average of that,
+of that number. - Brilliant.
+So what we're gonna do is let's dive straight in
+and let's have a quick look at the data.
+So obviously here, it's a little bit hard to see
+that as a CSV.
+So what we can do is let's just do the load CSV, pull it in,
+and look at a couple of rows.
+So there I am, you can see I've already got my instance
+of Neo4j Aura Free setup.
+So this is the same one from last week's.
+So those of you, you can create, it takes a few minutes.
+So I'm just, I've just entered it.
+And I'm just reusing the same one from last week.
+I'm going to open this with Browser.
+So I'm going to need to put in some cred's as well.
+So do not forget when you create your instance,
+- That's a good point.
+- to copy the password in a safe place.
+Because if you lose your passwords,
+you'll have to destroy a database and start again.
+(laughs) So don't lose, - You have to delete it all
+and you have to, yep exactly - don't forget passwords.
+- That's not good.
+- All right. Let's just quickly load in a file.
+So this is like for those of you who are not familiar,
+so this is just basically the load CSV.
+So this is gonna go off and load the CSV from the address
+so we can load it from URI's.
+So here, we're using the link here
+to the raw CSV output from GitHub.
+So this is what we love.
+So this, we can just pull it from any public place
+and have, and work with that. So I'm just doing that as row.
+And let's just have a look at the first five rows.
+So the return row limit five.
+That's gonna go away, download that CSV,
+and then return back the first five rows.
+So here we go. So what Alex was going through earlier.
+- Here it is much, much better to read. Yeah.
+- A lot easier to read now isn't it?
+- Yeah. (laughs) Yes. Yes.
+Yeah, and here you see it again.
+What I just mentioned to you, you know, you see,
+you see the weights, the traders, the comments.
+This is like basically the wanters of wishes.
+This is actually people,
+individual accounts on Board Game Geek.
+And then, yeah, it's an average rating, for example, 8.33,
+right there in the middle, that is a,
+the player's name, players count basically.
+So this is a two-players game, but obviously people
+who play games will have more than two people,
+so what does that say from two to eight maybe something.
+Playing time, two below is also, is in minutes.
+So yeah, 180 minutes, it's kind of like the suggested time.
+It could be longer, could be shorter obviously.
+The name, obviously, is important. (laughs)
+What kind of game is it?
+And then the average rating is also interesting.
+So... - Yes
+- What did people think of this game?
+- Yeah. Absolutely. So quick question from Bokjo who says,
+Is there support,
+"Is there now support for multiple Dbs
+in one aura instance?"
+Not at the moment. No.
+So if you want multiple DBs in a single instance,
+you need to use Enterprise edition of Neo4j
+at the moment for that.
+But of course, what you can do is, with Aura,
+is you can spin up more than one database or instance.
+So you can, if you, if you need more than one database,
+you can spin up more than one.
+But obviously that would be the Aura Professional.
+And so that those are the ones that you'd be pulling up.
+So you can have more than one Aura Professional
+but obviously that's not free.
+You can have one single free account of Aura, Aura Free.
+Okay, so what was the one that we were talking about?
+Or you said, where was the complexity?
+What was the complexity one?
+- That's weight, so average weight.
+Yeah, exactly. - Perfect, weight.
+- Right, so let's go ahead and have a quick look
+at what's the, what games are the maximum,
+the highest average weight. - Yeah.
+- And we can figure out if it's,
+is it one to five or one to 10?
+So this is using the, using an anvil to crack a nut,
+but hey, why not? (Alex laughing)
+- You know, it's all, we're all learning.
+All right. So let's do that.
+So let's do
+"with row."
+What did we say it was called?
+It was "row." Ah...
+name, yeah.
+"row.name as name,"
+and "row.average_weight as weight,"
+Let's pick that game rating as well.
+Maybe we'll want to know about what games are fun.
+So we're just gonna pull a couple of, like you know,
+a couple of bits just to see what's going on.
+So "average_rating as rating"
+and we're gonna redo "order by weight" descending
+And, oh, so what I should do.
+Yep. Yep. Yep. So what I've done here is...
+"return row.name, row"
+oh, no don't do that
+I want to do "return name, weight, rating"
+No, okay, that's what we want.
+And...
+- You used weightm is needed.
+- Yeah, you know don't buy cheap Bluetooth people.
+If I can offer one bit of advice.
+If you don't have to,
+don't buy the cheapest Bluetooth keyboard.
+(Alex laughing) - I can copy that.
+So this is quite a big file so it has to download it
+and put stuff into memory.
+So we may need to rewrite this query ever so slightly,
+just because of the fact
+that there is memory limitations on Aura Free.
+So I may have asked a bit too much of it.
+- Hmm. Maybe.
+- Maybe. Maybe, maybe. Ah, I just think...
+so let me see if I can rewrite this query
+in a bit more efficient way.
+- That's a good thing to show that you can always click
+that red square and you can...
+Yeah, well, it stopped it by itself, but if you run
+into this scenario, - not enough memory
+- you can always stop queries.
+- Yeah. So let me think about how we can do this.
+So let's do, I'm going to just do,
+Let's just do max rating,
+just cause obviously that might be the easiest way
+with max.
+- I mean, technically you can, we can limit this
+because we want to know what's the max number
+so we can say we, we wanna...
+- We can do this. But the, oops.
+And then just return the rating but to the maximum.
+Let's see what the max rating was.
+Not rating, we wanted weight, didn't we.
+Yeah, just fixed it. - We wanted weight.
+Yes, but yeah.
+- Okay.
+It should be fine because it only has to pull one field out
+of those things. - That's fine.
+- Max weight's five. So yeah, it's one to five.
+So it is, there you go, we've answered that question.
+- (laughs) Good.
+- All right, so the next bit is
+what questions do we want to ask?
+So everybody, what kind of questions would you want
+to ask of this data?
+So let's just bring back the previous query
+where we pulled back the first five rows.
+What kind of questions do we want to ask of this data?
+What would you ask Alex? What's, what are you looking for?
+- I mean, while everybody thinks,
+I can think of a couple ones.
+So I think we could, like we did with the weights,
+we could check for the top, what the top rated games are.
+What they are called?
+We could check what,
+because we know how many people own games,
+so we can always check how many,
+or what are the games that most people have
+in their collection.
+So we can have the... - Oh, I like that.
+- the favorites, sort of.
+- Yeah.
+- And I think if we could technically do a,
+an easy recommendation.
+So because we know the player,
+the player number, so we can say,
+okay, I'm looking for a game for three players
+with complexity or weight of, I dunno, four,
+because I'm a board game connoisseur
+and show me then the games
+that have the best rating for that combination.
+- Okay. I like that.
+We've got a question in from Fountain_hook is, ooo,
+which "games can I play with one friend
+which will require at least 30 minutes of interaction"
+- That's a good, that's a very good question also.
+We also have the playing time. - I like that.
+Let's stuck that one on the list.
+- Yep.
+- What games can I play with X friends
+which require min Y minutes"
+Oh, I like that.
+I've just parameterized your question Fountain_hook.
+I hope you don't mind.
+Cause obviously we might want to change those variables,
+but we will start off with T players
+and minimum of 30 minutes, so, okay.
+And I mean, there's so many questions I want
+to ask from this.
+I think there's this really interesting one.
+- Do you have a question? Yep. Do you have something?
+- So what would I want to ask? So I would.
+Ah, so what I find really interesting
+is the wanters and wishers.
+So you said wanters are people who want to buy the,
+who want to get this game.
+And what was wishers?
+- So, yeah, I think that's a very similar thing.
+I think I, wishers are people
+that have it on their wishlist.
+So sort of like a collection of games
+they potentially want to buy.
+And I think wanters is a little bit more concrete.
+They are sort of looking for a buy.
+So that's correlating, I guess, with the trader so,
+more or less who's selling and who's buying.
+But the wishers would be the ones
+that put them on their wish list and say, okay,
+this is a game I'd like to buy next.
+- Ah. So I'm not entirely sure how to do this.
+So this might be another one
+where we do a Board Game Geek part two and part three.
+Who knows? (Alex laughing)
+- But I think there's a couple of things
+that jump out at me that's interesting.
+So I'm gonna leave these for now.
+So I think we've got loads of really interesting questions
+to pull out this episode.
+But a couple of things that jump out at me would be,
+I want to know the ratio between these two,
+because I think that's quite interesting.
+So does that ratio correlate and what does that mean?
+You know, what, how does that correlate
+with all the other information that we've got here?
+And the other thing that I find quite interesting is
+where was it? It caught my eye.
+Yes. Is I would love to know the relationship
+between total owners and rating.
+So I would like to know, is there some kind of correlation
+where, you know, if there's lots of total owners, you know,
+how does that relate to the average weight?
+So does it mean, you know, can we infer things like,
+if there's lots of total owners,
+it's going to have a good rating and that kind of thing?
+So that's interesting to me. - Ah. Yeah, yeah, yeah.
+- And one thing we don't have in this dataset.
+So I am having, I did have a look to see,
+and there are some very interesting API's out there,
+so I need to figure out how to get them working,
+but there is a public API that someone put together
+that allows you to take the ID
+so that you would see here, there's no ID.
+So this is the unique ID for the game on Board Game Geek.
+And there's like a very funny API that pulls back some,
+not particularly well-formed XML,
+(Alex laughing)
+- but I'm just looking into this,
+but if I can get it working,
+so this may be another visit, episode,
+but what we can then do is pull back the game genre,
+what type it is, all those other bits.
+And then I think we can start
+to pull a real interesting picture,
+but that's for another episode.
+But I think for now, let's keep where it is.
+So let's take these questions, so what questions we've got?
+We have got what are the top rated games
+and what are they called.
+We've got what games that are the most popular.
+We've got finding a game for X number of players
+with a complexity of Y.
+And then we've got the question,
+what games can I play with X friends
+that require a minimum of Y minutes.
+So we've got those questions.
+So let's have a think about the data model.
+- Yeah.
+- So back with arrows, we're using arrows.app
+because this is a really nice way to do it.
+So what'd you think?
+What'd you think we're going to start with?
+What's the center of our universe?
+- The center of our universe is probably a game.
+- I think that's a fair shout. So let's put in.
+So we're going to do label,
+which is gonna be "Game"
+and let's put in the ID
+cause maybe we're going to come back to this
+and that ID might be useful.
+It's got a name. - It's got a name, yep.
+I guess we're going to do Min Players.
+- Oh, that's a good question actually because...
+- If we want to answer question from Fountain_hook,
+I guess we need that.
+- Well, so this is, this is the question.
+Hi, Pradna. Thank you for joining us.
+- Hello?
+- Somebody, someone else is on their lunch break.
+Thank you. Thank you for spending you lunch break with us.
+- Exactly. Yeah.
+- So it's an interesting thing here.
+Let me tell you what my head is thinking about this.
+- Ah, huh?
+- We can always refactor it.
+So thing is, is that if we look
+at the Min Players, Max Players,
+so I think this is gonna be a fairly,
+this is always gonna be a discreet number, isn't it?
+So it's probably, I mean, - Yep.
+- maybe there's gonna be some crazy game
+where you've got a 100 people,
+but I think it's always gonna be maybe,
+make a rough assumption, it's gonna be say
+between one and say eight players or one and 10 players
+or something like that. - One and, yeah, that's, yeah.
+- And if we're going to start asking questions,
+then there's a part of me thinking, well actually,
+would it make sense,
+so we could have it as property on here,
+but another part of me is wondering, well, do we do this?
+So bear with me.
+I will, I'll talk through my rationale here
+So maybe you've got one here called Min Players.
+And maybe we've got another one called Max Players.
+Maybe get rid of this.
+But the idea here is if we're gonna be asking lots
+of questions about what games need a minimum number
+of players or a maximum number of players
+or something like that,
+then what we can start to do is we can start to have loads
+of games coming off, Min Players,
+and loads of games coming off of Max Players.
+So this is going to be a relatively small graph,
+so it doesn't matter so much.
+But if we wanted to start doing some interesting queries
+about the relationship between Min and Max Players
+in a game and maybe we had rating and that kind of thing,
+then it might be quite an interesting thing
+to pull apart and graph.
+So just chuck that one out there for consideration.
+- I think that's a good idea
+because actually you're right these Min/Max Players.
+I mean, we could even do, you know,
+1, 1, 1, 2, 3, 4, 5, 6.
+So it's basically 10, 10 nodes sort of,
+and then we always have looking at that
+and starting, okay, I have Min Players two.
+So I started this two
+and then this is where I explore the graph.
+Makes it much easier to land somewhere
+then to have it to index and crawl to every game board node,
+basically when I want to find - Hmm. Yeah.
+- which is a player game for two players.
+- Yeah, I was trying to make it a bit of graph as well.
+Another thing worth considering
+that maybe we might do is, let me get rid of this,
+and I haven't figured out which ones,
+but it's not too important.
+So we can always just pick one and just run with it,
+is we can do this to, No Players, as in number,
+as opposed to no, no players for this game.
+(Alex laughing)
+We can do like No Players.
+And then what we could do is maybe we do one here,
+which is Min Players. - Ah, huh. Yeah.
+- And then we would have another one, which is Max Players.
+Maybe, yeah maybe I prefer this one.
+- Yeah?
+- Because this, the interesting thing about this is
+if I don't care about the range of Min or Max Players,
+then I just, basically, I could just do a query
+to go through.
+Another way I could do this, and there's many ways,
+and I'm not sure what's the best way to do it.
+This is something I think we'd have
+to have a little think about
+because there's so many ways of doing this.
+Another thing we could do is,
+we could imply the number of players.
+Cause what we could do, ah, we could do something like this,
+which would be, "Can Have" number of players.
+And then like this, we don't have a Min or a Max
+and we'd figure out the Min or Max
+by going down the "Can Have" relationship
+to number of players.
+And then we do the Min Value of those nodes,
+would be the minimum number of players.
+And the Max Value would be the maximum number
+of players you could have for that game.
+- Yeah. And I know, I mean,
+we're probably into the dataset is it's not in this one,
+but I know that Board Game Geek
+also collects the recommended number of players.
+So every owner gives the suggestion of, let's say
+this game is for two to four people,
+but the ideal number is three.
+So you, you have the most fun if you play it with three,
+because with four, maybe it's too long
+with two it's not a well thought out, but three is perfect.
+So yeah.
+- So there's lots of, lots of options, right?
+- Yes. (laughs)
+It's a, yeah, yeah. - Makes it a tough one.
+And I think we may have to work through it to figure out
+which is the right one. So which one,
+which one should we go for Alex?
+I'll let you pick. And then, you know, we can,
+if we need to refactor and we refactor.
+- Yeah. I think the first one was,
+your first suggestion was I think I like most.
+So, yeah. - Min and Max?
+- Two queries with two separate nodes
+or have various separate notes.
+- Oh, you mean like a Min Player node and a Max Player node.
+- Ah, hum. - Okay. All right.
+Let's do that.
+So let's do, how do we do this? We had a...
+- Well, what we would, what we could do now
+that I think of it is we could call it
+player, a player, a mountain, and be called...
+We called them one, two, three, four, five.
+So we create like 10 notes, something, you know,
+and then the game always points to,
+depending on the Min and Max numbers to a separate node.
+- So do you pick them? - Let's say, yeah.
+So let's say we have, we create 10 nodes
+that say Player Count and says 1, 2, 3, 4, 5, 6, 7, 8,
+and then a game has a relationship Min Player
+- Yep.
+- And it goes to the two Player Count 2,
+and Max goes to Player Count 4,
+- Yep. - and then if we,
+if we create that, yeah.
+- Yeah, yeah, yeah. So let's do that.
+So let's do this and then just do Value for this.
+This should be the number of players,
+and then we have two relationships. Don't we?
+So we have a Min Player and a Max Player.
+- Yep, yep, yep.
+So I've got a question that's come in.
+So great question by Kessel_six, which is
+"When you have a property on the game,
+rather than its own node,
+it's more of a configuration thing, than a real entity."
+So the interesting thing about this,
+that is a really interesting question and yes we could.
+And I'm painfully aware that we could have put all
+of this information, to answer our questions,
+could all have been properties in a node.
+Couple of things around that one. It's not very graphy.
+So we'd end up with no relationships.
+The interesting thing around this
+is I always ask the question of,
+is it a discreet value that we're putting in
+or is it like a range value?
+So you think about rating and the rating that we see
+at the moment is a range value.
+We may decide to do some kind of bucketing around that,
+but the moment rating is a range value.
+So we need to figure out where we're going to put that.
+The interesting thing about Player Count,
+especially if you look at the data,
+is yes maybe there's some random board game
+where you can have a 100 people playing it,
+but the vast majority are probably gonna have a cutoff
+of about eight, so be probably one to eight.
+And the interesting thing is, is if we pull it out,
+so how do we turn this into a graphy thing?
+And the interesting thing about having the Player Count
+as a node, and again,
+there's lots of different ways around this,
+but interesting about having it as a,
+having it as a Player Count is if we want to ask questions,
+like give me all the board games
+that require a minimum of one person.
+Cause you know, I, it's raining outside
+and I just wanna spend some time playing a game.
+Then you would go to the plug, Player Count nodes
+and then you would go off and find all of the board games
+that have a Player Count of one.
+And that's quite an efficient query to write
+because you're not having to do a property look up
+on every single game node to tell you, all of the things,
+you know, has a Player Count of one.
+What we're doing is we're saying, no.
+We go to this node here and we just chase the relationship.
+So this is where you make it efficient.
+So another question here has been asked,
+and this is basically what it comes down to,
+which is the best practice question,
+which is when is something a node?
+When is something a property?
+When is something a relationship?
+And all of this will be driven
+by what questions are you asking?
+Now we've got one question here,
+two questions actually we've got,
+which are asking about number of players.
+You've got one question that Alex suggested,
+which was game for X number of players.
+And then we had a question from Fountain_hook,
+which was games that I can play with X players.
+So these are all focused on number of players.
+So in my head as an initial model,
+it makes sense to pull this out as a node
+because that's where a lot of questions are appearing.
+So hopefully that kind of makes sense as to what's going on.
+So let's do this and we've got a few more bits to add.
+I'm going to start pulling some data in
+and asking questions. You've got Min Players.
+And a nice thing about this one is you knew only ever,
+you only ever have two relationships
+about players coming off of game.
+And we can always by query then figure out
+what the difference is rather than pulling back, you know.
+In this crazy idea, we've got a 100 players,
+and they have like a 100 relationships coming off the game.
+So, this is quite nice, I think.
+Okay. So we had questions about Player Count.
+Another question we've got are
+which games are the most popular,
+so that is using the average rating.
+So where should we pop average rating? Do you think?
+- Hmm, good question.
+It could be a separate node again.
+It could be a property of game - Ah, hum.
+- because it's an average it probably makes sense to,
+I mean, I think I would put, my gut feeling tells me,
+put it as a property into game.
+- Yeah. I think that's quite,
+I think that's quite a reasonable thing to do.
+So I would probably for now put Rating onto Game.
+So let's do that.
+So let's do properties. That's gonna be Rating.
+And then we've got what other questions?
+We've got, yeah we've got names, give the names.
+We've got complexity. Okay.
+So you said the complexity would be a value.
+So that's an interesting one. - Yep.
+- Cause now I'm starting to, well let me think
+about how we're going to do this.
+We'll come back to complexity in a second. So.
+- We have a... (microphone echoing)
+We need to add a people node or community node
+or something by,
+because we want to have the owners
+or how it will be? How do we want to do this?
+- So, how do you mean by owners?
+- So we have, right? We have the,
+we have sort of, so we have the users or the community
+of Board Game Geek and they have the,
+this is these wanters, traders, wishers, and owners.
+- Oh, we not gonna add that for now.
+- Oh, all right. - I think we'll just stick
+to the data points that we've got
+for the questions to answer today.
+I think that would make sense. - Okay, that makes sense, yep.
+So we've got two things we need to put in
+to finish that off.
+So one is the complexity,
+so the weighting we need to put in,
+and the other thing we need to put in is the minutes,
+the time, so that was a question that fountain_hook asked.
+So if we have a quick look,
+we have like a Min Playing Time and a Max Playing Time.
+So I, cause let's do a bit of a,
+bit of a cop out here, is you've got, we said Minimum Time.
+So we just put Minimum Time in for now
+and then we'll worry about the other one later.
+But Maximum Time would be good one for the future,
+if you want to have a quick game.
+But where did we put that in?
+So I would be tempted to do a similar thing
+for the Min Time too.
+- Yeah, totally.
+- So the only thing there is maybe we do time buckets.
+So if we have a quick peek,
+I'm just going to quickly do, I'm going to do a check query.
+So bear with me. (Alex laughing)
+- So let me do
+"return distinct row.min",
+We just put Min Time. What have we got?
+- It's Playing Time, Min Play Time. Yep.
+There's even a Playing Time,
+which is, I guess the average, I don't know.
+But yeah.
+- Okay. So what we've got...
+We've got Min Playing Time of zero.
+That's a helpful value. (Alex laughing)
+- That's a quick one.
+- Oh, okay. I think we've got some naughty information.
+Oh, oo, ooo gosh. Oh, look at that.
+We've got some crazy values in here, haven't we?
+- Yeah, that sounds like.
+- We've got a 100, I guess that's not too bad.
+We've got 124 different values.
+And I think this, I think some of these might be...
+Entry poo. - Yeah. (laughs)
+- So let me do this.
+I'm going to do 10 "distinct tointeger" time.
+And then we just put them in order.
+Ah, sorry. I'm pressing random buttons and breaking things.
+Do bear with me.
+Just a quick peek. So we have got, da, da, da, da, dah.
+All right, so we've got nodes to 10, 12, 15. Oh my goodness.
+You've got some quite granular numbers here
+and then it pops up.
+So.
+- Maybe? Should? Do we want to try Playing Time?
+There's another,
+- Oh, is there a playing time in there?
+- There's a Playing Time as well. Yeah.
+Maybe that is...
+- A bit like that? All right. - Yep.
+I don't know if that changes much.
+- 135. - Does not, no. Okay.
+- I want to know what game is this?
+(Alex laughing)
+- That you can play for weeks.
+- That's a big, big Dungeons and Dragons campaign. (laughs)
+- Oh yeah. So that's, that's quite good.
+So, you know what, I'm gonna cheat because,
+cause we've got lots of nodes in here anyway.
+So I'm going to do a bit of a cheat and I'm going to say
+that we've got a minimum criteria of 10 minutes.
+So game's got to be at least 10 minutes playable
+and I'm gonna do a max criteria of five hours.
+So I think I'm being extraordinarily generous.
+So let's say we're going to do between 10 minutes
+and 300 minutes and then everything else, I mean,
+I, I'm sorry, I'm not entirely convinced.
+And that might be a convenient way for us to,
+for us to basically get our 50, 50,000 nodes for the games.
+- True. Yeah.
+- We've got a couple of questions that have come in,
+Logarithmic buckets. Yeah, that's an option.
+To be honest with you, 135 nodes is tiny
+and bearing in mind that we're going to have,
+if we were doing the Min/Max Time,
+it'd basically be two relationships.
+So 135 is a tiny number of nodes.
+So I wouldn't worry so much about the buckets.
+And again, this is like a really interesting conversation
+about how we do this.
+So there's going to be more than one way to model this.
+So I'm cognizant of fact that we have running at time.
+So let's just quickly do this so we can get some data in
+and get some querying going.
+So I think for the interest of time,
+so this isn't the perfect model,
+that we could probably spend a lot of time working
+with this so I'm gonna stick,
+I'm gonna do the horrible thing.
+I'm gonna stick the time onto the node for now
+as a property and then we can play around afterwards.
+So just for the interest of,
+so we can get some data in and start querying,
+and then it might be good fun
+to have a play with refactoring it and changing that.
+So let's do, it was the average time was the name?
+No, Playing Time. - Playing Time, yep.
+- Playing Time. So let's put it in there for now.
+It's not great but for the purposes
+of let's just get this going.
+So you've got ID, Name, Rating, and Playing Time on Game.
+And then we've got Min and Max Player
+going to Player Counts.
+So I think we've got, and we've got weight.
+- Weight, yeah.
+- So the last thing is weight
+so I'm gonna do a massive cop-out here as well.
+I'm gonna put weight as a property on there as well.
+- Yeah.
+- So we've still got a graph elements on there
+and then like that, okay.
+So this is our data model. It's not perfect,
+but let's just get going so we can get some data in.
+So, right. Let's load in some data.
+So I'm going to jump and reuse this.
+So let's do... (tongue clicking)
+I, we're going to limit it to the first 50,000.
+So I'm going to assume that
+I'm gonna do create.
+I'm gonna in great hope and faith,
+I'm going to hope that each line
+of data is unique in that, in that CSV.
+So let's hit create game node
+and add to properties Name, it's gonna be "row.name".
+We've got Weight is "row.", the average weight wasn't it?
+- It's "average_weight", yeah.
+- We had Rating which is "row.",
+oh, "row.average_rating" - which is... Exactly.
+- And we, what else did we put in here?
+We put Playing Time, didn't we?
+- Playing Time, yep. - So "playingTime" is
+"row.playing" - Playing Time
+- Is it like that? Underscore. - No, it's a small t...
+No, just one word but no T. - "playingtime", okay.
+Perfect, "playingtime", all right.
+So we've got our 1, 2, 3, 4 properties and we typically do.
+Oh, ID. I forgot to put ID on there.
+Is it just called ID or is it? - It is just called ID, yep.
+All right, so let's do ID is "row.id".
+Okay, cool.
+I'm gonna create on, create our game node.
+And then what we're gonna do
+is gonna merge our number of players.
+So we're going to do...
+Was there an average, what was the plan?
+Was there, is there like a Min/Max?
+There isn't an average playing, play is there?
+- No, there's a Min and Max Players.
+- Okay. So let's do merge.
+We said No Players, didn't we?
+Call it Player Count. - It's Player Count.
+So P, "PlayerCount"
+and it's gonna be value,
+is going to be "row." Was it Min Players?
+- Min Players, yep. And gonna do Max Players, I guess.
+- And we're gonna do another one. Shape, ah same node.
+So we're just doing that
+in case they've got different values.
+- It's not, it's not underscore again.
+It's just one word.
+- Oh, is it "min_players" with underscore?
+No, it's just no underscore.
+- It's like that? - Like this, yes.
+- Perfect. Thank you.
+Value gonna be "row.maxplayers",
+and then we're going to create
+with all of this so "WITH g."
+"pmin",
+"pmax",
+"pmin", "pmax"
+We're gonna do "CREATE (g)"
+has Min Players
+that could be "pmin"
+and "CREATE (g)"
+has Max Players
+"pmax"
+And I just need to put a limiter in here
+because you've got limit of number of rows.
+So I'm going to do "with row limit"
+- Do we want to play, limit by Playing Time?
+- Oh, well, let's get some data in there.
+We can play with the playing. Actually, no.
+Let's do, no, no, let's limit Playing Time.
+So "row limit",
+how about this,
+"where tointeger
+(row.playingtime)"
+is greater than nine
+and to integer is less than 501.
+So we are, oh, 301. On multiply.
+Okay. So we're saying game that's over nine minutes long
+and less than three hours, four, five hours in minutes.
+Playing time to do that.
+And hopefully that should be less than 50,000 nodes.
+If not, we'll soon find out. (Alex laughing)
+So just quickly do some integer.
+So this we're just going to cast this
+cause these are all gonna be treated as strings.
+So I just want to turn them to integers,
+"tointeger" like that.
+And same deal here,
+"tointeger" that one.
+And what else do you have any other sneaky?
+Oh, this what we want to convert to a float.
+Is these ones here to float
+cause these are all gonna be strings
+because we're pulling them in from CSV.
+So we need to let it know
+that actually what needs is float.
+So it's going to be "tofloat"s, the average rating,
+and this is going to be "tointeger".
+All right. Have we missed any?
+Have we missed any? I think we're all good here.
+Da, da, da, dah. Good. Right.
+Hopefully, I, Ooh, sorry. I'm having fun with the scrolly.
+All right? Let's see what happens.
+Little bit of a mess. What did I miss?
+Ah, line three. What did I do?
+We did Game.
+Oh, I ended up on a separate line.
+I don't know what happened there.
+Oh, I know what I did.
+I put the integer on the wrong thing. Oopsy, daisy.
+"tointeger"
+and "row.id" that can stay as a string.
+I don't mind. I'm not too worried about that.
+All right. Okay. - Fine, yep.
+- Did I miss any other bugs? Oh no, we're good.
+We're going to, hopefully that's less than 50,000 nodes.
+Otherwise we'll have to, ah, trim it down some more.
+- (laughs) Yep. (gulps) Hmm.
+- Oh, no. - Oh, no.
+- Oh, no. We were whole or, okay, I'm gonna be brutal.
+It's now three hours.
+- (laughs) What are you on? Yep.
+- All right. Let's see.
+Will this? Will this go?
+- No, it's still no.
+- No. All right, you know what?
+90 minutes.
+I'm a cruel, you get the idea, I'm a cruel task master.
+(both hosts laughing)
+- It's still too long. - No! This is...
+All right, an hour.
+We should find out pretty quickly whether
+or not we're hitting the limit, you know?
+- Yeah.
+That's all we can ask for.
+- Yah! We're in, yep. - Are we in? Are we in?
+Oh, look at that, on the nose.
+So let's have a look at how many nodes we've got each thing.
+So the "match (n)", "return labels(n)",
+and count star.
+This is gonna tell us how many errors we've got in each one,
+so we have got 46,000 game nodes
+and player, and 73 different values for Player Count.
+So that's surprising.
+Well, I, I'm intrigued now.
+Did we find one? Hang on.
+Where's the, ah, it's not showing it here.
+That's fine.
+Let's do "MATCH PlayerCount",
+return star.
+Value 2, 5, 1, 3, 0,
+16, 40, flipping heck.
+Okay. That's interesting.
+We might, we may have another episode.
+We're just having a look at these games with many people
+and those that take forever.
+But anyway, okay. I digress.
+Let's do the first question.
+So our first thing we wanted to do,
+the top rated games and what are they called?
+So let's do that.
+So that's do "MATCH (g)" and this is a bit of a cop out
+because we did put rating on this.
+There's lots of different ways we can do this,
+So "MATCH (g:Game)"
+I'm going to do,
+"return g.name,
+g.rating ORDER BY g.rating LIMIT 10"
+Let's see the top 10.
+There we go. Ooh.
+What happened there? - Descending,
+you need to. Yep. - Descend?
+- All games of lower.
+We shouldn't have bothered writing in any
+of the games that got a rating of zero
+because nobody cares.
+- (laughs) No. - Oh, look at that.
+Loads, loads of games, loads of games rate full marks of 10.
+So I suspect, so the other thing we probably,
+if we were coming back to this to filter it,
+is maybe we should do a minimum number
+of people who own this game as well.
+What we probably find here is, if we had to look,
+you've probably got lots of people who've got a, you know,
+maybe like five people own this game.
+So basically the person who created it
+and all of their friends and they've all given it 10.
+Fantastic, right?
+- That's like, that's what it sounds like
+because these games are, I mean,
+I'm not saying I know all the games,
+but I've never heard of any of them. (laughs)
+- Yeah, I've no heard of any of these people.
+So I suspect there might be a little bit
+of bias going on here.
+But anyway, you get the idea.
+So, Bonjour la France, so if I'm not learning,
+I'm not learning French for that one.
+- Nope. (laughs)
+- Excellent. All right, so you've done that one.
+So the next question is what game?
+So we did the top rated games.
+What games are the most popular?
+Oh, we didn't. Oh, we needed to add number of owners.
+Sorry. You've mentioned that and I completely forgot.
+So we'll cut, we'll... - Do this next time. Yep, yep.
+- We'll do it next time.
+So next question we've got is
+games for X players with complexity over Y.
+Right. Let's do that.
+So again, we're still staying on the, oh no,
+we're going to be using the thing as well.
+So let's do, let's give ourselves some value.
+So let's do "with"
+what do you want to do as complexity rating?
+Four? - Yeah.
+- And let's do,
+now how many people do you wanna play with?
+- Three. - Three?
+Just three players. You mean Min Player and Max Player?
+- Ah, three? Yeah, well, I mean, we could do three to five.
+- Okay. Three is Min, five as Max.
+And let's write our query.
+So let's do "MATCH"
+Ah, do, do, do, doo.
+Let's do "MATCH",
+brain start working, "(g:Game)"
+Oh, you know what?
+We can write a really questionable query here.
+So, because we've got this, we've got Min and Max Player.
+So we can be a little bit of a cheat here.
+So I'm just trying to think. Can we do it like this?
+So "(pc:PlayerCount)", can we do something like this?
+Where "g.weight"
+is equal to or greater than complexity.
+And...
+Can I do PC in? Yeah, I think I can do this.
+It might not work. I've living life on the edge here.
+(Alex laughing)
+"pc.value in",
+It might be this. I might be this. Will this work?
+- We'll find out. (laughs)
+- Let's find out. Let's see what happened if we do this.
+Right. Well, what did I miss? Right?
+What does it not like?
+PC the weight is?
+There is, why is this arrow here?
+Is greater than or equal to. Oh, okay.
+That's what happened, right.
+Why it's gonna work, it's just gonna work.
+- Oh.
+- Oh, okay. Yeah, it does. Okay, cool.
+So let's talk about what's going on here
+and let's put in the complexity.
+- Ah, there's a good point from Bokjo,
+It will not include four players.
+- Ah, it will. I'll explain why in a second.
+Oh no, no. You're right. No, you're right.
+You're right, Bokjo.
+And I'll come back to that in a second.
+Ah, good point. So let's do,
+"as name g.weight
+as complexity",
+"as players",
+"player range"?
+And actually a good point made by Bokjo fire
+which is we'd put them in a do.
+I'm gonna have to remind myself how to do this.
+So it's gonna do range.
+Is it this? "range(min, max)"?
+I may have to Google the,
+Hey, here we go.
+Boom, well done. - (laughs) Yes.
+- So, here we go. And let's order by complexity.
+Let's do that. There we go. Right. Here we go.
+Good spot, Bokjo. So here we go.
+So that's that question. So we have got Min/Max Players
+who wanna play and then we've got the thing.
+So here we've got complexity.
+So we've ordered it
+from lowest complexity to highest complexity.
+So they go "Lord of the Rings: The Card Game Nightmare Deck
+Over Hill and Under Hill."
+If you want a hard game, play that one.
+(Alex laughing) - and what we've done here,
+and I'll tell you about my little cheat that I've done is,
+the little cheat that I've done is
+that I have effectively said Min and Max
+and because remember we've got the two relationships,
+Min and Max Players relationships going into Player Count,
+I can now ignore the Min having to specify Min or Max.
+And I'm doing this in array.
+So what I'm saying is if the, yeah, so this is,
+this is giving me the array
+of player like, number of players.
+And then I'm just basically saying
+as long as the PC value's in there,
+the Min Value is gonna be in there
+and the Max Value is gonna be in there.
+Then that's going to filter our players.
+So that's like a nice little key cheat.
+I feel quite smoke with that. So Fountain_hook just asked,
+"Can you add rated by at least 1000 player?"
+- Yeah. We could, but we,
+- We could, we need to add that data in.
+- Exactly, we didn't do that data.
+I think if we, if we could come back to this dataset
+or as something similar. - Yeah.
+- We will for sure have that
+because like we discovered earlier,
+I think that the Santa Claus game clearly is
+not going to be the best game ever.
+But because five people think it is,
+it's on the top of the list. (laughs)
+- Exactly. Yeah. So good point.
+That's a very important, basic point.
+We didn't put in here, but we should do it next time.
+- Yeah. - So let's cut.
+Let's let's come to Fountain_hook's question which was,
+what games can I play with X friends
+which require minimum number of minutes.
+So we can actually just take this query
+and do a bit of tweaking to it.
+So let's do "g.", what did we say this was called?
+This was, ah, Playing Time of minutes.
+- Playing Time, yep.
+- Right. Playing time is running too.
+And here we're going to change this to 30 minutes.
+So I'm just gonna cheat and just go,
+just replace everything.
+And you've got number of players.
+So I don't know if you had a Min or Max number
+of players you wanted, Fountain_hook,
+but you get the idea so we can do "ORDER BY playingtime"
+Let's stick with, I think...
+Oh, you wanted two players, didn't you?
+So I'm gonna go with two.
+- We can do two to four.
+- And let's do. Oh, I'm gonna do this two and two.
+I can just keep reusing this, so.
+We're gonna really ruin this slightly,
+but for the purposes of just reusing
+what we've already got here.
+- I think you might have to write the T in playing time
+with a small t.
+- Oh. What did I do wrong here?
+- It's "playingTime", it has a capital T if that matters.
+I think that matters.
+- Yeah, it does. The properties are case sensitive.
+So what did I not do? Did I put it in as a...?
+- The play, "playingTime" is with not with a capital T.
+- Oh, is that how I put it in the graph?
+I thought I put it in as a, hang on. Let me check.
+- I think you did. I think you didn't.
+(keyboard clicking)
+- How did I do this? No, "playingTime".
+- Oh, you did. Okay. Sorry. Well done.
+- So what did I not do right here?
+What is it not happy about?
+What am I missing?
+Order by, well, it's not, oh, it's just this.
+Oh, no, it's this here.
+I need to do this. That's why it's complaining.
+Ooh.
+- Ah, yep.
+- Here we go.
+7 Wonders, that should be 7 Wonders Jewel, surely,
+which I've been playing a lot of.
+I've been playing so much - 7 Wonders Jewel.
+(Alex laughing)
+Although I usually knock it out. Oh, and Splendor.
+I like that. - Yeah.
+There are good games. - Oh yeah.
+- Yeah. (indistinct overtalking)
+- So Fountain you've asked a good question there.
+I'm intrigued that this one's got, oh look.
+We've probably got more than one Dominion.
+So we've got some data in there.
+So we've got a question here about bad news,
+PC value doesn't always work.
+Think about Min one player and Max a 100.
+This game would not be captured by,
+this game would not be captured by range for your five
+but should work.
+Oh, let's have a look.
+- Hmm. Interesting point.
+- Good point. Good point.
+So that's a great point, Bokjo.
+Let's have a think, I obviously, I need to rethink
+what this would look like.
+So maybe I need to not be lazy
+because what we could.. (Alex laughing)
+- Actually, no, that's a really good point.
+So I think we've come to time.
+So I'm going to copy and paste that
+and have a think about how we do that.
+So I was being lazy and obviously laziness was
+not in my favor here.
+So let me have it, let me have a think about,
+how would be that.
+And then when we write up the GitHub repository,
+so this is where all of this stuff lives.
+So over the next couple of days,
+I will do a writeup
+onto the repost.
+You can come along and follow up week two.
+So let me have a little think about it
+and I'll do any query corrections I need to do.
+I will do in there.
+Oh man. But that's, you know, that's,
+that's knocked the wind out of my sails.
+I've not got that one working, but that's all good.
+We'll get sorted. So cool.
+So that's that. So we try to keep these to an hour.
+So we are at time.
+So yeah. Over to you, Alex, any closing notes?
+- I think that was fun. I think that's,
+that's an interesting dataset.
+I think there is more to explore.
+So like you said, maybe we come back to this set
+or to a similar one and dig in some more.
+And do, like we discovered with the average players
+or average raters, I guess it makes a difference
+when you think of it, then these outliers are just
+not in there anymore or not as prominent.
+So it makes make sense.
+But I clearly, I think it, it showed again in,
+in 50, 60 minutes you are, if you have a CSV file,
+you are from zero to data and first queries
+and that's possible and in can be done easily.
+So I think we showed again that this can be done
+and no matter the dataset really.
+So I think it was great.
+I'm looking forward to seeing you all next time.
+I'm hoping you send in your datasets.
+Really, let us know either Discord or Twitter or
+- Well, Fountain_hook suggested chess
+and we've got the World Cup going on.
+- Exactly. Exactly.
+- So, let's have a little poke around and see
+if we can find an openly available dataset for that.
+- Exactly.
+And yeah. Don't. Check out Aura yourself.
+Give it a try, start your free instance.
+It's free, so no cost involved
+and give it a try and let us know what you think.
+- Yeah, no, absolutely.
+So same time next week. See you later.
+If you've got any ideas for the datasets, let us know.
+So either ping us on Discord, Tweet us,
+if you're about during the session,
+there's suggestions like Fountain_hook did about chess.
+I'm going to go and have a look,
+see if we can find some datasets.
+Thank you very much for joining us and see you next week.
+- See you next week. Thank you very much, guys.
+Take care. Bye, bye.

@@ -1,0 +1,899 @@
+- All right, hello, everyone.
+Welcome to today's session.
+Good morning, good afternoon, good evening to you
+wherever you are and thank you for joining us.
+Let us know in chat where you're watching this
+and when maybe, if it's early for you,
+if it's your lunch break,
+or your afternoon snack time break.
+It's always nice to hear from you all.
+And I'm very happy today to have Pierre with me today.
+Pierre a colleague at Neo4j.
+Welcome, Pierre.
+How are you doing?
+- I'm fine.
+Hi Alex, how are you?
+- Good, good, thank you.
+Thank you for joining and thank you doing the session today.
+So it's gonna be a little different today with you.
+So usually on the Mondays,
+we do this AuraDB database exploration.
+Today, we have a little change of program, basically.
+And where Pierre
+is working in our field team, right, at Neo4j?
+- Yes.
+- In France, I assume.
+- Yes. - Yeah. Cool.
+And he had the great idea beginning of the month actually,
+to do this Advent of Code challenge
+on Twitter where he put in a challenge
+or some kind of a coding example every day of the month
+until, yeah, the 24th, I guess.
+- Yes, 25th.
+- 25th, yes. Cool. (laughs)
+Yeah, it's always difficult.
+In Germany, the 24th is the big day,
+in other countries the 25th is the big day,
+so I get confused. (both laugh)
+Yeah, and this is particularly cool
+because it's a nice challenge.
+What did you...
+What did spark the thought of you doing this?
+Why did you start the series?
+- Well, last year, I did it in Python.
+And so as I'm quite new to Neo4j,
+like six months at Neo4j
+I wanted to improve my skills in Cypher.
+I will tell the story of why I did that
+later in the slides.
+- Okay, cool.
+So let's dive in, right?
+I mean, I will put a link to Pierre's Twitter
+in chat in a second,
+so you can also explore what he did
+and follow along as well.
+But yeah, like you said, Pierre, let's dive in,
+let's switch over to your deck,
+and let me get this out of way.
+All right, let's...
+Yeah, here we go.
+- Thank you, Alex.
+So Advent of Code verses Cypher.
+What is Advent of Code?
+Alex said something about it.
+But it's an Advent calendar with programing puzzles.
+And it's good to improve your skill sets
+in the language you're choosing.
+Some people use it for interview preparation,
+for anything, for challenge.
+The creator of it is Eric Wastl.
+It looks like that.
+It's a calendar with the day of the month.
+And every day, there is a puzzle.
+You click on it and you can see the puzzle.
+For instance, if you click on the puzzle 11,
+you can see the puzzle.
+It's like, there is a storytelling, like a fantasy world.
+This year, it's all about submarines,
+and there are lots of problems
+that happened to the submarine.
+For instance, you have to escape from caves or anything.
+So I can...
+So why would I do a full Advent of Code in Cypher?
+Of course, Cypher is not a good golfing language.
+It's not exactly the language you would choose
+as a first choice, I guess.
+But to answer,
+in a political way,
+I'd say I have graph data science background,
+I'm new to Neo4j, I'm new to Cypher,
+and as I did it last year in Python,
+it was odd that I learned a lot with it.
+I thought it was a great opportunity
+to improve my Cypher skillset.
+And as it's my working tool, it's important to improve it.
+And I wanted to have fun, because it's quite fun.
+And I love it.
+And I wanted also to make evidence
+that Cypher is not only a query language,
+I call it AoC-completeness.
+It's like Turing completeness,
+but it's Advent of Code.
+So this is the answer,
+but it did not exactly happen like this.
+What really happened is that I did the first puzzle
+to test if Cypher was a good option,
+and because I wanted to play with Cypher.
+And as I have a Twitter account, as Alex said,
+and you can notice I'm a huge influencer on the internet.
+I have 19 followers, I guess.
+- That'll change, that'll change.
+- Yes, yeah.
+Before I did Advent of Code, I had like 10 followers.
+So I decided
+to tweet because I was proud of my first day
+of Advent of Code.
+It should be good for anyone to try
+a puzzle of Advent of Code in Cypher this year.
+But the thing that Twitter has
+is people can answer to your tweets.
+I didn't know...
+I knew that, but some people called Michael Hunger.
+You may know him.
+I know you know him,
+and said it was a great idea,
+and please keep them coming in the thread.
+Thank you.
+Okay. (laughs)
+So...
+- Pressure was on, basically. (laughs)
+- Yes, pressure on.
+And it was not some puzzle,
+no, it's 25 puzzles in the month, okay?
+- Yeah. (laughs)
+- So this will be my December month
+storm coming and me in the garden.
+So, okay.
+Challenge accepted.
+And here we go.
+I will show you
+some pieces of it and some graphs.
+- So maybe before we start with this, quick question.
+Do you think this is for somebody
+that is new to Cypher as well?
+Or do you think this is something
+for people that have some experience with it,
+or are there some puzzles
+where you think these are
+more easy and more entry stage-friendly,
+and some are more advanced and more
+for people who have done some more things with Cypher
+and Neo4j before?
+- I was new to Cypher when I started this month.
+Not a real beginner,
+but I'm on the pre-sale side of Neo4j.
+I know how to code, I have some experience,
+but I was not a Cypher specialists.
+So if you deep dive in my GitHub,
+you'll notice that the first days
+my Cypher was quite messy
+and not as good as it should be.
+So I'd say,
+if you're a beginner, it's
+even more necessary to do it.
+If you're already a good Cypher programming person,
+you may not need to.
+So new to Cypher, you have to do Advent of Code.
+It's the...
+And there is a growing difficulty in the puzzles
+during all the month.
+Not each day more difficult,
+but it's like this, growing progressively.
+- So you can basically start with the first
+and then you see if you're complete new,
+you probably will be able to go for it,
+and then maybe if you already are some kind of pro,
+then you still can start at one, but maybe you wanna
+take the more difficult one instead, okay.
+- And if you're very good at it,
+you can try to do it like
+in the smallest number of line possible,
+or to do it very quickly.
+There are people that does it
+in two minutes in their language.
+Anybody can do it as a-- - Split coding challenge.
+- Yes.
+- Yeah, that's good.
+That's nice, cool.
+- Yes, because it's a challenge, too.
+There is a table of most quick people.
+Here we go.
+So the first day was easy.
+I had to do a slight degree dual on the data.
+I did it at the past graph.
+So I want it to be graphy.
+It's not always necessarily,
+but if I can, I do it.
+So I did that.
+Second day,
+I didn't know there was reduce aggregator in Cypher,
+I did it with periodic.commit.
+It was a really ugly code.
+You won't see that if you...
+I won't show it to you.
+So I learned.
+Then I use apoc.periodic at the while loop.
+I didn't know there was a forage
+instruction in Cypher, so keep learning.
+And then, more interesting,
+this one was a Bingo Game
+against a squid
+and it's the first very graphy problem I had with it.
+I built a graph
+where every connected component is a grid graph,
+and I had to be able
+to match patterns of lines in this graph.
+So it's the first time I had to use Cypher
+as a pattern-matching engine, and it was very convenient.
+So in this puzzle, for the first time,
+I felt very happy to use Cypher.
+Cypher was an advantage.
+It was a strength and not a weight.
+So it was very nice,
+and my Cypher was getting better,
+so I could do it in the nicer way.
+So here is the code where I make a union of two patterns,
+vertical and horizontal lines,
+and then collect the results.
+- How did you come up with these challenges?
+Did you came across some kind of a problem
+and you made them into a challenge?
+Or did you think oh, this could be fun,
+let's make it a challenge?
+- I don't know.
+I'm not sure I understood the question.
+- Basically, what sparked the idea of something
+to become a challenge or a puzzle for you
+in your Advent of Code?
+I mean, for example, this with the grid and the Bingo,
+did you came across this and thought,
+okay, this is a good fit?
+Or did you think A, this is a good...
+Yeah.
+How did you do it?
+- Yes.
+The puzzle was about bingo.
+I had to do...
+There were grid of bingo
+and I had to model it in my database.
+So a grid graph was the way to do it.
+If I had to do it in Python,
+I would use matrices,
+and I would pass it with nested for loops,
+and it's the way to do it in Python.
+In this case, it was not the challenge to do it as graphy.
+It was the proper way to do it, I guess,
+with the tool I had.
+- Okay.
+- Then,
+this was a nice puzzle
+that I had to find some barriers,
+a line, I had to avoid with my submarine in a grid.
+So I built it as a grid graph.
+And at the end of it,
+the problem was reduced
+to a loop finding,
+to cycle finding in the graph.
+So it was a very nice way
+to reduce a problem to a graph problem.
+This is quite an interesting process.
+I will try to copy in
+some other puzzles.
+This one is very interesting.
+Lanternfish.
+What we have is population of lanternfish,
+you may not know, but they are fishes,
+and they reproduce a lot.
+A lanternfish will be the father
+of a lot of other lanternfishes.
+And I will show you the...
+(indistinct) Sorry.
+It is day six.
+What happens is that every lanternfish
+has a counter that represent the days left
+before he creates new lanternfish.
+This counter is decreasing all day.
+And when a lanternfish is found,
+it has an internal timer of eight
+and decreasing.
+So what I tried
+in the first part of it was to have
+one node in my graph representing every lanternfish,
+and with the timer decreasing each time,
+which the day of producing the lanternfish,
+my node has a relationship
+to other new nodes, new lanternfish with new timer
+in apoc.periodic loop.
+And this was fine.
+This was fine for the first part of the problem,
+because the answer of it was a lot,
+almost 400,000 lanternfishes
+at the end of it.
+But the approach did not scale for the second part of it,
+because in the second part of it,
+I had to find the answer not for 18 days of reproduction,
+but 256 days.
+And you can see this is the answer of it at the end,
+and it's a big number, and it didn't scale.
+I could not compute it
+in my laptop in a convenient amount of time.
+What I had to do was aggregating things.
+Some problem like this doesn't scale,
+there are options like memorization
+or aggregation of things.
+So what I know
+is that two fishes with same timer
+in the same step of reproduction
+will behave the same way
+in all the history until the last day,
+so I can aggregate them in a single node with a cardinality
+that I have to maintain.
+What I built was this graph.
+A graph of what happens
+to a fish with counter five.
+Next step, he has a counter four.
+Next step, counter three.
+Then two, then one, then zero.
+When he reached zero,
+he goes back to six.
+But he also spawns
+another lanternfish with a timer
+set to eight.
+And then 8, 7, 6, 5, 4 to 0, and spawn.
+Et cetera.
+And this is like a flow graph.
+But in a flow graph, there is the cache flow that says
+in a relationship rate
+and out relationship rate are equals.
+In this case, no, because in this node zero,
+there is one weight entering and two out.
+So it's not really a flow.
+It's a flow with an amount of energy
+that is growing.
+And what I had to do is we Cypher,
+make transaction to this graph
+for each step.
+And this is what I did.
+I have the number of fishes
+in my graph at a given step,
+and I asked to compute the next step.
+What I do is storing my counter in my outgoing edge.
+I do it for all the nodes,
+and then I have to commit this,
+that's to be commit as a transaction.
+And then in another transaction,
+I read the sum of the counters
+in my ingoing relationship
+and add it
+to the current number.
+So it's like pumping.
+I don't know.
+From the node to the relationship,
+to the node, et cetera.
+And this works very nice.
+It's day six.
+Day six.
+I started, but this is the today's puzzle.
+And this is day six.
+So I had to put this in apoc.periodic.iterate
+to make this work until the last day of generation,
+for instance, it may be a 2, 5, 6,
+and then it gave me the right answer.
+So it was a nice way to do it and to use
+apoc.periodic.iterate as an orchestrator
+and working with transactional database.
+The next one was about crabs.
+Very interesting.
+And it was another time-scaling problem.
+Very often, it's like that.
+The puzzle is in two parts.
+The first part a brute-force algorithm works
+and a naive algorithm works.
+And in the second part, it doesn't scale
+and you have to wait years to get your answer on those.
+So you have to rethink it to a better way,
+to a better solution.
+This one, day eight was fun.
+It was about a seven-segment
+display, like eighties, like two squares, et cetera.
+And it was a decoding problem.
+It's quite messy code this time.
+So I don't know if it's very interesting,
+but there is a lot of switch case, of case when, et cetera.
+So you don't want to see it.
+If you want, you can--
+(Alex laughs)
+- It looks quite,
+I mean, in the visualization,
+yeah, it looks like a very graphy application.
+But yeah, maybe (laughs)
+- Was it?
+I don't.
+(indistinct) No.
+It was day 10?
+I don't remember.
+- Eight.
+- Day eight, sorry.
+It's better with syntax highlighting.
+Yes, it was a nice graph to build.
+Ah!
+You can go, but no new Cypher tweak.
+Using nested case can be useful in Cypher, but...
+Then, this one was very fun, too.
+Day nine.
+Let me show you day nine.
+What?
+Sorry.
+My mouse is low battery.
+I'm sorry.
+Smoke Basin.
+This is a height map.
+Two dimensional map with every integer.
+You see every digit is a height of the map.
+It's a submarine map,
+but it's not important.
+In the first step of the puzzle,
+you have to localize the low points.
+Points where every...
+Every adjacent point is higher than the one you had,
+than the one you consider.
+What I did...
+Sorry, day nine.
+Was a grid graph.
+It's easy to build a grid graph with Cypher and forage,
+with horizontal and vertical adjacency.
+The only one to go diagonally is not to be considered.
+Then I could find really easy
+the points
+where every neighbor has
+Z coordinate,
+the height inferior to yours.
+Very easy in Cypher.
+And I was happy to use Cypher in this case.
+And then the second step of the problem,
+you had to count the basins.
+Basins, like zone in your map
+that are the maximal done, adjacent to only number nines
+that are like a ridge.
+So what I did, and I was quite proud of it,
+is I DETACH DELETE
+all the number nine in my graph.
+It's not easy to do this in a matrix,
+but in a graph, very easy.
+I killed them all.
+- Yeah, that's very clever. (laughs)
+- I killed the ridge.
+And then I did
+CALL to GDS,
+a weekly connected component,
+and boom!
+Done.
+So very easy.
+I turned it to a graph problem.
+- Yeah.
+- Yes, it was a complicated matrix problem,
+but this was a boom for GDS.
+So high five, GDS.
+- (laughs) I think this is a very good example
+of where sometimes
+you have a graph problem
+or you have some kind of connected data
+or some kind of scenario
+and then graphs in Cypher is super strong.
+And here, in this case, you basically used two lines
+to remove the nines and then you have CALL
+an algorithm and then you get to an answer.
+And in other cases, like the one you showed earlier,
+it's quite a convoluted thing
+and you have to work around a lot of issues with Cypher,
+because it's not really meant for this kind of scenario,
+I guess, so that's why it's more complicated.
+Yeah, if you have a graphy problem,
+then this Cypher, it's very easy to get your answer, yeah.
+- Yes, yes.
+In real life, in prediction,
+I wouldn't have removed my information in my graph.
+I would have not DETACH DELETE the nodes,
+but I would have removed them in the graph
+in-memory projection I use for GDS.
+So don't do this at home.
+- (laughs) Good point.
+Good point, yeah, don't just DETACH DELETE.
+- Then this was nice,
+because this was not really a graphy problem.
+This was a syntactic analysis problem.
+They tend to pass
+some words of parenthesis.
+This like deep language parenthesis,
+as to have a match of the opposite shape,
+like closing, opening,
+closing, opening, closing, opening, closing, opening.
+In Python, I would have to use the EVAL,
+E-V-A-L function to pass it, like if it were Python,
+but I couldn't do this with Cypher.
+So what I like in this example,
+is that I'm very proud of this piece of code,
+because I think it's a neat one.
+It's like implementing a stack
+with Cypher in a reducer.
+I read a line of a word of parenthesis
+and I stuck it with the reduce function,
+and you stack the opening parenthesis.
+When you have a closing parenthesis, you pop,
+if it's a match.
+If it's not a match, the word is not valid,
+and then go on.
+Cypher was very comfortable,
+very comfortable language to do this.
+I guess I'm improving my Cypher style,
+but Cypher can do this and I--
+- Nice side effect. (laughs)
+- Yes.
+I was happy to know it.
+Then, this one
+could have been hell,
+but I managed to do it.
+It's a Game of Life,
+like a Conway automaton,
+a two dimensional one.
+It's the 11th.
+Every point in the matrix is an octopus,
+and it has an energy level.
+In every step, energy level is increasing.
+But when it reaches 10,
+it goes to zero
+and gives one point of energy to its neighbors,
+to all the octopi around,
+and so on,
+until a balanced situation with no octopus
+with 10 points.
+So it's like every step, you had one,
+and then there is a wave
+of zeros going around your map.
+And what was difficult in this problem
+was to manage transactions
+on your grid graph,
+because there are a lot of nested stuffs.
+First, what I did was the main loop,
+where I used UNWIND CALL in transaction of one,
+that is available
+in the Neo4j 4.4
+- Just in time. (laughs)
+- Yes, just in time for me.
+And inside, I had to use apoc.cypher.runMany.
+It enables me to run
+every step as a transaction
+and to have control of it.
+When you do a call, you don't exactly know
+if this will be committed before that, et cetera.
+So apoc.cypher.runMany gives you more control
+of what is committing first, then, and then, and last.
+But then, I had my other loop, the flashed loop
+to do and I...
+So where is it?
+It's this line with the runFile.
+There is a lot of strings to be managed
+with quote and Escape, Escape to quote nested.
+So a good way, if you don't want to have the escaping hell
+of backslash, backslash, back quote, quote.
+If you don't want it, you can run as a file.
+You can run a file of Cypher.
+So I run another file called flashwave.cypher
+with apoc.periodic.commit,
+apoc.periodic.commit is like a while.
+It's like a while you run a transaction,
+as long as you haven't reached
+equilibrium, a balanced situation.
+The balanced situation is when it returns zero,
+for instance, or nothing.
+Another time, there is a lot of CALLS in the commit,
+so it has to be transactional
+to control everything occurs
+in the right order.
+So no complicated algorithm,
+but need a lot of control in transaction.
+And it was possible with Cypher and with APOC,
+that APOC helped a lot in this one, and in a lot of them.
+This day 12 was a graph problem.
+Totally graph problem.
+- So that was an easy one, then? (laughs)
+- This was a graph problem.
+I had to go from start to end.
+And I had to count all the passes
+between start and end.
+You can pass
+the amount
+as many times as you want,
+if the node has a uppercase name,
+but only once if it has a lower lowercase one.
+So it looks easy.
+It's very easy in Cypher
+to look for the best path
+or to look for a lot of passes.
+But what happens is in Cypher,
+a pattern doesn't use twice the same relationship.
+So I can go start A, C, A, end,
+if the graph is as is.
+Because it's not in prediction.
+In a business case, it's useless to do such things.
+What I did, I could have done a complicated things
+in Cypher and implementing algorithm,
+like that first search or anything
+to explore my graph with some constraints and rules.
+But I wanted to use Cypher and pattern matching.
+So what I did is refactor my graph
+to make it fit with Cypher.
+And I did that.
+Like a printing some...
+some useless,
+or some leaves.
+So the leaves in my graph two loops
+and some considering
+uppercase nodes as relationships,
+I created this kind of graph,
+this graphs.
+And...
+Sorry.
+At the end of it,
+there is a very easy Cypher code
+to get all the passes in my graph.
+So it was nice to build the right graph for Cypher,
+because I built like a more business-oriented graph.
+It was fun to do.
+- (laughs) Cool.
+- This one was fun, too.
+Transparent Origami.
+I have a big matrix of white and black pixels and...
+No, not white and black, like transparent and black,
+and in each step, I have an axis
+and I have to fold my matrix
+along the axis,
+matrix along the axis
+and many times
+until the last one.
+And in the last one,
+I could see some code.
+Here is C-E-J-K-L-U-G-J.
+This was what I needed to do.
+As I use Neo4j,
+I don't want to store huge matrix of pixel
+and to work on matrix.
+So what I did, I only stored the black pixels as nodes.
+A pixel is X, Y,
+and the step.
+The first step was zero.
+When I fold,
+in each step when I folded my matrix,
+I spawned from every node
+next node on the next generation.
+that could be with the same X and Y
+or with some X or some Ys modificated to be folded.
+Let me show you the code of it.
+So this is a folding step.
+And when it's along X,
+the X becomes
+two times
+the folding line coordinate
+minus the actual coordinate.
+So very nice to do, very nice to fold.
+And then I merge the new dot
+and a relationship from my dot to the next,
+to the new one
+with storing the step of it.
+And so what I did in a very graphy way,
+well, I reinvent sparse matrices.
+I only add sparse information
+and not storing a lot of matrices in each step.
+So only concentrated in a graph,
+useful information
+of important pixels and not storing void.
+Neo4j is not to store useless things.
+- (laughs) Yeah, that's very good.
+- A lot of us do it.
+I do it. - Yeah, true.
+The code in the end is this password, basically.
+Did it come out
+in Bloom or something or how do you-
+- Yes.
+I did this drawing of it with Bloom,
+with a conditional coloring of the nodes.
+The red node is a last generation node,
+the last folding step node.
+So in the red node,
+in my drawing
+is the last generation.
+The blue node is the first generation.
+- Okay.
+- So, every red node is like a hash in this drawing.
+Yes.
+And yes, Bloom was very handy to do this plotting.
+I love Bloom, by the way, and I use it a lot to debug
+and to look if everything is going fine.
+Yes.
+This one was
+another
+combinatorics hell
+with very difficult to make this scale.
+And the code is hell.
+Another time.
+Day 14, sorry.
+Yes.
+No.
+It's not that bad.
+This is part one.
+Part one was very easy.
+Let me show you the problem before.
+Yes.
+These are some rules of, like a grammar.
+For instance, the first word is NNCB.
+And rules in each step
+means, for instance, NN give C,
+means I have to put a C
+between the two Ns of my first word.
+And so in each step,
+the size of the word
+is like twice the same as it was before.
+And you can imagine like 10 step,
+you have to do the power of 10
+like 1,000 times the size of your word.
+But in the second part,
+you have to find 40 steps,
+and it's very big.
+- (indistinct) okay now.
+- The common approach to some problem
+is a regular C function with memorization.
+Memorization is like,
+if you have already called the function
+with those parameter, you have already the answer
+like in a HashMap
+and you don't have to compute another time the same thing.
+Cypher is not really handy for recursion.
+It's not the way I want it to do it.
+I want it to do with building a graph of the first word,
+the graph of a second word with in between letters.
+And then like a fractal graph
+of my new generations of work.
+And at the end of it, it was a huge graph.
+It worked for the part one, but not for part two.
+I had to do the same kind of thing
+I did with my lanternfishes.
+I had to aggregate something.
+Because two same pairs of adjacent letter in my word
+will have the same amount of descendancy
+and it's a counting problem at the end.
+I could separate them and
+the other wasn't important,
+so I could aggregate their value if I had to.
+I can solve, I have two cardinality of this pair, and build.
+So at the end of it,
+I built a very smaller graph
+and got the result.
+Yes.
+So this is the answer of the problem.
+Another time in Neo4j,
+you have to store information and not events.
+You have to store only...
+Not only, but you have to store useful things.
+It's as a good practice.
+And yesterday's problem was interesting, too.
+It was a shortest path
+in a grid graph.
+So let me show you.
+This is a grid
+with a number.
+A digit is like a risk
+in a room.
+You don't want to have to go to a risky room.
+So you are looking the shortest path
+from top left to bottom right.
+And you don't want to go to, for instance, in this eight.
+So one, one, two, et cetera.
+So you get this less risky path,
+and it's a shortest path that can be done in a grid graph
+with Dijkstra in very easy way.
+So the first step is like build the graph, GDS and boom.
+Very easy.
+And the second one, you have to build another grid
+from the first one by copy paste it
+from left to right.
+But every digit adds one in each step.
+And it's a circular sum.
+When you reach 10,
+you go to one.
+So it's like -1, modulo, 9, and +1.
+What was interesting in it was Cypher,
+not really Neo4j and graphs.
+What was really nice was to use Cypher
+to build this graph, because first step was so easy.
+It was like a GDS, boom.
+But the second step,
+I did this,
+and I used a lot of comprehension list with Cypher,
+and it's very, very handy.
+You can nest them and you can manage complicated things
+in a very compact manner.
+And it's very nice as a developer
+to get more complex things in them
+in a recursive process of doing it.
+So this one is pure Cypher
+that helped me a lot.
+And it was yesterday's problem.
+Today's problem is like conversion
+between hexadecimal and binary numbers,
+and is a recursive pattern of beats and it's looking,
+it has a very, very complicated stuff,
+because I'll show you the lengths of the problem.
+It's a very, very nice reading.
+So I'll need help,
+I think, and I sent it on the Slack.
+- Yeah, well, ask Michael. (laughs)
+- Yeah, I'll ask Micheal.
+Everybody says, "Ask Michael" when there's-
+- Yeah, he'll put you in the place. (laughs)
+- Yes.
+So I reached half of my path.
+Oh, sorry.
+Sorry for that. (laughs)
+- No worries.
+- Yeah.
+- But that's very cool.
+Thank you very much.
+- Thank you.
+- Let's go into it again.
+Yeah, this is exciting.
+And I think it's is very interesting
+to see how much is possible with Cypher
+and how many things you can do
+if you know your way around a few of your obstacles,
+so it's actually a very powerful programming language,
+or sort of program actually, but it can almost be.
+- Yes, it is.
+I'd say it is
+when you know some nice ways to do tricky stuff,
+and then it's very handy.
+I'm beginning to love it.
+- (laughs) Very good.
+No, and I think what this showed, like what I thought,
+I think I said earlier is, if you have a graph problem,
+it all of a sudden is becoming very easy.
+And it's just a few lines where, I guess, I don't know,
+this one with the shortest path and other things.
+I would imagine that if you do this anywhere else,
+you have to write lots of lines.
+And here, it's just a few.
+- Yes, but graphs are everywhere
+and you have to find grass between the lines
+to read graphs between the line.
+But there is always a graphy way to model a problem.
+So it's some...
+You have to practice, and then it's a way of thinking.
+So yes,
+graphs work.
+- Super.
+Well, that's cool.
+Yeah, I think that's the end of today.
+I think it's also the end of this year for us in streaming.
+So we will take a little break over the holidays.
+We will be back early next year.
+Thank you very much, Pierre, for showing us through this.
+I guess you will continue- - Thank you, Alex.
+- doing the next few challenges, depending on your time.
+So if you wanna- - I will.
+- follow up what Pierre is doing until the 25th,
+please follow him on LinkedIn,
+so he becomes an actual influencer. (laughs)
+And give him some love.
+It's really cool.
+And yeah, with that, thank you for watching.
+Thank you for joining today.
+As ever, if you have anything in between the next few days
+and holidays, if you think of something,
+if you wanna share something, you wanna discuss something,
+Discord and the forums are obviously open.
+Twitter is also open.
+We'd love to hear from you.
+We're looking for ideas for next year,
+so if you have anything you wanna share and show,
+let me know either on Twitter or on Discord preferably,
+and then we can discuss things.
+With this, yeah, happy, happy holidays.
+Happy New Year, especially.
+Everybody, take care, stay healthy, stay safe.
+And yeah, I hope to see you soon.
+I guess in January, then.
+Thank you, everybody.
+Thank you, Pierre.
+- See you.
+Thank you.
+- Take care.
+Bye bye. - Take care, everybody.

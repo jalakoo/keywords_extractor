@@ -1,0 +1,1534 @@
+maybe while while michael is sorting his
+his uh his setup um
+um if everybody would like to um
+i'll have two michaels here
+uh tell us where you are
+and um
+what you uh what you're doing today is
+is it is it gonna be um a lunch stream
+for you is it gonna be an early morning
+stream for you is it gonna be a
+an afternoon stream um
+san jose so that's definitely early
+morning
+early morning yes
+good morning
+good morning conrad is is uh
+it might be a very good start to your to
+a monday morning or um
+you just can't sleep at all
+insomnia is dreaming exactly here
+welcome conor so i hope that
+will be fun and useful today please
+everyone
+bring your questions uh we're more than
+happy to answer anything that
+can help you uh getting familiar with
+data and
+oh you're so you're like like me conrad
+sounds very familiar
+you also have to get up at 6 30 in the
+morning to get the kids to school as
+well
+that's when my alarm clock rang this
+morning oh wow
+all right um
+yeah so the the the goal of this stream
+again we will we will dive in a a more
+or less random data set it's not not not
+that random this week we picked it a
+little bit on purpose um here but um we
+will dive into it we will we will um
+do some modeling with arrows we will
+import the data loaded with csv um
+in uh into into an aura free instance
+uh if you don't have an orafle instance
+ready please go ahead and
+and launch that for you
+um
+i uh
+this is the link in um in the chat right
+now i
+i posted it earlier as well
+um and then we can
+we can load some data do some queries
+and play a little bit with the data but
+as always this is supposed to be
+interactive so if you have any questions
+if you anything you you'd like to know
+anything obviously in in our discussions
+on the data set on our our modeling
+thinking
+let us know what you think and let us
+know what what you would do differently
+maybe or what your suggestions would be
+um
+yeah
+um shall we shall we dive in michael
+yeah let's get started so let me start
+sharing my screen
+and then we get going hope you can all
+see this
+so uh we have something really important
+coming up in germany in two weeks on
+september 26th we have our general
+election four years since the last one
+and lots of important topics on the
+table especially climate change the
+future of the world and
+you know
+how it's going to be for our kids and
+and everyone so uh what's actually quite
+cool is uh in germany do you want to go
+to present mode oh i yeah i can do that
+one second
+yep well let me let me pull this into a
+separate tab so i can switch between
+this and the
+and the other one
+okay so we have election year and we're
+all in for elections so actually i we
+already did mill in boating uh uh
+already my wife and i
+so what's actually cool in germany
+there's this
+program uh from the government it's
+called walmart which is kind of like an
+election
+or mat um
+which allows you to
+look at the different parties and their
+stances to
+a number of topics um
+and um you can put in your own stance to
+each other topic and then compare
+yourself with the party so i can show
+you what this looks like so you go
+basically here
+and unfortunately it's only in german
+but you get basically 38 topics and you
+can say okay
+i am for general speed limit on highways
+yes
+right and so and so on so you get like
+all these questions and then at the end
+it compares
+uh your answers with the stances of all
+parties so they went through all party
+pro political party programs and
+extracted all the data
+and uh so you can compare them and say
+hey i'm closer to this party or this
+party on this party and you can also
+select subset of parties and so on so
+it's pretty cool uh so if you're in
+germany or interested in that and if
+your german is good enough but it
+probably
+even works if google translate
+could uh try this out
+um so what's actually quite cool is they
+also provide their data uh so you can
+hold download the whole app uh to run it
+locally if you have like a school which
+is
+you know off of the internet or
+something like that and you want to
+offer this for your students so but you
+can also just download the uh the data
+itself which is a zip file with an excel
+sheet
+and i basically just took this excel
+sheet and extracted it into
+um extracted it into
+uh the
+uh csv so what we want to do today is
+basically taking this data from this
+from this app turning it into a graph
+exploring it playing around with it in
+aura free and see how far we can get
+here
+and of course if you have questions that
+we want to can try to answer then feel
+free to bring the questions and we will
+try to make this make this happen and as
+interactive as possible as alex said
+we have a good question already from
+rodolfo um
+he is using a neo4j community edition
+and he would like to know what the
+difference between neo4j aura and the
+regular community edition is so i think
+that's that's
+that's a good one if you can actually
+start with
+so um basically um
+give me a second and then we get there
+on the on the wall slide so basically so
+you want to kind of explore this um
+then uh if you have not used graphs
+before in in a graph database basically
+what you do is you store not just the
+entities and the attributes but the
+connections or the relationships between
+the entities are stored as first class
+as citizens in the in the database as
+first class data structures so you don't
+need to compute them at query time with
+joins that are looking up data from
+indexes but it's basically part of the
+of the data and the data model and so
+you can it's pretty versatile so you can
+store everything from social networks to
+purchase to interaction networks to
+hierarchies to student curriculums in
+universities
+investigative journalism
+uh builds of materials for aircrafts or
+other things so it's pretty flexible
+even for election data
+and so neo4j is kind of a graph database
+map built for exactly this purpose and
+you can use it both on the transaction
+side building applications that um use
+neo4j but also on the analytics side if
+you want to really use it as an graph
+analytics platform and graph data
+science platform and we have a lot of
+stuff around it from tools uh like
+bloomberg browser glc but also drivers
+for all kinds of languages and a lot of
+additional integrations and connectors
+for spark kafka and and so on so there's
+a lot of stuff there and what we want to
+look is into aura
+and philadelphia's question uh to
+compare aura with community edition
+actually i think there's even
+a
+page let me see if that's
+um i think it's somewhere here on the
+comparison page
+let's see
+oh that's just between a different yeah
+yeah so the main differences between uh
+community edition and aura is um it's
+hosted by neo4j
+you don't need to take care you don't
+need to do any maintenance operations
+upgrades
+backups and things like that so all of
+that is taking care of you you always
+have the latest version um and um before
+free is start out for free um and then
+you can scale up your needs according to
+your needs from that and on aura it also
+runs enterprise edition so you get all
+the features uh
+of enterprise edition like all the some
+of let's say some of the features of
+enterprise edition depending on it here
+um
+like for instance better cipher runtime
+uh is part of this uh it's offering
+certain functions procedures are there
+that are not part of community edition
+and uh so that's
+mostly the kind of ease of use and you
+don't need to maintain host and manage
+it yourself and you get like the good
+runtime and and things like that from
+uh from net
+and you also get bloom
+and bloom is also part of that exactly
+um so
+uh it's securely stored and um yeah so
+and the you can start out for free and
+then if if you
+scale up to a more production usage then
+you can scale from one gig to 64 gigs in
+professional uh
+on the fly without any downtime so you
+get all the updates and all the scale
+and
+migrations without that downtime which
+is also really nice
+i hope this answered your question or
+therefore if you have more questions
+please bring it on but yes this
+cloud or pricing page that kind of has
+more details on each of these
+offerings but it's basically enterprise
+edition
+exactly
+conrad wants to know what's the default
+password as far as i know you need to
+set that yourself yeah so let's see i'll
+show you in a second so actually that's
+something i wanted to show which is when
+you go get started in aura you go to
+console.neo4jo
+log in and you have to um
+accept terms and so on and then you have
+to choice between or professional or
+free we'll gonna do an or a free
+and just give it a name
+and then you say create free can also
+select a region
+say create free database and here it
+shows you the password and this is
+something that you have to copy and save
+uh otherwise uh your
+need to reach out to support to reset
+the password so that's why it also says
+i have stored these credentials safely
+to use later
+and if you forgot to store them then
+just have nothing loaded then just
+redo
+so i if i click continue it said starts
+creating this database
+and
+it takes a few minutes to to
+provisionate
+but um
+so you have to um do it before you
+you're gonna join us uh but if there's
+something uh wrong and it's still empty
+and you have not done anything or if you
+just want to get rid of it there's other
+settings you can just delete the
+database and then start over so it's
+like a big deal
+because it's free anyway so it doesn't
+matter
+okay so it takes a few minutes to
+provision that's why meanwhile we can go
+back to our
+setup here so what we do is we take the
+csv and the csv is basically
+available from this download page as i
+already mentioned and uh it's um
+a zip file with actually an excel sheet
+uh i have to update this because this
+was the previous
+excellent sheet and i extracted this and
+it's on github so um
+if you want to
+see this data then you can just go
+um here on github and we have all the
+data in the csv here unfortunately it's
+not nicely running i don't github
+because it's too large um but anyway
+but we also as as in in the sessions
+before we always collect the the
+informations the queries and all the
+information on our github repository
+page so you we will able you'll be able
+to read this up afterwards exactly so if
+you go to dev.edu.com
+btw bundestagswell btw 21
+then this gets you to the today's
+section and it's this has like the data
+monolithic varies and also the
+uh link to the data as well no and i'll
+post a link in the
+and
+so uh
+so
+we basically start by by looking at the
+csv so the cc has three parts one is the
+party with an
+number name and a short um
+string basically or a
+description
+and then
+or the topic it has all the number title
+and text right so obvious and then the
+position is basically the stance of the
+party towards this uh topic right so
+either they agree uh they are neutral to
+it or they disagree right and then and
+um
+um
+explanation why they agree or disagree
+after that
+and um so that's basically our data so
+it's a single csv here all the data is
+in there and each row of the csg is
+representing basically one of these
+position uh positions of a party to an
+uh topic so the parties are duplicated
+and these topics are duplicated in the
+csv as such
+right
+so what would our model look like for
+something like this so to do this you
+can go to
+arrows.app
+and arrows app is a really nice modeling
+tool that you can use with neo4j it also
+exports to cypher if you want to
+and usually uh you can do
+two different levels of modeling either
+you do an instance modeling so where i
+say
+uh for instance you take a party uh
+like uh this party
+and then you can drag a relationship
+basically out of the halo of a node like
+this and here the topic would be for
+instance speed limit or something like
+that right
+so this would be kind of our instance
+model right and then uh position
+uh would be something like uh yes or no
+right and then we have attributes um and
+labels so this is kind of an example
+model
+and then we can say okay to this uh
+example here we want to add a label
+which is for instance in party
+right and here's a topic
+so these are our two entities
+um basically in our graph
+and then we can have attributes uh for
+these so i said they have like an id or
+number which is an int
+they have
+oops
+they have an id they have an
+name
+which is a string
+and
+the party as well it has an
+id
+and it has a name and it has a
+description
+right
+and then our position uh
+should get something like a weight
+right so uh
+in the original text file it's in
+textural
+i agree i don't agree on neutral
+basically but we want to turn this into
+an
+um
+into a numeric value from zero to one
+basically zero point five and and one so
+that's kind of our model that we are
+that you're looking at right so we
+basically have a party a topic and a
+position uh with a bait
+against that and so basically we take
+the csv and turn this into this model
+right
+so there could be different approaches
+for modeling these for instance you
+could say okay i want to pull out the
+position
+uh into a separate node and attach more
+information to that for instance i don't
+know links to the party program or
+you know other things uh as such
+but for all uh for our needs this simple
+model is good enough
+uh as such
+right
+so yeah this is this is a more of a
+simpler
+simpler model this time around because
+obviously there's not it's not too
+complicated
+um but it's um
+but but it you know
+but you can imagine kind of imagine you
+would kind of try to build a knowledge
+graph from this then you would kind of
+connect the topics to additional
+information or to additional
+sources or things like that or
+discussions or you could connect the
+parties to the you know local
+state
+groups to individuals to their
+candidates and and things like that
+right so there's a exactly this is kind
+of like the basis of the knowledge graph
+and if you wanted to actually you could
+extend this to
+a way more detail and so totally i could
+imagine adding adding previous uh
+you know um
+when there was um discussions in the
+in the government or in um you know
+votings on on certain topics then
+these these results are available as
+well so yeah that's that's a really good
+point
+so if you if you look at like past
+governments you could put in sort of for
+instance the different uh
+eras then you can put in the coalitions
+that existed in the different times who
+was in opposition who was uh in the
+governing
+body in in government and then for
+instance you could also put in laws and
+how the different
+parties and people kind of voted for
+these different laws and how they these
+laws are achieved relating to topics
+right then you could do this on the on
+the global country level but also on the
+state level and then compare like state
+politics versus country politics
+and so on so there's a lot of potential
+here what you could do right if the data
+is available then it's easy to add more
+data to a graph like that right
+okay cool and
+so what would this look like so we
+basically take the saw data
+and what we also do uh is we create an
+um
+bunch of indexes on party name and oops
+sorry thesis and then load the data and
+for loading the data we can just go to
+our uh github
+page
+um there's it
+over here
+and um so first of all we create a bunch
+of indexes and constraints so we just
+created constraints on the party ids and
+topic ids and the indexes on party name
+and topic
+why are we doing this michael
+okay we are doing uh this for two
+reasons so it's um the graph database
+doesn't need indexes for things like
+joints or so but it can benefit from
+indexes when looking up individual data
+points so for instance if i want to find
+it partly by id or topic by idea for
+instance to create the relationship
+between them then this is much faster it
+doesn't have to scan all the data but it
+can just use the index to look this up
+and for instance party names is it's
+nice if you're
+for instance if you had a larger data
+set
+then it could quickly find the name the
+party or topic by name as such so for
+this kind of size of data set it's not
+necessary but it's actually good
+practice to do it like this
+so and
+so here we have our uh running uh
+database in ora and we can now say open
+with and we can pick browser bloom we
+start out with bro neo4j browser
+and
+you have to put in your username which
+is neo4j which it doesn't tell you
+actually which is kind of weird
+but it's good to know that the username
+is neo4j and the password is the
+password that you saved before um
+when you create a database
+and if i now connect my
+browser to it i get basically an
+empty database there's nothing in there
+and uh
+we can actually keep this open
+and now create our indexes and
+constraints so we just can paste this in
+and it can actually do multi-element or
+multi-statement execution so i click on
+run over here
+and it just goes in there and creates
+indexes and constraints and all the
+green check marks tell me it's all good
+and if i click on any of these then i
+see that
+these were successful
+okay and now the interesting bit uh so
+you already see it now created like
+placeholders for the uh party and topic
+so we know because the constraint exists
+that this label um
+for party and for topic should be in the
+database
+so it's a little bit like an optional
+schema so neo4j itself is schema free
+but with the constraints and things like
+that you have a little bit of schema uh
+metadata to say so uh to hint at
+things
+okay and then the interesting bit starts
+with loading the data so what we can
+actually do we can split this into two
+steps so i'll first i'll show you what
+the data looks like in neo4j
+so i can just say load csv with headers
+from our url this is basically the csv
+that i
+had over here
+so you need to need to click on raw and
+then you can do the raw ul
+for the csv
+and
+we can just get this and then say lord
+c3 from this url uh this headers as row
+and then we can just return a row and
+say we do limit five so the first five
+rows of the c3 so it gets grabs the csv
+downloads the data and then you get each
+row of the csv as a
+map or dictionary or hash however you
+want to call that or object
+which has like
+the key is the header and the value is
+the um
+the value in the in the cell in the csv
+right so and what we now can do is
+basically take this uh information and
+turn it into our graph so that means the
+first three thing two things like party
+or the party name party description
+party number we turn into party the
+thesis we put in turn into the topic and
+the position we turn into our
+relationship as such
+okay and uh looking at this uh this is
+kind of the whole
+input statement here for the file
+it looks a little bit complex or more
+involved and we'll go through this kind
+of line by line to see
+what this does
+so it complains what does complain about
+oh yeah so
+uh
+it complains that we should be careful
+that when
+that we have to too much data uh then we
+should use uh using pure periodic
+commit
+but we have
+uh to batch the import but uh
+oh
+actually
+yeah anyway um
+i think it's going to be fine in this
+case yeah it's fine
+uh it's not uh for this kind of data
+science it's not important
+so here it is the bit that we just had
+and then basically
+we take
+the party number as the id for the party
+uh
+so we merge merges in operation uh get
+or create so if the party already exists
+it doesn't create it a second time where
+if i had create here instead of merge
+then it would create one party node per
+row which we don't want so
+merge creates only one party node
+altogether and you see that because the
+kind of headers are really this weird
+space colon
+dot uh
+thing we need to backtick this so that
+it's escaped so row dot and then the
+header name
+but we have to escape this with
+backticks otherwise it would complain
+about it um
+and uh we set the text to the party name
+and the name to the
+short name
+so because the party name is like the
+long bit and the
+short description is kind of just a
+three-letter acronym basically as such
+and for the topic you do the same the id
+is the number and then the text is uh
+the name is what's in the title and the
+text is the thesis
+itself
+and then we basically create a position
+between the party and the topic
+the text becomes
+uh
+just the uh explanation
+and the weight is a little bit
+interesting because we need to take our
+position thing and then the textual
+thing i agree
+i i don't agree then it gets in zero
+uh i agreed and it gets one and neutral
+gets a 0.5 so we basically turn these
+three positions into values between zero
+and one
+and then we just return the number of
+rows that were created in there
+okay
+any questions alex anything from you
+that you want to comment on no i think
+that is is
+fairly clear um
+rudolph us how we how we created the the
+schema but i mean we we looked at into
+the
+earlier or maybe you missed it we looked
+into arrows and we we had to look at the
+at the data in itself and so okay what
+yeah exactly here it is and it's okay
+what what kind of data do we have
+we have parties we have positions we
+have a thesis like michael just said and
+this is why
+um this is why we we came up with this i
+mean
+there are different
+other other ways to do it but i think
+this is the most straightforward version
+to to go with this one
+no no arrows does not create a schema we
+you do as a as a user you you look into
+your data what makes most sense
+and there is not necessarily a schema
+per se with it's more like a
+implicit schema
+yes yeah it comes from the data that you
+add to the uh
+it depends a little bit what kind of
+questions you you want to ask and this
+this kind of like
+um
+baselines what what kind of schema you
+create and what how your data model
+looks like and this this and then like
+michael
+previously said that the position could
+be a separate note if this is something
+we want to query particularly
+differently
+um and then the the model would look
+different and then we would have uh so
+always you think about what kind of
+questions do i want to ask my data and
+then this is how how you how you model
+it and then
+you you you implicitly create a schema
+for it but you can always change that so
+once
+after we we have done this and we would
+have added more data we could always say
+okay um this is not working anymore we
+need to we need to refactor it a little
+bit and then we we could we could change
+that so it's not as rigid as
+as it is with other databases maybe
+yeah it's kind of like whiteboarding
+right so imagine you have a you have a
+problem that you want to solve with your
+colleagues and then you basically grab a
+whiteboard at least three couple times
+you grabbed your whiteboard you know it
+is probably grabbing virtual whiteboard
+and then you say okay what kind of
+entities do i need in mind to answer
+this question kind of what kind of
+relationships between those entities are
+important for this answering these
+questions i mean there might be more
+entities and more relationships but if
+they are not so relevant for answering
+your question then you might leave them
+off at least for the time being right so
+but you even if you have more data it
+might not make sense to cram all the
+data into database if you only
+need a subset of the model for instance
+for your particular uh
+use case or so right so then from that
+perspective
+it's actually uh it's interesting arrows
+also has a mode of creating
+interactively a model basically uh from
+from data but i forgot how it exactly
+works so perhaps that's something we can
+try out next time maybe try it next time
+yeah
+cool so we haven't run out yet
+okay okay maybe one more one more
+question came up from conrad is is case
+is that an um an official part of cypher
+or
+[Music]
+case is an expression
+uh which um actually it's a good point
+uh cipher you can also see it here in
+the help section of the browser there's
+something called cipher ref code
+and um
+which is super useful uh record of um
+cypher keywords and functions and and um
+expressions and so on and then you'll
+find good examples of all the things and
+so for instance if i search for case in
+here
+then
+hopefully here's case
+and it is an expression that basically
+based on an um
+condition it returns different kinds of
+data and either it has two modes either
+you pass in the data and then you it's
+kind of like a switch statement
+basically
+uh or
+you have case and then each expression
+is on in its own line and then basically
+it computes uh
+an and result right because you can
+always click on the heading for yeah and
+exactly if you click on the heading here
+then it gets you to the uh docs page for
+this
+as well super handy
+yep totally
+what's important about case is you can't
+do operations within case cases really
+just in compute expression that's
+important to remember
+so it's not a conditional for
+doing different updates or so but it's
+really just computing a
+value okay cool now we ran our statement
+it returned
+1444 rows so that was the number of rows
+in the csv
+and now if you look at our database it
+also says oh now i have position
+relationships here in partisan topics
+and 67
+76 notes
+and 1400 relationships so if i click on
+this position thing here then i see a
+subset of the
+of the data in here and if i look at one
+of these nodes i see
+um
+this has like idea
+uh
+name and the text and here for the party
+it has id name
+and uh the text is basically long
+name and if i click on a position it has
+the
+uh the text of the position and the
+weight
+right so this is kind of the detailed
+explanation why they agree or disagree
+with a certain position and then the
+weight is the interesting bit fast at
+least that's right
+and now we could you could use this um
+this data in a graph database to
+basically build something similar like
+the
+like interactive tool right so that's
+kind of one thing because neo4j is just
+a database you can just
+use uh javascript or react also or
+mobile app and run this against your
+neo4j database right and then you could
+either store the user's
+opinions in the database or you just
+leave it as an um read only
+where the user just gets the local data
+and it's not stored anywhere that's up
+to you
+right so we have our data in the
+database and now what can we do with
+this of course you can
+find all the parties all the topics
+so but it's not so very uh interesting
+what i wanted to look at is kind of can
+we explore this a little bit more in an
+interesting
+way
+so
+oh which gets us to bloom actually good
+point uh because as alex said before uh
+neo4jora doesn't just come with browser
+but also with bloom which is an
+interactive exploratory tool uh for
+neo4j
+for
+developers exactly right um
+so
+if you don't know anything about neo4j
+language or if you want to show this
+data to someone and want to have them
+explore this interactively then you can
+give them like link to blue
+and then they can explore this
+interactively for instance i can just
+find all parties and then it finds me
+more parties then i can look into those
+i could for instance style them so for
+instance i can give these parties an
+icon or so
+what's actually a party i can i have no
+idea people
+maybe and a topic could have like a tech
+icon versus attack
+no this one
+looked like a little flag maybe
+like attack
+stuff like that so you can style those
+give them different colors and and other
+things as well and you can also do
+things based on
+attributes right so you can also color
+things by
+uh for instance um
+by id or uh or by by a numeric attribute
+so for instance if imagine you had the
+number of members in this party and you
+wanted to
+style the notes based on the oh yeah the
+same color or something like that right
+or
+what's actually new in bloom recently
+you can color it by
+rule-based colors by id
+and then you can see unique values
+and then every party gets a different
+color so if you just want to
+color them randomly so that you can just
+just
+have distinct
+colors in there then you can basically
+give them different colors or you can
+also assign colors yourself if you
+wanted to right so it's also possible so
+this is also an option if you just have
+a number of things that you want to
+color differently then you can
+do this just to quickly discern them
+as such
+but what's more interesting is actually
+uh if i take some of these parties here
+and uh
+say i want to expand this uh so i can
+either double i think i can just
+when i double click it shows me the um
+the details
+i can also see the relationships of this
+body on to any other positions
+and i
+can look at the neighbors as well this
+is like this textual view
+of of the data but then i can say expand
+and then i cannot say i expand from
+one party to all its
+uh neighbors which is the topics the top
+the topics yeah
+and um
+then i can kind of continue to explore
+and for instance i can say okay
+um
+i want to export a home office topic and
+want to see how all the other parties
+are
+related to that and i can see this right
+and right now you can see that the
+position is
+kind of just a relationship but
+fortunately we can also style these
+relationships which is kind of nice
+so what you can say now is the style is
+by weight
+and
+we say
+we want to color it
+by weight
+from
+zero
+uh let's say
+if they don't agree we want to give it a
+really lightweight maybe a red color
+all right you can also pick red
+so actually that's a good question we
+need to scroll yeah exactly
+so if they disagree
+you give them a red color
+and then if they agree we give them a
+green color and if they are neutral
+0.5 we give them yellowish color right
+so it's kind of a
+traffic oops
+yeah and selected the one oh six that's
+in a second
+so we give it like a yellowish color
+here
+like this
+and here we said with red
+uh then we have this green right yeah so
+and then what we could also do we could
+also apply a size that kind of uh
+represents the the weight or so right so
+for instance if i have 0 to n i could
+have a really thin line for zero and a
+white line for n for instance right so
+but this shows us actually nicely if
+people or parties agree or disagree with
+a certain position so i can immediately
+see okay
+uh this party seems to disagree with a
+number of these positions and has only a
+few things that they agree with and
+other parties have um other things right
+um so which is uh which is interesting
+so let me just quickly clear the scene
+and i could say for instance
+a party topic
+party so this is kind of how you can in
+bloom you can vary just by entering
+uh keywords and it tries to uh tries to
+infer what you want to do and for
+instance here it says you want to see
+these
+this pattern
+but what you can actually also do you
+can also say
+party
+i think that's
+you
+i think
+said your party part you had a typo oh
+my party
+i think
+hmm
+should actually book
+party
+that's weird
+oh probably
+party has name yes caption
+this should actually work i don't know
+not sure what i'm doing wrong
+anyway um
+i just will check this out and and
+figure it out for next time so for
+instance we can look at these patterns
+and bloom because it uses webgl can also
+use uh look at really large volumes of
+data let's see if this works
+uh
+loading the data from our instance
+now it's loading all of all of it
+yeah exactly
+so that's what i wanted to show actually
+come on you can do it
+[Music]
+give it a few seconds more
+um
+so actually should not take
+very long much worse
+come on it's not so much data
+it's
+weird maybe that's why it was struggling
+with finding the name
+something seems to be
+off a little bit
+anyway while we're waiting for this
+in the background i had prepared a bunch
+of exploration queries so for instance
+what we can do is we can take the top
+first
+six parties which are also the main
+parties and look at their positions but
+only if they agree with the position if
+the weight is one so this is kind of the
+query language i have a
+party at the position and then we can
+access or
+access the um
+variable for the party here we say the
+id of the body needs to be
+equal or less than six
+and
+i just take the first ten thesis so that
+we don't have too much data here to show
+but only those where the weight is one
+right
+so if i run this statement i see here uh
+all these um
+parties and ten thesis as you can see
+right and their positions but actually
+it shows too many of those and this is
+actually a good thing to know
+uh neo4j browser by default tries to
+pull all the relationships between the
+nodes that you returned
+which is configured by this connect
+result nodes thing over here
+so if i disable this and re-run this
+then i see actually only the
+relationships where there's some one
+on the id on the weight right
+and now we can so earlier it also
+checked the
+it included the ones where they did this
+exactly it's the browser basically
+pulled all of them right so and now we
+can basically uh look at okay
+um how do these parties basically
+cluster between these topics right so
+you can see like
+the conservatives
+uh here uh are having a similar
+agreement to certain things the the
+right-wing nationalist party over here
+on the right side and then the
+left green uh
+progressives are here agreeing on those
+topics right so you see that jointly
+agreement on topics is kind of already
+clustering these parties
+which is interesting which is something
+that we can actually look at
+right
+okay so and you can also see here in
+browser you can do a full screen you can
+zoom in and and things like that so
+that's quite nice to expose things and
+from here i could now actually
+expand any of those links as well so if
+i want to interactively explore stuff
+here then it would also be possible
+so the other thing that i wanted to show
+is
+can we actually look at
+how similar parties are
+oh here it pulled all the data so i
+don't know why
+so this is uh 14 000 relationships or so
+no no
+i have 50 relationships
+and
+uh
+63 nodes right so it's not a lot of
+nodes but it's a lot of relationships
+right so what bloom but what bloom
+offers is we can do
+filters here
+so for instance if you can say i want to
+filter
+[Applause]
+positions that are where the weight is
+only
+one
+right and if i then apply the filter it
+grays out
+all the ones that are not one so you see
+that all the yellow and red ones are
+gone right if i move the filter they
+come back
+so i can grade them out but i can also
+say i want to just remove all of them
+so it all it basically removed all the
+oh
+dismissed all of them right so it's not
+claimed to move it's not removed from
+the database i hit hidden basically
+yeah it's hidden from the visualization
+fundamentally but now we see basically
+that it's
+um uh we see here these are only the one
+uh
+flash chips
+so they they should be clustering a
+little bit so but it's probably too many
+thesis so that you can't see the
+clustering so well
+so you have certain parties that kind of
+agree with certain uh points and
+the clustering should be more obvious
+but probably you have too many
+uh small parties that kind of are
+messing up there
+a little bit but you can add another
+filter i just realized this you can just
+add another filter that says
+i just want to see the parties
+uh
+whose id is
+let's say less than
+or equal and less than six
+it's basically the same that we had
+before all right so it grays these out
+and then we kind of look for what we
+just did in
+in browser but this time with all the
+topics right not just the 10 topics but
+all the topics basically right and now
+uh let's just relay out this
+quickly so now we should see a
+clustering of parties as well right so
+this is kind of the progressives again
+uh
+the liberals uh conservatives and the
+nationalists
+and so you see a kind of clustering
+based on the only graph virtualization
+as well
+but you can actually do better than this
+uh which is our next uh example here
+where we can actually look at the
+um
+added differences between parties so we
+take a party at their position to a
+topic
+and then the second party and their
+position to a topic right so where it's
+not the same body
+and then we basically just return
+the delta between the
+distances and sum them up right so we
+say okay if the parties have the same
+stance then they then the difference
+between them is zero right
+uh and the more zeros there are december
+more similar are these parties right if
+they have a difference between a stance
+of of one then they disagree if it's 0.5
+then they
+um basically have a half agreement on
+that right
+and and so we can either sum them up or
+compute the average
+and if we run this we actually see
+really interesting that just looking at
+the graph data we can just look and see
+how similar bodies are right and this is
+kind of
+similarities between um
+left
+bodies
+then you have similar similarities
+between right-wing parties
+here as well
+and
+and at the end
+where we see the dissimilarities if you
+go all the way to the end then we see
+also that uh between
+progressives
+uh and and uh nationalists there's a
+massive difference right so there's an
+almost
+complete disagreement on topics right so
+uh so the parties here at the end like
+rose 700 something
+show how uh how different parties are
+right
+[Music]
+so this is really interesting to see so
+even just looking at the graph data
+right even without knowing anything
+about the domain without any knowing
+anything about like political landscape
+of germany just looking at this
+data shows us already what kind of kind
+of kind of what kind of groupings or
+clusters similarities are there
+and what we can do now with this data is
+actually we can create relationships
+additional relationships and it's kind
+of an enrichment of the data so
+obviously again it's basically the same
+thing that we had before
+um give us the parties give us the
+average
+distance between these parties
+and when the distance is less than 0.3
+so one third
+then we create a relationship so we
+don't create a relationship between all
+the parties but in similarity
+relationship uh for if they are like in
+one third
+in the lower third or in the upper 66
+percent basically of agreements
+and then we set the weight to one minus
+to this distance so it's kind of more
+dissimilarity right so this the distance
+goes from zero to one
+and this is kind of the inverse
+uh
+the similarity is the inverse of the
+distance
+so we basically create a relationship
+between these two parties
+and uh with merch it will also just
+create one relationship between the
+parties if there was already one it
+won't create another one
+and if you do this now it creates
+151 relationships
+and then now we see that now
+there should be like a similar
+relationship popping up in a second or
+two here
+let's see it does this
+and which gives us basically a
+clustering of these parties by
+similarity why doesn't it
+show these
+that's good
+so
+uh
+but while browser is thinking about
+refreshing we can actually get this in
+blue
+i guess you need to refresh
+yeah
+so we can say party is similar
+party
+i think you need to
+need to refresh data before it it does
+it
+so there's also a fresh perspective of
+refresh
+so
+now it is here i guess
+yeah similar
+party
+so it has this pattern
+and if i pull this information then i
+see these clusters here right
+i already
+did some kind of
+styling of these similar relationships
+so if you want to do this you can go on
+the relationship itself and say i want
+to
+style the weight in terms of color
+i can say from
+this min value to max value and give it
+kind of a different
+level of green and then i can also style
+the size where i say okay the lowest
+value gets in point five
+strong it's a very thin line and the
+strongest gets in four x so they did the
+bold lines here are
+strong
+very very similar parties
+so you see that kind of the uh
+progressives have a pretty strong
+flash ship here
+then you have uh this is like the right
+wing
+party landscape in germany
+oops
+and then down here we have the
+nationalists
+and the uh
+conservatives and liberals are a little
+bit by themselves so this is really just
+the
+uh
+the parties that are very similar to
+each other right so uh these
+similarities we kind of captured here
+and so this was an example of how we can
+enrich the graph data basically to take
+uh data if you already have a graph or
+from an external source to add more
+relationships to it so then we can say
+okay now we can enhance this um as such
+right and if something like graph
+designs you could go even steps further
+by running clustering algorithms and
+things like that but you can also do
+this even without
+graph designs
+as such
+so this is kind of um
+the level
+of what i wanted to show today
+in terms of what you can do with this
+data
+uh of course you can connect now to our
+aura instance as well so if i
+if i want to
+i can click here on the connect button
+and say okay i want to
+use python for instance in a python
+notebook or so want to connect to to my
+or instance and here's an example
+uh or with javascript for building an uh
+front-end app
+or building graphql api
+against this
+database
+of java.net or go right so if you want
+to kind of start building an app against
+this then you can have here some
+examples on how to get started with
+those as well
+very cool
+so
+i think that's it from my side in terms
+of exploration of this data set uh
+so as we said i discussed in the
+beginning we can go much further and and
+do more more putting more data in from
+past
+uh governments and and
+uh state data and and so on but this is
+just scratching the surface basically of
+this
+no but i think that's good um one more
+question from convert can arrow generate
+cipher statements that that we can enter
+in the browser
+yes
+so
+here we have
+our
+data model and if you really do an
+instance based model so for instance if
+i would say here
+id5
+and i would say speed limit is the
+i can actually turn this into a property
+as well but i forgot
+so idea one and then speed limit
+and would say here my weight is
+one
+then i can say download export and then
+it's a cipher here and then i would say
+create party id5 now i'm a creative
+description just let's position weight
+one to this topic so i can run this in
+my
+browser as well
+you can even interactively run this
+as well and you can say i want to merge
+this instead then it would pretty much
+segment
+instead but this works best when you use
+this example based approach right so
+when you don't do just a model uh
+thing they say
+uh just
+to types but when you have examples of
+data then this is
+quite nice
+yeah such right but you can also export
+pngs and svgs and all kinds of other
+exactly
+graphql type system types so that also
+works
+absolutely
+not as there's lots of opportunities
+and
+possibilities here
+also style arrows with different things
+exactly stuff like that so there's a lot
+of good stuff that you can do
+it's worth
+playing around with it some some and
+then exploring it um yeah
+the only tricky bit is that you need to
+remember to pull out relationships from
+the halo of a node so that's the only
+thing that beginners sometimes struggle
+with but otherwise it's a really good
+tool for creating good graph drawings
+basically as well in graph models right
+so it has a lot of i think for modeling
+this is this is the the tool because
+it's really easy to to change stuff to
+rearrange things to when you when you
+start with a model
+um you know you you draw your first
+couple of notes and then you you label
+them and you you add
+at your your your relationships between
+between the notes it's it's really
+visual it's really clear and then once
+you have that
+um
+you understand like you said you start
+with a whiteboard you discuss with a
+couple of people maybe ideally and then
+once you have okay this is this is our
+baseline this is what we wanted to do
+this is this this will answer our
+questions we have for our data this is
+this is what we what we have um to
+connect um
+our various you know data points um and
+then get us into into neo4j such a such
+a great start um so helpful yeah
+yeah
+and as with that you can find the uh
+all the
+data from today and the query and
+statements all in the
+poll
+exactly
+everything's there although all the all
+the previous sessions as well so if you
+want to catch up on those
+um yeah you are welcome to do so um
+already on week seven now so exactly
+yeah
+alex and lou have done a good
+and then we have um
+a few things um we will be back um next
+week with another another set another
+another fun discussion
+um
+thank you all for joining us today it
+was a great session uh thank you michael
+for for showing us through the tour
+yeah but next week is in uh later in the
+days in the afternoon so that uh
+europe and u.s folks are benefiting so
+we'll we try to alternate the times yeah
+going forward so that's one week is in
+in
+our morning and and your uh afternoon or
+also and the other week is in
+more u.s friendly time zone
+exactly this this is more more for for
+apac and asia
+um
+europe uh the other one is more for uh
+yes so so conrad you don't have to
+stay up late
+all right well then take care everybody
+have a good week uh we hope to see you
+soon um
+reach us uh on on twitter and everything
+and all the other channels if you have
+suggestions for data sets
+um and we would like to explore them
+with you together
+otherwise
+take care and see you soon
+take care everyone bye

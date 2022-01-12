@@ -1,0 +1,841 @@
+- ICIJ launched a really new, large,
+gigantic presentation as well.
+- Yes.
+- Right, so there were some like hints on Twitter
+some days before, I don't know if some of you
+have seen that, but it was quite impressive.
+Yesterday they launched again, like, I don't know,
+20, 30, 40 stories around world
+based on this Pandora leaks, how it's called-- datasets,
+probably opening the box of Pandora.
+(Michael laughs)
+(speakers talking over each other)
+- Yeah, they probably got a run, yeah.
+if they run out of pivots at some point, right.
+- I feel the same.
+No Bahamas and Panama leaks in between as well.
+- There were some others, and then
+FinCEN files, yes, definitely.
+But I guess, yeah, these leaks,
+these Panama, Paradise, Pandora leaks, I guess, yeah.
+It's like a theme, but it's, yeah.
+I thought the same as at some point, I initially thought,
+Okay, there might not be enough leaks,
+but now I think they run out of P words.
+- I wonder what happens first, right?
+And I mean was also the Facebook leak
+on the weekend as well, right?
+So with the Facebook internal documents being leaked
+and whistleblower, and so lots of brave people
+highlighting works of half-legal or illegal activities
+in all kinds of places.
+So really impressive how courageous
+these folks are to do this.
+- Absolutely. Yes, very much so.
+And I think-- no, no, you go ahead.
+- Because of the money involved, it's also really dangerous.
+So, I mean, if there are like hundreds of millions
+or hundreds of billions dollars in play,
+then it's easy to send your, you know,
+your murder squad after journalists.
+And I would be quite scared actually, to be honest
+with some journalists with this kind of data,
+because there are lots of very powerful and very dangerous
+people as well, that are involved in these kind of things.
+- And yeah, exactly like you said, and particularly
+also wealthy people, so they probably don't shy away
+from spending a few of their illegal cash, euros, dollars,
+whatever, on, you know, some kind of activity
+that wouldn't be very nice.
+- Exactly.
+And it was kind of surprising, again, to see--
+I'm just pulling it up now, if you can see that.
+So this is the ICIJ website.
+- Yeah, I was just-- yeah.
+Okay, I can use your screen then. Yep.
+- Where they have all their stories of the Pandora papers.
+Why does it not scroll?
+For some reason it stopped scrolling?
+Oh, no, it's good.
+So they have basically videos, and first stories here
+on the website, and then they have one more detailed story
+over here where they explain a little bit more
+what's in the data, how many documents,
+so it was 12 million documents, lots of text documents,
+but also PDFs, bank reports, contracts, passports,
+bank statements, and all of this kind of stuff.
+Some structured data like CSV and DB files
+and spreadsheets and so on.
+But they found this time, because they also at this time,
+US safe haven, so like South Dakota and there.
+So it's really interesting to see also kind of that
+it's this time, not just the people that had their money
+in Panama or Cayman islands, but there's also
+a lot of US stuff as well.
+Right. So you see that 81 US states basically
+have the most-- South Dakota is 81,
+trust in in the Pandora papers.
+We'll see more US information coming out about that as well.
+And I was really happy to see that the ICIJ, again,
+used Neo4j, they were generally curious
+to create a graph of the data.
+Unfortunately, data is not yet available,
+so we'll have to wait a little bit, but perhaps you're lucky
+and next time on our next stream, we can actually look
+at it, some of the data at least--
+- Hopefully, yeah.
+- That would be really cool, but it depends
+on when they make the data available, they said here
+at the end-- where is it-- yes, they're going to release
+the data, but it's basically not yet. Right.
+So, I think similar--
+- Yeah, similar to last time, I think they're probably
+gonna, you know, work a little bit more on it
+and then they're gonna release it.
+Obviously, I think what they did last time was they
+didn't release it all, they anonymized and removed
+some stuff of it, but I guess that's what they need
+to do now, before they can publish it.
+- Yeah, exactly.
+So they only publish like companies and offices,
+but they don't publish things like passport information
+or like private information or bank records directly.
+So they only basically publish the structure.
+So which shared companies are there, which law firms
+are involved, which banks are involved, and which people
+are the ultimate owners as well. Right?
+So you see actually people behind the scenes
+that are actually owning these companies.
+So that's actually really interesting then.
+- It's very interesting. - We can look at that.
+- And I think that that's also like what Cobra just asks,
+is, do you think it's possible to combine Pandora papers
+with other papers, the Panama papers and the Paradise papers
+and maybe even FinCEN files or whatever.
+And I actually think it's totally fair to say
+that this is possible.
+And then probably I would say the ICIJ
+is doing this already.
+- Yeah. That's what I say here, ICIJ is planning
+to incorporate data from the Pandora papers
+into the offshore leaks database.
+So it's busy building one gigantic database.
+I don't know if you've seen, if you go to the offshore leaks
+pages, to the offshore database, they have now 785,000
+share companies in there.
+So basically with every leak,
+there are like two or three hundred thousand
+additional share companies being added.
+And so it kind of continues to grow.
+If you look at like this, then you see Paradise paper
+added so many and Panama paper added many.
+And so you basically can look at how much each leak
+added to this overarching database as such.
+So it will become like a larger and larger database
+basically, and they will make it publicly available as well.
+- Yeah.
+- So looking forward to that as such, and hopefully
+we can explore it either next time
+or one of the next times as such.
+- Yeah. And then yeah, maybe I can quickly go over here.
+So I think what's interesting is that they also have
+this power player view thing where they, basically,
+you pick one of the interesting people,
+and I just picked the first one on the list,
+Abdullah the Second.
+And then they give some information,
+what's in the Pandora papers
+about the guy and something.
+And then if you scroll further down,
+you get a little visualization of the graph
+of his connections.
+So you see, he's very involved with all kinds of entities.
+You can, you can zoom in a little bit, and then you see
+some more details about entities and here you see,
+for example, this company here does whatever things
+and you can get some more details and related stories.
+So I think that that's pretty cool.
+Yes, Cobra on Twitch, they are using Neo4j for this,
+which is the--
+- That's also in the article.
+So if you read the article, they mentioned actually--
+- Mentioned here.
+- That they use (indistinct) and Neo4j in there.
+It's interesting that you found a power player's feature.
+Because I try to find it yesterday, and yesterday
+it was not yet online, so they must have updated it.
+- Yeah, maybe I can post a link in chat.
+- Mm-Hmm, please do that, it would be really good.
+- So yeah, they have all-- this is like here,
+you see the full list of people they have
+as particularly interesting.
+And you can go on anyone else.
+So you go, for example, I don't know, here,
+Princess Lalla Hasnaa from Morocco and then it gives you
+who she is and then what she did and then her connection.
+So in this case, she is the beneficial owner
+of, like, a trust here in the British Virgin islands.
+So, yeah.
+- Cool. Because last time they published, I think it was
+when they actually published the Panama papers.
+What we actually did is because we didn't want to wait
+for their data publication, we just grabbed the data
+from the power players web UI.
+So, because you can access the .json file from that.
+But I need to look into that.
+And so perhaps we can look at this next time,
+the fact directly from the power players feature the data.
+(speakers talking over each other)
+- Or, I mean, I guess they provide the data at some point
+so we'll see how long it takes them.
+But I'm pretty confident that probably
+a couple of days, maybe weeks.
+- Yeah. Sounds good.
+- All right. But this is exciting, but today we actually
+wanted to talk about Neo4j Aura Free with you and me.
+- Yep.
+- So, quickly, it's, you know, what is Neo4j Aura Free?
+I guess we talked about this a couple times,
+but we will go over this again.
+We will pick a dataset.
+If you have a dataset you would like us to explore,
+please let us know.
+We would always be interested in getting new datasets,
+interesting challenges or interesting data to model.
+Obviously, yes, this, this new ICIJ leak will be one
+hot on our top list, basically.
+So we will look into that as soon as it's available.
+Then we think about what kind of questions we might ask.
+So, how would a model look like, what kind of data modeling
+tools would we use, or we usually use arrows.
+And when we go about, you know, talking about
+what the questions we want to solve from the data,
+and this would usually form a kind of model,
+which would then try to transform over from a, let's say,
+virtual whiteboard onto the database itself.
+Determine the (indistinct)
+and then load and query, obviously.
+So this is the plan for today.
+So then I'll quickly talk about what Neo4j Aura Free is.
+So it is the free version of Neo4J Aura.
+So as simple as that.
+You get 50,000 nodes and 175,000 relationships for free,
+you get access to Neo4j Bloom as well, and Browser,
+which obviously is part of all Neo4j additions,
+it's free forever.
+So that's one of the big differences between Aura
+and SandBox, which closes down after seven days maximum.
+And if you wanna get it, you just go to the link.
+I'll post a link in chat in a second if you want,
+if you are watching this on Twitch, you can just type !Aura,
+and then you get the link pinged back to you.
+And then you can set up an instance and follow along.
+The initial load is a little bit long.
+So if you wanna play along with what we are gonna do today,
+you might-- better do it now, or if maybe you have something
+already set up, then you are good to go.
+And yeah, let's dive into it.
+The dataset today, we look into the Movie Graph
+a little bit.
+I think we did before already, but the point here
+is we wanted to see how easy it is to import data
+from an existing Sandbox from Dump files you might have
+and get an initial load into Neo4j Aura Free,
+if you have something already with you
+in a different database environment.
+So that's the goal for today.
+- And, yeah. I'll stop sharing.
+- Shall we dive in? - (speaking indistinctly)
+- Yeah. By the way, don't forget to tell us
+where you're watching from.
+So we are really interested to see where people
+are watching from.
+Hey, (indistinct), nice to see you, in general,
+we really love to hear where people
+are kind of watching the stream from.
+- Absolutely.
+- So today I wanted to kind of look at the ways
+of how you can get existing
+larger datasets into Aura as well.
+So imagine you get some data from somewhere already
+in Neo4j and how do you get this into Aura?
+And also the Aura team launched a Sandbox side feature
+last week which allows us to actually start a new instance
+with the Movie dataset to start with.
+Okay. So if you look at this, perhaps you want to look
+at this first.
+So as just a disclaimer, I have lots of Aura Free databases
+here, but it's a special perk
+so usually you get one Aura Free database.
+- Exactly.
+- Just because I want to show all these kind of different
+things, the Aura team gave me permission.
+I think I'm probably only one of very few people
+who have more than one Aura Free database.
+What I wanted to show you here is,
+if I create a new Aura Free database, I can give it a name,
+like for instance, movies, and then select region.
+Depending on where you are, latency wise,
+it's good to choose either Europe, US,
+or Singapore for Asia Pacific.
+So I'll choose Belgium for the time being.
+And the new thing is to, you can either create
+a blank database, which is empty,
+or you can create one with the movies dataset.
+And so I'll start this, I create this database
+in the background.
+It shows me again, the password that I can copy and store.
+And then I just let it run
+because it takes a while to (indistinct) it up.
+And we come back to this movie database later on.
+Okay, I just store the password here.
+And while we're doing this, I want to wanted to show you
+some other things as well.
+So you probably know, I don't know if you know,
+but in the Neo4j sandbox you can create your own datasets.
+You don't just need to use the existing pre-prepared
+datasets, but you can also create your own datasets
+as we've shown a few times before.
+So in this case, I have a blank sandbox here,
+and I just open Neo4j Browser for it.
+And thanks to our colleague, Rik van Bruggen,
+I got a really nice Cypher statement here,
+which will create a beer graph for us,
+and it does this by actually passing Wikipedia.
+So it basically goes to Wikipedia
+with Dutch version of Wikipedia.
+And so you have like this table here with all
+kinds of beer types and breweries and alcohol percentages,
+and then so on.
+And Rick one to test something, if you can directly load
+from the HTML page the data to import into Neo4j, right?
+So he wrote a statement that basically loads the HML
+and then extracts different things from that.
+So you see, these are like HML or selectors,
+or j-query selectors that you can say, a table,
+the figure table of table body, table row, table cell.
+And then the first one, the second one, and so on.
+And it extracts the brand, the beer type,
+alcohol percentage, brewery,
+and timeframe from those tables.
+And then for all of these tables.
+So we can actually, if I just run this
+in sandbox, like this.
+Let's see what happens.
+Here's my sandbox, here is my sandbox browser.
+If I just return value here, then I get a list of-- see,
+I hope it's not too much data for my browser to return.
+Come on.
+- Well, there are lots of beers in Belgium, so.
+(laughing)
+- Yeah, so it's one gigantic record,
+I think that's the reason why it took long.
+So you see here breweries with the text,
+then there all the beer types and then so on.
+So it has all the data from the website extracted, right?
+And so this is unfortunately something you can't
+do on Aura because APAC load HTML is not available
+in Aura for security reasons.
+So we can use sandbox to create actually our data.
+So I do a little ASCII graph here.
+So beer brand, we have beer type, beer brand
+are brought by a brewery and a beer brand
+has a certain alcohol percentage.
+That's basically, what's in here, if I'm not mistaken.
+Right. And so this is our little graph, and now I can
+in sandbox just run this whole statement
+and it'll create all these beers and breweries
+and alcohol percentages-- oops-- alcohol percentages for me.
+And I just have to practice copy and paste a little bit.
+(chuckling)
+- By the way, did you see this from, I don't know
+who made is now available--
+- Oh, StackOverflow--
+(mic crackling from laughter)
+- Maybe you should get this-- don't wanna completely
+derail our Aura session here, but this is--
+- Actually the-- (speakers talking over each other)
+and now Cassidy Williams and some others
+have actually brought it to life.
+It's actually a high quality machine,
+aluminum keyboard with a USB.
+And it's extremely programmable.
+So you can also change completely what it does.
+It doesn't need to be copy and paste.
+It can be anything else as well,
+recruitment for your home automation system
+or whatever you want to do with that as well.
+So it's pretty cool.
+And you can now buy it for 30 dollars
+or something like that.
+So it's pretty cool.
+What does it-- it does not like me.
+Let's see...
+I think there are too many beers in Belgium.
+- Mm, that could be.
+- Let's see if this works.
+- Yeah, that's fine.
+- So what I wanted to show is basically, if you get
+your data from somewhere else, so you saw saw a block post
+or something else where someone created some data
+in sandbox and you just want to do the same and then want
+to take the data into Aura to be available forever.
+Then that's something that you can use here.
+So let's hope this works now.
+I hope I didn't break anything here.
+I didn't create any indexes.
+So it might be that it's a little bit slow--
+or no, what's wrong here?
+Or perhaps, I mean, it's just for demonstration.
+I need to check what's-- once we sandbox.
+Let's just do a tiny graph. Okay.
+So it just worked.
+So now I have beers with beer brands and breweries in here,
+and I can see the data, right?
+So that's just my little example graph that I have in here.
+Right. I got percentages, we have breweries,
+we have beer brands and then so on.
+So the interesting bit is now, actually I want to take
+this data and want to take it into Aura as such, right?
+So I go back to my sandbox UI, and there's a new thing
+that we just released a few weeks ago, which is called
+Make A Backup, so I can just request the backup
+and for my database, it now will launch a background
+process that will generate the backup for my database.
+So it's queued into an backup queue,
+and then from there it'll generate this backup.
+So this will all to take a few seconds.
+So while we are waiting for this, we can actually
+go back and see if our movie setup is done yet.
+No, it's not done yet.
+So while we're waiting for--
+- So there was a quick question chat
+if we can get the Cypher to do this.
+So, absolutely, yes.
+There is a GitHub repository we will update
+after each session.
+And then you can find all the code there we use
+during these sessions.
+So you can go back in time basically, and check out
+the old ones, or, you know, read on about this session.
+So the update is coming later.
+- So, yes, the GitHub repository, it's called
+Neo4j Examples Discover Aura Free.
+Perhaps Alex, you can also post--
+I'll post a link in chat, yeah.
+- And here's for each week, basically what you've done
+and or what Lou and Alex did initially.
+And now Alex and I am doing per week
+that we'll edit there as well.
+Okay, so we have our beer here, here's our sandbox.
+And now it's a Create A Sandbox stamp today at this time.
+And I can request a download link and it will go away
+and create a download link for me.
+And now I can do download
+and it will download my sandbox dump.
+And I can just then turn it into beers dump.
+And in Aura itself, I have already prepared a database.
+It's called Sandbox, that can now select
+dump file here to upload.
+- And you can do this with any--
+- Any dump file, right.
+But this is like our dump file from our sandbox database.
+And uploads it, and it takes a bit, and then the beer data
+should be available in all Aura database as well.
+So that's how you can take data that either exists
+in the sandbox or you know, you, you build something
+incrementally over time in sandbox, or you have a script
+or a block post from someone who did things in sandbox
+with a few additional libraries that are installed
+in sandbox, but not in Aura.
+Then you can use this and then create the dump
+and then basically get your data
+into Aura as a continuation.
+Also because the sandbox goes away after exactly 10 days.
+So from that perspective, it's nice because in Aura
+it stays along forever, right?
+- Yeah. So if you started some kind of project on sandbox
+and realized, oh, I now would like to keep this going.
+This is your way.
+- Exactly, exactly.
+Which reminds me of something, there's a new thing
+in Aura Free is when you have free databases running,
+after 48 or 76 hours, I think after 76 hours,
+it pauses them and then you can resume them later on.
+So that's just the cost saving measures for people
+who are not using the Aura Free databases.
+We just pause them temporarily and then you can resume them.
+But they're still there.
+They won't go away, but they're paused as such.
+Okay. So this was kind of our sandbox database,
+which is still loading.
+And then the other thing, while we are waiting
+for those two Aura databases to get ready is the following.
+For all the sandbox datasets we have also prepared
+a GitHub repository, it's called-- actually an organization,
+it's called Neo4j-graph-examples and it has 25 repositories.
+One is actually a template repo, 25 repositories
+with all kinds of datasets.
+So we have stack overflow, we have the crime investigation
+POLE sandbox, we have a Twitch sandbox,
+we have a digital recommendation sandbox, Twitter sandbox,
+northwind, Yelp, Twitter trolls, and so on.
+Open street map, and all these repositories
+don't just have-- if you want to look
+at the recommendation sandbox here, they have
+example images, the data model, they have example queries.
+And they also have code examples.
+So each of these repositories also has code examples
+for all the languages.
+So for instance, if I want to look at the go example
+for the recommendation database, I can go here
+and see that this is like the go code
+for the recommendation database, with the correct query
+for the recommendation as well.
+And with all the boilerplate code that you need
+for handling the connection to the database,
+basically, in that language, right?
+And so you can just clone and run this,
+or run this directly.
+Or you can just run this in a code sandbox,
+GitHub code sandbox.
+So actually, let's do this.
+I just press dot on any GitHub repository,
+it actually launches VS code in my browser.
+And it actually makes this just available to me
+as as an online life setup.
+And then I can just say, I want to open it to me.
+That's my terminal-- Oh yeah.
+Terminals are not available on the web, but I can click
+"continue working on" and then it can launch a terminal
+and then I can actually run these code examples
+basically directly from this repository as well.
+So I can create a fork of this and then run a code space
+and then run these code examples as well,
+connecting to my database as well.
+So it's pretty cool because all of these examples
+are runable and I can just basically just run them directly.
+Anyway, slight detour.
+(microphone clipping from loud noise)
+Let's see this, oh, this now has my things here, right?
+So I can go to see the code, JavaScript, instance,
+and then I can do MPM install Neo4j, which will install
+the Neo4j one and then I can-- example.js.
+And then the only thing that we need to add
+is my connection credentials here.
+Because in the repository-- well, actually,
+what we can do is the following.
+We can go to the sandbox and we have
+our recommendation sandbox.
+If I create a recommendation sandbox here, this one,
+it actually replaces all the placeholders
+that are in the code with the actual connection details.
+And here, so if I connect, go here to connect your drivers,
+I actually see these examples here,
+but with all the credentials already place.
+So I can just basically steal this and paste this in here.
+And that means if I now run node example.js, then-- oops.
+So, node examples, let's see, connect to my sandbox
+and I get the query run and the examples here right.
+(chuckling)
+So then this is all running on my,
+basically, in the browser.
+This is PS code running there, and I also have,
+you know, Python available, I have Ruby available
+if I want to, I have Go available,
+I have Rust and Cargo available, I have PHP available,
+so this is pretty powerful, powerful stuff.
+So I have all the 12 program languages available in this
+GitHub code space, which is really cool.
+- That is very cool.
+- But what I actually wanted is to show you
+is the following: if you go back to our repository
+for the graph examples, foundations.
+So the other thing that's also in these repositories
+is this data folder, and you see these dump files here.
+So we have 354043 dump, and we can just download
+any of these dumps, for instance, the 403 dump.
+I can click on this download,
+then it downloads the dump file.
+And then in Aura, I can also for any of these sandboxes,
+if they fit into the limits here, I can just select
+the dump file and say, recommendations for three dump
+and upload, and then it'll upload the dump
+and initialize it in Aura as well.
+- And, maybe stupid question, but will this replace
+all the data that is already in your sandbox, or will--
+- That's actually not a stupid question,
+but a really important question.
+Yes, it's going to replace
+all the data in your database. Right.
+So I think it also says so when you say select dump
+somewhere, it should actually say...
+- I think there was a little popup that came,
+but you clicked it away so quickly.
+- Yeah. So maybe that was that.
+Yeah, Okay, good to know.
+So if--
+Yeah, yes it does replace all your data.
+- Okay. So if you have anything on your Aura Free
+or any other Aura instances, this is not only Aura Free,
+this is applicable to all.
+- Yeah, exactly.
+- Yeah.
+- So, and while this is loading we can actually look
+at our-- let's finish with our beer graph.
+We can now, so this is called SandBox and I just open
+your browser on this, or actually--
+can actually open Bloom on this, can explore beer on Bloom.
+And I just need to copy the password
+for the sandbox database username.
+It's Neo4j...
+- By the way, don't bother screenshotting these passwords,
+Michael will delete these instances afterwards.
+So no, not really worth it.
+(laughing)
+- Yeah. So you see, it discovered all the nodes,
+node types, all the labels in here.
+And now I can say, I want to see all the beer brands
+and then-- brand-- and it find all the beer brands
+and I can then say, okay, for these beer brands,
+I also want to have the breweries,
+and then I can explore my data in Bloom.
+So I can basically see from the brewery, I can see
+which other brands differences have
+and see these kind of correlated things.
+So you see all my data made it in from sandbox.
+We had it downfall into Aura
+and then also Bloom for visualization, right?
+So you can then, of course, also select what
+the caption's meant to be and, and so on.
+And the icons and all the fun stuff that you can do on Aura.
+All right. So, should be here. Yeah.
+Relationships are there and so on.
+Right. So this was kind of off the data from our sandbox
+that we got from a backup in sandbox into Aura as such.
+And then the other example was the recommendation database,
+it's still loading, but movies database, movies database
+is interesting because that was the one where
+when we created the Aura Free database, we selected
+not a blank database, but the movies database.
+And if I open this with Browser...
+I'll just get the password for the movies database.
+So the only thing that still needs to be done
+is here to click on server connect.
+So that's something that will be fixed soon.
+But that's currently still something that's not showing
+by the format to connect.
+But now we have here the movies in here
+and with the Browser guide, you can now,
+for someone who's new to Neo4j and Cypher and Aura
+can explore just data with Browser guide.
+So very similar to SandBox, basically.
+And that's also the goal, right?
+So that at some point Aura
+will replace SandBox as the whole--
+- Yes, it does make sense.
+And I think it's a great experience, especially
+for a new user, fresh start to you, you load some data,
+you hear, as it says, gives you some codes examples,
+you click them, and then they populate over in the query box
+and then you just execute and then you see some
+first results and then you play around with it.
+And from there you, you know, develop
+more complex scenarios.
+But I think this is, for a start,
+I think this is still very good.
+- Yeah, very good. Exactly.
+So it's also contains information on creating data as well.
+And so it's pretty comprehensive for someone to quickly
+get through getting started with Cypher basically,
+as such.
+- Absolutely.
+- Which is really nice.
+- If you want more guiding, there's always graph academy.
+So this is a little bit-- I wouldn't say, I mean,
+it's also hands on and it gives you some railways, right?
+So you are helped, but you are more told
+what's happening in graph academy.
+There's also like, why is this happening,
+and what does it do?
+- We actually also launched a new version
+of graph academy just few weeks ago.
+And if you want to try this, this is kind of the new version
+of graph academy, which, basically, Cypher fundamentals
+and modeling courses coming in the next few weeks.
+So we are adding more and more courses
+to this new version of graph academy as well.
+And so that's definitely there and you can, of course,
+also continue all the courses on the existing
+graph academy while we are transferring them.
+So if you want to take any of these courses
+and most of them, actually, all the courses
+that don't have graph designs in there
+also work with Aura as well.
+So all the intro courses, import courses,
+and so on also work with Aura as well.
+Okay. And our last example is the recommendations database,
+which is still loading.
+So we'll have to wait for that to finish.
+The other thing that I wanted to show you quickly
+is when you are running your desktop, you can also create
+dump files from your own databases.
+So let me just start just to get to it quickly.
+Sometimes people also have shared dump files as such.
+So that's also a way of getting them
+but this is kind of mostly when you have an existing
+Neo4j database somewhere or from someone, then the dump file
+is the quickest data exchange format from sandbox to desktop
+or to Aura, from the top one and then so on.
+And so that's the quickest way of getting there.
+- Yeah, and I think that that's particularly interesting,
+because you might have started something with desktop
+or like you said, somebody else said, Hey,
+I have this dataset, which you wanna share publicly,
+but he can-- or, they can give it to you.
+And then you can upload a dump to your Aura Free
+instance if it fits the limitations and then you can play
+with it and sort of start this
+collaboration project a little bit on it.
+- Yeah, exactly.
+So this currently doesn't like me, so I think it's because
+I just updated desktop over like six solutions.
+So just because I haven't used the Mac for quite some time.
+So it's been-- oh, now. Okay, cool.
+- Oh, here we go.
+- Here we go.
+So we can take one of the example datasets,
+like here's an employees database or like example test data
+database or something like that.
+Or what else do I have here?
+(mumbling)
+- - party or a game of Thrones.
+Oh, I want to have a more current one.
+Let's see, 454 something...
+So these are all a little bit older databases.
+Let's see, for instance, if we take this one,
+I can say create a dump file from this database
+and then it'll basically go ahead and create a dump file
+for me in the current folder.
+And then I can use this dump file
+to also upload it to Aura as well.
+Right, that's also something that I can then do.
+So I hope to do this, then select to dump...
+Do it.
+Could be that's because of my weird update thing here
+that it didn't do it yet.
+- Does it need to run to make a dump?
+I don't think so, because I think it would be--
+oh, it doesn't like me. Okay.
+I have to create a new one.
+So I think that was because I haven't done desktop
+on this machine for quite some time.
+- Okay. But I mean basically yes, you click on--
+- - You click on dot then it creates a dump file.
+Exactly. So I now, our online recommendations database
+is still loading, should be done by now.
+It's still loading.
+So some of these things are also basically put in a queue
+and then whenever the queue is ready to handle the data,
+then it's actually processed.
+So it's not necessarily-- oh, now it's ready.
+It's not necessarily immediate.
+So it's basically queued up in the background
+as well to be processed.
+- Yeah, so that's why it takes sometimes
+it takes a little bit longer.
+- Neo4j, and now I have my sandbox recommendations dataset
+in here that I-- hopefully, let's see.
+Yes. So we have 28,000 actors, movies, people, users,
+and 166,000 relationships in here.
+So that's kind of the full sandbox data.
+I don't know if I use play sandbox (mumbling)
+Then I have my movie graph.
+I can, for instance, run one of these guides,
+let's see, perhaps this one and if all goes well,
+then we should see exactly content recommendations
+for overlapping genres. Right?
+So, and then you can continue to explore this data,
+which is really nice.
+So I recently updated it with more recent movies
+as well from the Movieland dataset.
+So all this data is more recent then it used to be,
+so there's much more data in there,
+but it's also more recent data as well.
+- Oh, cool. That's great.
+- And just to repeat, all these datasets are in this--
+sorry, Neo4j graph examples organization,
+and you can just pick and choose whatever dataset
+you're interested in to get the dump files
+and then import them into Aura and such.
+So there's a lot of FinCEN files,
+because we just mentioned FinCEN for instance.
+- Yeah, and the Panama papers, Paradise papers--
+- Panama papers, Paradise papers, exactly.
+All these kind of things are in there as well.
+So lots of contact tracing network
+and open street map and so on.
+So there's-- network management is also good.
+So there's a lot of datasets that you can explore
+from that perspective as well.
+If you're adding also more, so for instance, which one
+is new-- and, the StackOverflow one is also new,
+which doesn't exist as sandbox yet.
+So that's to become a sandbox--
+- To be become a sandbox, okay, nice.
+Or, if you can't wait for that to become a sandbox,
+you can already go ahead--
+- And put it into Aura--
+- Put it into Aura. Yep. - Exactly.
+And then the guide is available as (indistinct)
+StackOverflow index HML.
+So you can, it's also (mumbling).
+So you can, if you just got this.
+- You basically copy this, what you just highlighted
+here and paste it into the query box in Browser.
+And then you execute.
+- For instance, if I do this here,
+then it runs the Overflow guide.
+Oops. Oh, this is sandbox.
+- Oh, here we go. (speaking indistinctly)
+- Yeah, exactly.
+So basically it explores StackOverflow
+as a way of looking at creating and content correlations.
+So it's what we did a few weeks ago as well.
+So, yeah, that's mostly the things that I wanted to show,
+and these are kind of new ways of getting data into Aura,
+and now I can get rid of all these databases again.
+And so I can just do destroy.
+That again, and then they're gone.
+That's what it's--
+Oh, then you can also go to (indistinct) as well.
+- Exactly, I mean, you will only have one,
+so you can either destroy it, or you can always
+batch delete, and then clear it out or just overwrite it
+with a dump file, as we just learned.
+This will also clear out everything that's there before,
+so if you already have one running and you don't want
+to switch region, I would recommend not to delete it
+and rather, either import the dump file
+or delete everything in your graph.
+Because if you want to do something right away,
+then you will have some downtime because if you delete
+the one and then you create the new one, it might take
+a few minutes and then you, you know, you lose some time
+if you don't wanna wait, then it's better to just
+delete everything in there.
+- Cool.
+And there's also a trick you can do if you have an empty
+dump file that doesn't contain any data.
+You can also upload an empty dump file and then you go,
+basically, replace everything in your database
+with an empty dump file so then there's nothing,
+so it will also get all the indexes and constraints,
+and all the other things, so you don't
+have to upload the whole database again.
+(mic crackling)
+So there's that.
+- Yeah, that's a good trick.
+- Cool. So, that's it from me for today.
+- All right, cool.
+Thank you, Michael.

@@ -1,0 +1,1139 @@
+- Hello? - Hi.
+- Hi, Michael.
+Good afternoon to you.
+- Good afternoon to you as well.
+- How you doing?
+- It could be better,
+but seeing you and everyone online makes me happy.
+(laughs)
+- Very good, very good.
+- Is the audio okay today? - Welcome everybody.
+- Before you get into it. - Pardon.
+- Is the audio okay today?
+because I just (indistinct)
+- No, the audio is good.
+Yeah, yeah the audio.
+- Cool, all right, super.
+- So far, so good.
+Yeah, welcome everybody.
+Thanks for joining.
+Let us know in chat where you're watching this from
+and maybe even when you're watching this from.
+So what's the time for you for?
+For us here it's, yeah, late afternoon already.
+So looking forward to chatting with you during the session.
+We will do...
+Yeah, we will dive into a few things today.
+I'm looking forward to that.
+So I think that's gonna be a good session today.
+Let's go right in I guess
+And I'll share my screen quickly
+and go over what's what's to come today.
+So yeah, like I said,
+discovering Neo4j AuraDB Free is his topic.
+The plan looks as follows.
+We're gonna do a quick recap of what's Neo4j AuraDB Free,
+and you're gonna pick a data set.
+If you have a dataset.
+I think you didn't ask this for a while now.
+So yeah, exactly, we're gonna put up with that again.
+So if you have a data you think is interesting,
+you'd like us to explore, let us know.
+Tweet us, write us an email, poster,
+a post on the community forums, right on discord anywhere,
+under this YouTube video.
+I mean, you know how to find us, right?
+Then once we have picked the dataset,
+we think a little bit about the questions we might ask.
+So we've explored a little bit,
+we kind of find out what makes sense.
+What can be asked in this kind of like
+the scenario we're gonna go for.
+Then we determined that data model
+because that kind of like goes hand in hand a little bit.
+So sometimes you plan your audio questions
+and you define what kind of data model you go for.
+And then you develop further and then you iterate and so on.
+Then load and query time, obviously getting the data in.
+And then after we did that, after we loaded the data,
+we're gonna explore it and see what kind of queries
+you will ask with it.
+What is Neo4j AuraDB Free?
+So just quickly, it's the free version of Neo4j AuraDB
+which is a graph database as a service in the cloud.
+You can basically go on the page.
+I'm going to link it in a second chat.
+Go on that register login with your details
+and you're good.
+You get a database that's for you, free for you as well.
+It's limited a little bit to 50,000 nodes
+and 175,000 relationships.
+But other than that, it's yours forever basically.
+You have access to a Neo4j browser
+which is the development tool we have.
+And you also get Neo4j Bloom,
+which is our visualization service.
+So with these two tools at your fingertips,
+you have all the basic needs you would need
+to start your own project in the graph world.
+And with AuraDB Free,
+you can always upgrade to once to 50,000 nodes,
+and 175,000 relationships are not enough anymore.
+You can always upgrade it in next year
+which is not gonna for you anymore but still.
+The link will follow in chat in a second,
+but let's get going today.
+So the topic today is gonna be pandora papers.
+So,
+we have explored that a little bit.
+So I think you might have,
+probably you have seen this before.
+So this is the Pandora papers login page
+where you can see all the information, the ICIJ posts,
+and collects these altogether.
+So you might have heard of paradise papers or Panama papers
+or some other leaks.
+So the ICIJ is really big with these on the Pandora papers
+was the recent one.
+Michael, do you remember?
+When was it, I think a month ago or something?
+- So the official publication of the Pandora Papers
+was October 3rd.
+- October, so two months ago.
+- And last week, actually the data publication happened.
+So that's why we're talking about this today as well.
+- Exactly.
+- Because the data has gotten old or a part of the data.
+So I looked at the data, of course not all of it anyway,
+but it was only like a small portion of the Pandora Papers
+data as well that they published.
+- Yeah, so they do publish this.
+So I'll also post a link in chat to this
+so you can find out yourself.
+So they have gathered all information.
+There's a little YouTube video on it
+where they explain what it is all about,
+and then they have some other articles.
+It's going on, but you can see really, they post constantly.
+And yeah, this is the post that Michael refers to.
+So ICIJ released new Pandora Papers data
+from two offshore service providers.
+So this is that.
+So I guess really big and search it to yourself,
+go in and explore it.
+But what we gonna do is we follow
+this guy that Michael already wrote last week, I guess,
+on the release of the Pandora Papers dataset
+where Michael already went in
+and checked out a data model and so forth.
+But we are going to do this now together.
+So we'll dive into that, I guess.
+So let me quickly get those links out for you.
+This is the blog posts, maybe I'll start with that.
+I guess this is the interesting-
+(indistinct)
+- Yup.
+- Yup.
+Posted that in chat.
+Yeah.
+- Cool, sounds good.
+Thank you, Alex, for the introduction.
+Really good.
+So let me share my screen just to the write one.
+Okay.
+So what I originally wanted to do is to show you
+the Pandora Papers in Neo4j Aura.
+Unfortunately, I started a little bit too late
+to load it on file.
+So it's still loading so we can check back in later.
+But until then, let's talk a little bit about
+data model and the data itself, and they can find it.
+And then if it's not done by then,
+we can use Neo4j desktop and otherwise we go into tomorrow.
+Okay, and I also have another idea
+that I thought would work,
+but let's look at this as well.
+So Alex already pointed out the federal purpose page.
+And if you want to look more into detail,
+there's this offshore leaks database data, thank you
+which gets us to this page.
+And there you can search for things
+in the different databases, right?
+So for instance,
+they usually publish these kind of power players.
+So like stories or visualizations of things
+about publicly known people.
+So for instance, if you have like Jordan's King in here,
+Kenya's president, Lebanon,
+and then there're also the Aliyevs from Azerbaijan,
+people from Putin's circle several of them actually,
+as you can see here.
+People from Hong Kong and so on, right.
+So different people.
+And so what we could do is basically (indistinct)
+one of these people
+like the former Hong Kong chief executive.
+And then you can create about, the kind of reporting,
+the actual journalistic reporting offered
+but you can also see it as a graph, basically.
+That's what you see here,
+the person and the companies that have been working with.
+So that's something that we can then look at
+and search for this, right?
+So if you take this person,
+and unfortunately we can't copy.
+Can we copy and paste link text?
+No, so we probably need to remember that, Leung Chan-ying.
+So let's see if I get to try to do this.
+So here Leung Chan-ying
+I hope I didn't misspell this.
+Chan-ying, looks okay.
+Okay, and if you want to search this hopefully let's see.
+So there's a lots of matches and all person
+might be somebody in here.
+So I'm not sure if you can see I want to actually match
+the exact spelling.
+Ah, there we are.
+So there's offshore leaks in Paradise Papers actually.
+Interesting.
+So if you look at this data, then you see here as such.
+What you can also do in the search
+for the offshore leaks database for the public database is
+you can please select one of two datasets and then
+it should only show you the things from that data set.
+So you see, there are 17000 entities,
+meaning share companies, 26,000 officers.
+I thought when I looked at the data,
+it's actually only 16, 17000 unique names.
+So there are lots of duplicates where they didn't merge
+the data together for data preservation reasons.
+So basically they don't want to medal with the data.
+So they're not accused of like merging things together.
+And, you know, John Smith here and John Smith there,
+you don't actually know if just a name is mentioned,
+if attention is in person.
+So you have some relationships between nodes that has
+sameness name as well a similar person
+as the same company as or something like that.
+But they don't really mash them together
+because you can't really prove that
+one John Smith mentioned in one text
+is the same John Smith as mentioned in the other text.
+I mean, if you look at your context and you often see this
+but then you need to do more journalistic research
+on the idea and look into the show companies
+and then really created by whom and so on
+and 16,000 addresses.
+So, but unfortunately,
+I thought you could also search in this subset only.
+Okay.
+But for that, let's see, is it still loading?
+So let me just grab quickly my local database
+or let me do something else first.
+I want to show you Alex shared the blog post.
+I think it's in developer blog, right?
+- Yeah.
+- Blog, there we go.
+So in the block posts,
+you look a little bit at the data model data India,
+and how you can get this information.
+So basically what we have here is on GitHub
+as in public repository
+which is very similar to our other example,
+data repository that we've looked at in the past
+commendations and so on, but browser guides, raw data like
+and browser guide and he also the data in here.
+So when you basically get any of these dump files,
+then you can import them into Aura.
+You need an Aura pro instance
+because there's a large sort of fit into free
+or in desktop.
+And until my Aura instance here is done,
+we can create your desktop version of it
+and then we can start varying
+and playing around with the data
+and look at this a little bit.
+The data model is pretty straightforward.
+So you see it here.
+So we could also model it in arrows,
+but it's pretty straightforward.
+So you have two entities for two of the shell companies.
+The officer's, which can be a director of a shell company,
+or a shareholder, a beneficiary of a shell company,
+or someone who's somehow involved with the shell company.
+And then we have intermediaries,
+which are the banks and law firms
+and other institutions that offer services
+to create and manage these kinds of share companies, right?
+So if ULX want to say, okay,
+I want to put my earnings from all the live streams
+onto a shell company then you go to a German bank
+like Deutsche Bank or somewhere else in Munich.
+Let's say I have all these millions of dollars here
+from my life students,
+I want to put them into a shell company.
+Then you go there and they say,
+"Oh yeah, you want your shell company, its a shell also."
+Pretty sure (indistinct)
+- You shouldn't tell my secrets.
+(laughs)
+- So actually, it would be interesting
+if you find some of the last three months in the datasets
+and it could be actually an interesting one
+because there was this Twitch league
+where they tell couples (indistinct)
+So kind of interesting to see
+if people can actually be found there.
+Anyway, so you go to one of these intermediary,
+or it could be also a law firm
+and they create a shell company for you.
+But the real owner of the shell company
+is usually not visible.
+It's kind of employees of the globe
+or random people that kind of sign,
+I'm a director of this shell company.
+But the real person or the real organization
+that owns the shell company is never published anywhere
+in any company registry.
+They have it in their internal documents of course
+and databases.
+And this is exactly what has been kind of published
+with these leaks.
+It's basically these internal documents, right?
+Well actually the people that are clearly behind
+those shell companies, those are actually become invisible.
+Right?
+And that's kind of the interesting and important thing here.
+Especially if those shell companies
+then kind of move from one owner to the other
+and they basically trade shell companies
+like you would trade stocks, or so all right?
+So you put a million dollars into a shell company,
+and then you basically hand over the shell company
+to someone else.
+So you have to put some million dollars
+at their disposal basically as such, right?
+And then you can, whatever dirty things you want to do
+from buying arms to truck purchases
+to crazy things like buying your yacht or something else.
+Or buying an island or something, right?
+So there's a lot of money moving behind the scenes
+so that you can't track and trace.
+So many state governments and jurisdictions
+try to find money that has been taken by criminals
+or corruption.
+But if it's once in a shell company,
+it's really hard to track
+and that's why these leaks are also really important
+for law enforcement and tech authorities
+because they cannot figure out who
+put the money where
+and other ways of getting back those things
+through the crime criminal justice system, right?
+So that's basically the data model as such
+and that's been pretty stable over the years.
+So all of us use this data model
+since the early days of swift leagues and Panama Papers
+and that's all.
+So in this current dataset, there are not so many entities.
+So let me see if you are good here now.
+So I'll just show you that I took this database
+and imported it into Neo4j.
+(indistinct) so I took to dump file as you can see here,
+I can just pull the browser up here as well.
+So I talked to dump file, and then if you add,
+so you can say add local file,
+and then you can just put dump file into a project,
+any Neo4j desktop and thus create new DBMS from dump file,
+import dump into an existing DBMS.
+You can turn this dump file into a database
+which I've done already here.
+And now we can start this database
+and it takes a few seconds to start.
+While it's doing that, you can look at log files
+and other things as well, right?
+And so that's how you can use it on your own machine.
+If you have Neo4j desktop installed or if you're On Aura.
+If you're on Aura, let me just show you.
+If you are an Aura and you have a database,
+then you can basically upload in the input database,
+select a dump file and upload it into to your instance.
+Because Aura free, it's limited in graph size.
+You need to have an Aura pro instance
+for this dump file as such.
+Okay, so let's see if our desktop database has started.
+Yes, it started.
+So it's now active and now we can basically open
+Neo4j browser and if this one, let me clear this out.
+And then we can start investigating to stay down, right?
+So this is the whole offshore leaks database.
+So it's not just Pandora paper.
+So it's almost 2 million nodes and 3.2 million relationships
+in here, so it's pretty big.
+And now we can look at, okay,
+how many nodes of the different types of in here.
+So we can just match all the nodes and say,
+return head labels of n
+as type, count star
+as count order by count.
+And then it runs and we see it's $800 in shell companies,
+$745 in officers, $290 in addresses and so on.
+And if you want to limit us to one of the data sets,
+then we can just say,
+where n.sourceID starts with Pandora Papers.
+And then it runs this and we see.
+Basically what I showed you before,
+it's $26 in officers, $70 in entry entities
+and some addresses.
+But if you look at your officer's actually,
+let's do this here.
+We can, let me just do this up here.
+So we can just look at your offices.
+So that should give us only the 2,600.
+But what we can also do is we can count distinct n.name
+as uniques and then you see it's only $17 in unique names
+in that data set.
+That's what I mentioned before, right?
+So it's more entities, but with a lot of the same names.
+So I actually saw this when I was looking for
+one particular person and there were like 17 people
+of that name in that database.
+- Sorry for interrupting,
+but I'm getting some scratching noises.
+Which microphone are you using?
+- I should be using the one-
+- Use of the one on your mic because it sounds like
+sometimes you would touch like a.
+- Actually, yeah.
+I have the air pods selected here.
+But it's in the browser setting
+that it's using actually a mic.
+Okay, so I'll keep my hand from that side.
+- Or you just switch it off or you can always switch.
+- It's tough, no it doesn't allow me to switch.
+So if I want to switch it in a browser,
+it doesn't allow it.
+Let me see in settings. - It doesn't allow okay.
+- It's better now or different?
+Let's see how it goes, okay?
+- Yeah.
+- Okay, cool.
+But if you remember that we were actually looking
+for a particular officer in the database
+and n.name.
+And it was Leung Chun-ying
+just like this.
+There was on Leung Chun-ying
+So and doesn't find it.
+Probably, either it's some spelling
+or it's not in the Pandora Papers part of the data.
+So let's try this.
+If you only look for this one person it's not in there.
+Okay, but what we can do actually in here is we can do
+a full-text search on the data.fulltext.querrynodes.
+I'm not sure why it's not completing it.
+So I think the index is called search
+and then we can just search for the name.
+Search.
+Yield node.
+Node, score.
+Where node officer
+return node limit 10.
+So you see that now we have different spellings
+of uppercase.
+Here the spaces and dashers,
+different spaces and dashes here.
+So you see that actually in terms of the spelling,
+it's very different, right?
+So we can now say, "Okay, you won't have at least
+Chun-yin as one word."
+Yeah, so I've indicated like this, right?
+And you see that there are lots of entries
+for the same person, right?
+And node.sourceID with Pandora Papers.
+So I was not really sure if this person was actually
+in the published data set, yeah.
+So, but it's the wrong people.
+Or at least the names only partially match
+what you're looking for.
+So it seems he was not in a published dataset.
+But this shows you already how you can do full text search
+on the data, which is quite nice.
+So you can do this.
+There are also different indexes for this.
+So for instance-
+- Is it where we're already using the new text index
+from four-four?
+- So we have the new text index her on this dataset
+but we also have full-text indexes as well.
+Because the text index, as you can see here,
+we have some text index here on this officer name
+and so-and-so, which is special better
+for like contains variants.
+- Okay.
+- But it doesn't allow for a case insensitive
+and partial matches and like fancy matching and so on.
+But that's why we also created like full-text indexes
+for everything.
+- I see.
+- But also full text indexes per individual entity as well.
+So we also have...
+For instance, I can also do an full-text search
+on officer only and then we don't need to check
+for the type here.
+Then it only has officers in this (indistinct).
+And so they have more.
+But it's unfortunately not our candidates, right?
+So unfortunately he's not in there.
+So what you can do is you can look at
+one of the other poll players
+and see what else we can find in there.
+I think let's see, what do we want to look at
+Panama presidents.
+(indistinct)
+There are so many.
+I think I have 56 or 64 in our poll players.
+So it's a lot of people.
+So for instance, if you try to look for the person here,
+then we can see if you find that person in our data.
+Let's see.
+So these are people from that dataset.
+And if I do this in double quotes,
+it should actually find it and then it come on.
+Okay, so then I guess...
+So one thing that you can do,
+family of the Azerbaijanian president is always in there.
+Of course you have so many shell companies
+and things like that.
+So there are tons of Pandora Papers,
+things until you see even the same name
+as relationship as well as such, right?
+So there's these things as well.
+And so you can see what they're doing
+and then you can find their involvements.
+So if you want to look at this Aliyev family,
+we can just say, "We want to find officers
+who have an involvement with an entity to where
+o.name, come on, contains.
+So this is now using the new text index and o.sourceID
+starts with Pandora return away from here.
+So here now we see already from the Pandora Papers,
+the Aliyev family, what they're investing in
+and also kind of what is the overlap between those, right?
+But you see that basically all the different shell companies
+the same person has a different name here, right?
+So it's basically only tentatively investing with the other
+tentatively this one person is involved
+with all these shell companies, right?
+But that's an instance for the name for all of these here
+in our search.
+Right, so, and then you can start investigating this.
+It's also part of this publication
+it's an as a browser guide.
+So if I do a play offshore leaks, I think it's,
+ICIJ-offshore leaks,
+then I get a browser guide for the whole database basically.
+So it explains kind of the data model,
+allow some queries and so on.
+But then at the end you have, for each of those data sets,
+you have individual product guides as such.
+So this one is Pandora Papers
+with the video that you've already seen
+and then you can start exploring this.
+And for instance, he has experience short and shortest path
+between two people that are in the Pandora Papers.
+So just to show you how you could kind of follow the money
+or something like that, right?
+So they say, okay, I have two suspects in some way
+and I want to see how are these two connected through which
+share companies are they connected
+through which intermediaries are they connected?
+And you see that for instance here,
+all these shell companies share the same address.
+That's only for the British Virgin islands led.
+So I mean,
+that might be a no incidence or coordination,
+but you can also imagine adults
+where they achieve jointly invested into shell companies.
+And Anthony said that that's such, right.
+So if you want to exclude this,
+then you would move to your registered address here
+and then you would have to find other ways
+of connecting with people.
+So in this case, these two people are not connected anymore.
+If you've moved your dress from that picture.
+Okay.
+And then you can do a question as well.
+So you can say, for instance, I want to see.
+So this is one of the published intermediaries
+from the Pandora Papers and we want to see
+how many shell companies in the different countries
+did they actually create.
+And so if I run this,
+then I see, oops.
+Why?
+Oh because it's I think e.country count.
+Country,
+That's good.
+Let me see what's wrong here.
+So we can just return to entity.
+Oh, they don't actually have country codes in here.
+It's unfortunate.
+So this seems to be like a difference
+to the other data models that we used to have before
+in in the official league.
+So they don't have country codes on the entities.
+What you could do is you could look at the addresses
+for these entities and see if the, oops,
+if the addresses have country codes,
+and then use those sentence.
+They don't have addresses.
+That's pretty sad.
+Sort of seems to be weird.
+Why don't these entities not have addresses.
+But you've also seen that in the beginning.
+So they will not have as many addresses in the data as well.
+So let's pick another intermediary.
+So if I look at the offshore leaks, Pandora Papers again,
+they actually talk about some of the intermediaries
+in
+Cordero Panamanian law firm.
+So we kind of look for those different entities
+Please let's try this.
+Cordero, no.
+Let's look at the full text and links
+db.fulltext.querryNodes and then intermediary and Cordero.
+We can possibly limit up to here, limit 10.
+Okay, so it's spelled differently.
+So it's Cordero with an upper case.
+Aleman Cordero.
+so, okay it needs to be in all caps.
+Okay, Cordero
+So
+that's the disadvantage of this direct matches.
+What was this?
+By the way, if you want to,
+you can also copy and paste directly from here.
+But actually-
+- Is that new or was that-
+- That's new, that's a new feature in browser
+that the property view has actually moved to the side
+from the bottom and now you have a better overview
+of all the properties.
+You can copy them all in once up here
+or you can copy them individually as well
+as your coordinates.
+- That is nice Indeed.
+- So Cordero, not Condero but Cordero,
+so I just misspelled it.
+No, that's weird.
+But it seems that the entities
+don't have too many addresses here and it's interesting.
+So perhaps the addresses are only four offices then as such.
+- Maybe the Pandora Papers, yeah.
+So it's probably only a partial.
+Let's see if we get the officers and they have addresses
+because I really want to see this by jurisdiction.
+So, because it's always interesting to see.
+So addresses don't seem to be so as much in here.
+So as I said before,
+this is also something where the volume of the data leak
+can also be,
+oh, this was also the wrong direction of the arrow.
+I just realized the office that is involved in the company
+and then the address is here.
+Let's try this again.
+I just pointed arrow in the wrong direction.
+Come on.
+So, we should actually switch to the graph.
+Now it looks better, right?
+So now we have two red ones for addresses.
+The orange ones are officers in a group one audit companies.
+And if you click on one of these addresses,
+then you see that it has no countries and country codes.
+So we need to go all the way through to the address
+because the officer's also don't have
+any country information.
+That's all.
+Oh no, they have actually country countries.
+Here on the officer.
+Okay, so we can use this,
+don't need to go all the way to the addresses.
+So we would say countries,
+and say return, officer.countries, count star as frequency
+order by frequency, descending limit 20 or something, right?
+So we see kind of this law firm has everyone in Panama.
+- Because it, yeah, makes sense.
+It's based in Panama.
+- It's Panamanian. - Yeah.
+- But then you can also see either certain intermediaries
+or law firms that have more than one country.
+So that's actually something when we say,
+okay, we just want to look at Pandora Papers and say
+intermediary,
+we just take each intermediary,
+collect all the countries that they have distinct,
+countries where our country is greater than one.
+Return intermediary, countries.
+- Care of the spelling of return.
+- Order by, lets just say, size of countries.
+Size of countries descending.
+So we still get all in the median of Pandora Papers
+with the number of countries that they have.
+So you see Cordero this one actually, which is this one.
+As if, already seen one from the beginning as if
+I am corporate services and this one has,
+as you can see a ton of different countries, right?
+So I mean a different combinations of course, as well.
+But it's a lot of different countries.
+- Yeah, actually more than you know.
+- We're actually just missing the country field
+on the entity, if we can fix this in the guide as well.
+So if you go all the way back to our original thing,
+then we can actually say, this was just missing the officer.
+And then we use ordered countries here,
+countries
+and this would give us better understanding
+of how many countries does it to be there already
+what's active in.
+So actually these semi-colon separated things.
+We can also sort out by saying, unwind, split, o.countries,
+on semi-colon as country.
+And then we can just say yes, this.
+So it takes the string,
+splits it by the semi-colon and then takes each of them
+individually as one country.
+So you see that UK jumped from 50 to 211 as such,
+but we don't have any duplicate.
+- Yeah.
+(indistinct)
+- So that's a nice one
+that we should probably add to the guide,
+but we'll take a note of that and forget about it.
+Okay, and so basically you can export the guide.
+You can connect it to the stories from the offshore leaks
+and try this.
+So you can also look at the visualization of the data,
+the volume of data in here.
+And then also things like find me certain officers.
+So here, for instance, this Russian person who
+showed up in one of the stories, and then you can see,
+okay, this person showed up here and then you can expand
+this person and then (indistinct).
+And then you can do also like second degree and four degree.
+So basically you can say, okay,
+I have this person I'd want to see,
+are there any second degree things
+and this is second degree, because it basically goes
+from this person to another person and back again.
+So it's like one, two, three.
+Or goes from officer to entity to another officer to back to
+another entity, but you have such, okay,
+what else do we have in reguard?
+So we can also do the same for intermediaries
+and then for entities.
+So we can transcend say whose practice entity,
+who are the officers behind this entity
+and then we can see.
+Okay.
+This offshore company has a lot of people involved with it.
+And then you can kind of start investigating these people
+and see what else have you done?
+Girls has to be investigated as well.
+So for instance,
+I could say, okay, police officers,
+in which other entities have they also been involved, right?
+And then you just say the two holders
+and then you get like second degree.
+But for those obviously, well, not obviously,
+but for those, it's actually not been visible
+that you have other entities in the state as such.
+Okay, and then it points back to the officer.
+The challenge here is that the published data
+is really small.
+And then so many of the stories that they published
+is actually,
+they are only partially in the data
+and not fully in the data which is a little bit unfortunate
+from that perspective.
+- Okay, so it's more like an insight
+from a shorter set,
+but at the same time these other databases are available.
+So Paradise and Panama Papers. - Exactly.
+So you- - And Panamas,
+exactly all of them.
+Actually, that's a good point.
+That's something that we can also see here where say,
+find me all the sourceIDs, so kind of which investigations
+and how much data for each investigation is in, yeah.
+All right, so that's the other thing that you can do
+where we see, okay.
+If you look at all, all the information,
+so there's $55 notes from Panama paper to
+Paradise papers, actually offshore leaks, Bahamas leaks.
+And then they also have a subset of like paradise papers
+that will be.
+And so you could even say, you split this by-
+- You slit this basically by-
+- By source, by intermediary - Country/law firm, yeah.
+- Yeah, that's because they said cost the sourceID
+points to the leak or the data set of documents
+which set of documents basically as the sourceID.
+So if documents from appleby are different documents
+than those from near these one also, right?
+And that's why it in the sourceID,
+you have this whole source, basically.
+And, but if you spill per space
+and only take the first name,
+then we can aggregate them into one as such.
+Let's do this.
+So you see, you Paradise papers have $867
+then Panama and offshore leaves, Bahama, peeps, and Pandora
+(indistinct)
+- No.
+- Only a small one.
+But there's a larger data dump coming at a later point
+this month.
+So then more data will be made available as well.
+The other thing that I wanted to quickly show you
+is you can also download the CSV files for those
+and what I actually wanted to do,
+but I now realize something interesting.
+So these are all the csv files from the offerings database.
+So you see, they have 3.2 million relationships
+as you've seen in the node and in the graph
+and then addresses entities, intermediaries,
+and officers, and some other things.
+So what I find you can do is we can just substitute
+to them by, so for instance, if you look at the addresses,
+you see that there's also the sourceID in here.
+And I thought, because in total, it's too large,
+but it is a small dataset,
+that Pandora Paper dataset could almost fit into Aura free.
+Oh, I thought that we can just substitute by sourceID.
+- Okay.
+If I take node addresses and use xsv
+which is really nice xsv tool, and re-ask, you do search.
+So you can provide a regular expression here for this field
+and then look at how much data it returns
+Then you only get 16,000 rows out of 300,
+which is really nice.
+So I thought, okay, we can just students and input those.
+So I just wrote in one line,
+this one that takes all of the 60 files
+and the sourceID Pandora
+and puts it into a separate folder.
+So if I do this, it almost worked.
+So I was quite happy, but unfortunately,
+the relationships only one relationship
+only the other is too little.
+And it looks as if the published relationships file
+is actually missing the Pandora group.
+So you need to build back to them and ask them
+to update this.
+- Okay.
+- And so that's also xsv stats that can run on a
+on a file which is pregnise.
+And then you can say, it looks at the file,
+and then you get good at like a statistics of it.
+So you see what I like are the entries in here
+or you can also do xsv, select sourceID
+oops, relationships.
+And then you can pipe just towards sort and unique -c
+and you what?
+Oh, cool.
+And then we see just actually, no Pandora papers in here.
+We did relationships.
+So we need to go back and ask them
+'cause he does the data missing.
+Otherwise I would have kind of tried to import the data,
+also supports USB
+from the subset into offering as an option.
+But that's something that I just saw
+a minute before we started.
+So I didn't have time to go into that.
+- Okay, well maybe we get that at some other point in time
+and then we can have a look at it.
+- It's okay.
+- But if that's missing that's yeah.
+- Yeah, fantastic.
+The other thing that the show is very quick
+is that there's also these code examples here.
+So you have for Java, JavaScript, Python, and so on,
+decoding examples on how could connect Neo4j
+and use that database as well.
+So if I want to connect to my Aura instance,
+then I can just pick one of those examples, for instance,
+if I want to do a Python notebook,
+there's a bunch of charts and investigations here.
+Then I can just take this code and run this code
+against my instance as such.
+So for instance, if I take to this and just say,
+PIP install, neo4j
+and vi test.python
+you paste this in here
+and then we just change this to our local database
+and all using neo4j
+I don't know password secret test.
+And then if I run this test script,
+then turn into transmitted data from this query in here.
+So find me the officer Ross Wilbur and
+addresses intermediaries and other officers
+that are connected to this person can help surveyor
+and limit 20 then I get a discrete executed.
+So that's a simple and quick to run something like this.
+And we can also change this to one of our other carriers.
+And then, and so all the aquatic examples are also in here
+for the different languages.
+So you want to put in or something with the GraphQL API
+or Java app or whatever,
+and you get all the code examples
+and just supposedly as much as nice.
+And then the other thing,
+if you want to show this kind of data to someone
+who has not so much development experience,
+then something good I recommend is to use
+gloom on top of the data.
+Of course, that's really nice for someone
+who has no current language experience
+and just wants to explore this data interactively initially.
+Then you can explore that.
+So you can basically nicely to do the stuff
+and then you can say, for instance
+I want to have and intermediary Cordero, right?
+Was it like this?
+- I think it was Cordero.
+- Cordero name.
+Cordero.
+- Something like that.
+- Something like that.
+Anyway, so what you can do is basically you can say,
+I want to see an intermediary.
+What you can do is actually, it's also the-
+- It was Cordero.
+It must have been Cordero.
+- Papers.
+All right, so you can just say intermediary with sourceID
+Pandora Papers and then I want to see other entities
+basically from that intermediary and then control.
+It will do this query and I get all this data
+nicely in my bloom and then I can be start investigating.
+Yeah, so I can find some subset of data and say,
+okay, I'm interested in these three and say,
+dismiss all the other nodes
+And then I get all the three left and then as they
+expand or relationships here from those
+and then you see already, oh,
+these are the three arches related,
+not just via the intermediary,
+but also with other things as well.
+So, and then you can say, okay, I want to find 20 cents.
+I want to find the shortest path between these two officers
+then you can do this and the shortest path
+is always this one that we see here.
+And then I can also say this office,
+what else does it have?
+And then, okay, do you have this other person was the same
+and then we can go from this person as well.
+And then, oh, this is interesting.
+Why does this person now have so many other
+personalities or same name as a thing.
+So we can select all of these and then expand them again
+and then see, can you find paths between
+those sorts of rights?
+So they all share one address and so on.
+So you can basically do these very interactive explorations
+on the data as such, right?
+And then you can say, okay,
+this address seems to be really important.
+I just dismiss all the other nodes and then I would say
+expand this or just have only introduced to the address.
+I wanna see if there's an entity related to this.
+But as you've seen before,
+the entities don't have addresses in this current dataset,
+of Pandora Papers.
+But blue is really nice because then you can do this kind of
+investigations and then you can export your
+kind of go to presentation mode.
+And then you can also export your data
+as a screen transplants, right?
+So if you want to do like an article or presentation
+about something, again, say, okay, I want to do this.
+And then I want to export this as a screenshot.
+So I would kind of get, get this exported.
+And then I can see this as my,
+one second,
+to open it.
+Should have opened it on another screen.
+I'm not sure any of that
+Anyway, you can imagine (indistinct)
+- It's basically a JPEG or a PNG file, and then you can-
+- Exactly and that's really nice
+because then you can really use this
+for these kinds of visual investigations
+also for people that don't have development experience.
+And in Aura as well, you can open the databases
+with bloom as well.
+So if I open this database in bloom it's not empty
+because you haven't imported anything
+then you can explore this as well.
+- Yeah, that's always the option
+and it comes with every AuraDB instance.
+Even with the free one,
+you always have bloom alongside it.
+So you can always go in and explore there.
+So that's really handy like you said.
+I mean, it's very good if you have no coding experience.
+It's very visual, it's very easy to get going
+just by typing in words basically in the search bar
+and then you find the way around the dataset.
+- That's okay, cool.
+And I think this covers all the things that I wanted to show
+what's kind of interesting is really to look at these
+in different stories and investigations and see,
+can we actually find the data for these investigations
+in our for these stories in our datasets.
+One thing I did in the article,
+there was another set of...
+There was another page here which I don't remember.
+What was it called?
+That is other investigations on top of that.
+So you see, this is one about property ownership, right?
+So we are basically people
+from the Pandora people's investigations
+who are involved in some property ownership,
+like in London and then in different countries
+and people who are involved in kind of
+via ownership scenes of even if a German,
+German Nursing Home in Berlin that's involved in.
+And then you can basically search for these people basically
+in the dataset and see if you find them in here, right?
+So for instance, I dunno (indistinct).
+also call db.index fulltext.querryNodes
+and if you search in the officer index,
+what is Boris Levin
+limit 20,
+then we see how does this form,
+here's one entry, for instance from part of this
+Pandora Papers but it's a different spelling
+so it's kind of not in there.
+But you can kind of use this to look at
+some of the stories here, right?
+And all the names are in capital letters here.
+So you can basically look at these as well.
+And so that's something that you can also explore as such.
+- Yeah and this is...
+Again, this is not the full release of the dataset-
+- Yeah, exactly.
+- that's kept with the ICIJ, obviously,
+because this is really sensitive data
+and they don't wanna publicly make this available.
+That's not the point of this leak.
+- Yeah.
+- So that's why sometimes you will find nothing,
+but this is not because it's not there, it's not made up.
+It's really there but it's not available for you and me
+to access it so you cannot.
+- It's okay.
+- You cannot go in there and look for your neighbors.
+- Yeah, exactly.
+I mean, some of the data is also in doc cloud.
+So some of the data is actually published
+where it's kind of protected as you can see
+put chunks in here, right?
+But they had already done all the work of extracting
+this information from the document and turn it
+into machine-readable database format
+so they can use it for the investigation system.
+And so that's an interesting from that perspective.
+Yeah, so there's a lot of content here.
+I mean, there's 200 journalists will vote on this
+or there are more stories in there
+then as an person could kind of look at.
+But if there are certain things that are interesting
+for your country or for whatever you're interested in,
+then that's something equally
+that you now can start investigating with this data
+which is pretty nice.
+- Yeah. I can always read up on it in your local newspapers
+or in any other global ones. - Yeah.
+- So that's a really interesting one.
+It's always constantly glowing and adding new things to it.
+So I wouldn't be surprised if there will be
+another leak coming around.
+But also like you said, Michael,
+if there's some of the datasets sets
+are missing or relationships missing.
+So maybe we can get a V-roll of that
+and then they make it available
+and then we can update the guide a little bit.
+But you know, like we show today here,
+you can play the browser guide in Neo4j and you can go on
+and explore the data set from there.
+And that's already a pretty good start.
+I think if you wanna go into that and explore it further,
+and it's really, it's really amazing what they're doing
+and how much they found out and how much
+they make these connections.
+These connections come to the foreign
+and where they really see, oh, actually this is like I said,
+we had this here.
+I mean, these people we picked were more or less random.
+So, I mean, we found this one guy that has like,
+I don't know, 50 alliances.
+- 50 Investigations or 50 investments (indistinct)
+- Yeah.
+- If you look at the Aliyev family,
+they have so many things that are found in this
+for this Azerbaijanian coolers wife and children
+and himself as well.
+So basically, there's a lot of data in there.
+And if you're involved into something
+like looking at these countries
+and so then that will be equally interesting
+for folks to have a look at such.
+- Yeah, it's okay.
+- Cool.
+There was one thing that I wanted to mention.
+Oh yeah, the really important aspect about this data is that
+journalists use this kind of data
+only as starting points for the investigation.
+So they don't take the data into the story,
+but they take the data, get information out of it
+and then they start to investigate with their usual
+journalistic tools, doing interviews, doing research,
+doing a verification
+and confirmation of what they found there.
+So they don't publish only based on the data from the leak,
+but they always corroborate the information
+from other sources as well.
+That's why journalist are not just people like us
+who kind of just look at the data
+and looking at what you're finding there
+because they have all the journalistic towards also at hand
+that they can use as well.
+Cool. - Cool.
+- So that I think covered what we wanted to cover today
+and yeah.
+- That was super cool, thank you very much, Michael.
+Thank you for that insight
+and for that run through the Pandora Papers data set.
+I think that was really good.
+We'll be back tomorrow actually with another special stream,
+you can already subscribe to that
+or get your reminder in YouTube.
+So that's when we have Nathan Smith.
+I will have Nathan Smith with me to talk about,
+or he will basically talk about
+how to create a similarity graph from node properties
+with Neo4j.
+So I think that's going to be
+an interesting session tomorrow.
+Like I said, get a reminder set up in YouTube already,
+and then we will back Michael and I next week on Monday
+in the morning session.
+So that's going to happen over the next few days.
+Until then, thank you very much for watching.
+Thank you for participating and for a nice chat today.
+And yeah, take care everybody and see you see around.
+- Yeah, see you next time.

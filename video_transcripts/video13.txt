@@ -1,0 +1,1520 @@
+so
+get a quick recap of all three so i
+think we've done a few sessions we've
+gone into detail so we're literally just
+going to skim through this and i'm going
+to go through the fun stuff i'm going to
+pick a data set
+so
+hi mike hi mike thanks for joining us
+hi
+it's ellie for mike early start
+my name is from nairobi that is all
+these similar teams fan time zone yeah
+good morning good morning morning yes
+joining us yeah
+so
+okay so uh if you've got a data set you
+want us to have a look let us know so
+you can either pop it pop a message in
+the chat or ping us on twitter or send a
+pigeon and we'll figure something you
+know
+let us know
+so
+we're going to pick a data so i'm going
+to talk through the data set we've got
+today of mystery error of mystery and
+then what we're going to do is we're
+going to think about what questions so
+if you've got questions of the revealed
+data set you'd like us to explore check
+them in the chat we we're nice we like
+this sort of user participation thing so
+chuck them in
+then off the back of that we're going to
+figure out what a data model is going to
+be based on those questions because as
+you know the questions help us form what
+that vector model is going to look like
+and then we're going to load that data
+we're going to query it
+so very quickly neo4j aura3 is a free
+version of neo4j aura which is our neo4j
+on the cloud database offering
+so the free version you can load up to
+50 000 nodes and 175 000 relationships
+which is more than plenty to do a bunch
+of stuff within there
+and you've got access to neo4j bloom
+which is our visualization tool um
+browser which is like a developer aid
+that helps us you know sort of write
+queries load some data
+created that kind of thing and it's just
+free forever so if you do not already
+have a copy of that
+go to the you can go to the landing page
+so that's dev.fj.com
+aura and get yourself a free account so
+what we're going to do today we are
+going to be looking at we can have a
+look at the sample of the data thinking
+what is this
+exploring rest areas in new york state
+from the u.s government open data site
+so okay
+cool yeah
+so this is a list of service stations i
+believe based in in new york state so
+like petrol stations or or is this like
+i think so something like that i i i i
+couldn't quite so we can do a bit more
+digging around this i had a quick clip
+this morning and i thought oh this looks
+like fun
+you'll see why
+we might have some fun with this
+or be cliche that should be a fun that
+should be a fun exercise today i'm
+looking forward to this and i think just
+just to to complete the the picture here
+with aura free i think it's a it's it's
+a great
+bundle
+uh of we're offering here so like you
+said 50k knows that 175 000
+relationships is plenty for any any uh
+any test run and bloom
+for free basically included it's it's
+it's it's super good uh to trust it out
+give it a go check check out the link
+and uh and and load your data but what
+else you can do and that's i think the
+the goal of this series here is we we
+try to make give you an example of what
+what you can try so we you we will be
+able to follow along or you will be able
+to follow afterwards we share what we do
+today in a github repository and then
+you can copy and paste our code examples
+or rather loose
+and
+and
+and try it for yourself
+absolutely absolutely so
+let's have a quick peek at this data set
+oh yeah let's do that
+so
+so basically
+this this this website is really good so
+if i ping back here so you got this
+data.gov so got podcast coming soon that
+will and i've put together about where
+can you find data sets because sometimes
+you just can't think of a data set you
+can't think of an example of
+creating some data and you just go you
+know what i want to play
+i want to play with the graph but i
+can't think of any data sets and there's
+lots of different places you can find
+them and here's a really good place to
+find some data so here this is a us
+government
+website
+and actually if i just do data set and
+here they've got loads they've got loads
+and loads of different data
+i'll find the exact link for that later
+they've got loads and loads of different
+data sets and i was just having a quick
+peek through
+and i had this one here which is the
+rest areas across new york state so here
+they've got they in the
+catalogue dot oh this is the full
+address so here they've got all sorts of
+data sets in here so
+you can you can see they've got all
+sorts of things you've got 300 000
+different data sets and you can download
+them
+as
+uh as csv this is all the afternoon so
+we're gonna show you because the deal
+here
+about
+the discover or a free is that we don't
+do anything where we have to do an extra
+step of the data so we don't have to
+download it and then upload it somewhere
+else so everything we do we can pull
+from a link and this website is
+excellent for that you can put it as a
+json you can pull it as csv some of
+these places have also got apis that you
+can connect into so here you've got
+loads and loads of different data sets
+and i discovered this rest areas across
+new york state
+and i'll show you why it's interesting
+because we get to play with some spatial
+data which is why i was a bit excited
+about this so you can see here we've got
+these different ways of doing this and
+the original source of this is from the
+new york states data website so if you
+want more information you can click
+through and have a look at that
+information there
+and they've given us some information
+about the different values we've got
+here so if we can have a quick look at
+the columns since they've so beautifully
+laid it out for us so let me just ping
+this link over to the chat as well
+although you can pull it off the
+original link that alex has just popped
+in the chat
+but here it tells us the name of the
+rest area it gives us a description
+got vending machines as you've got
+picnic tables all of that good stuff so
+and their stuff as well we've got the
+longitude and latitude information about
+there
+so that's that data set so
+the link we want
+to be able to explore this data you can
+get by right clicking on the download
+button and then you want to do the copy
+link address and that's the magical link
+that we need to be able to access that
+csv from neo4j or free so i've copied
+that link into the clipboard and now if
+i jump over to my aura free instance
+what i can do is load csv
+with headers from
+so now i'm just going to paste my link
+in so that's the link that i've just
+copied from that page
+as row and i can just return this return
+this now return row
+and this is quite a small basis that's
+normally we've been working with some
+you know big data sets we're not big but
+as in you know we've had to truncate
+somewhere we've had to make decisions
+about reducing what we load so that we
+fit under the 50 000 node limit this is
+quite a small data set
+but do not be deceived that it is a
+small data set we've only got
+39 rows
+in this csv
+but we've got lots of interesting things
+to play with so it doesn't have to be a
+huge data set to be able to do cool and
+interesting things
+so
+very quickly we can see information here
+so we get stuff like the status of that
+rest facility
+then this obviously gives us a
+description that's closed okay fine
+we've got information like how many
+truck spaces there are
+is there a public telephone number of
+picnic tables the travel direction so
+obviously if this is on a motorway
+highway somewhere what direction or you
+know are you traveling for that
+facilities would be available as we
+talked about the longitude and latitude
+in there what count is it based in the
+name of the stop does it have a police
+station
+is it bus spaces you get the idea
+handicapped spaces car spaces what
+routes available
+a number of vending machines we've got
+lots of really interesting and fun
+information there on some of these
+things so
+what i'm going to do as well is let's
+see if we can
+if i do it like this do we get just
+trying to see if there's a nice way of
+being able to display this
+oh let's have a quick peek did we didn't
+does it so we had a
+view data so can we view it a bit nicer
+oh
+press the magic button here we go
+that'll do that'll do
+okay so we can see some information here
+side by side so i guess
+the question here then
+what kinds of questions would you ask of
+this data so alex
+what kinds of questions would you ask of
+this interesting data yeah that is it is
+very interesting so my initial thought
+was
+do we want to combine with some kind of
+of travel recommendation thing so let's
+say
+we are traveling
+eastbound which
+you know
+do i have a park
+no
+how do you say
+a parking space for my truck at
+an
+eastbound um picnic area or an eastbound
+restressed area basically
+it's a problem for my truck so obviously
+i think this is going to be dependent on
+the
+highway on the route so let's just
+quickly i don't know if that is that
+maybe too too too
+i don't know yeah it's quite a small
+data set yeah so that's probably sure
+but let's let's just quickly let's
+return row
+dot
+what did we call it uh root row dot root
+let's have a look so do we have
+oh actually let's do direction as well
+quickly so was it um what did we call it
+was it
+was
+status travel direction travel direction
+okay
+travel space direction okay let's just
+do that so
+okay so
+southbound northbound so it looks like
+it oh i know it's the i-81 obviously i
+think that's an interstate route that's
+got loads of things on there okay
+in fact
+oh okay that's exciting now i think we
+can kind of roughly ask a question about
+that based on roots so
+maybe roughly yeah
+if i'm traveling
+x direction or we could make it easier
+to say exactly like you just said if you
+say let's if we travel we travel x
+direction on y
+road
+what
+breast areas can i
+yeah
+can i discover or yeah and then maybe
+add some something more complicated by
+that by saying what rest areas
+i have truck spaces
+yeah so if i'm traveling x direction on
+route why
+what stops are available yeah exactly i
+think that's a good time that's what
+people okay that might be a bit of an
+interesting one to try and model because
+we don't have the map days but that's
+okay we get we're going to fudge
+something i think with the
+special data
+right
+any other questions you'd like to ask
+yeah i like the public phone thing i
+mean that could be
+could be another one i mean i i don't
+know really what kind of question to be
+asked i mean the basic question is where
+which which rest areas do you have a
+public phone but it's not really a
+graphic question
+no we could ask that it's not
+technically a graphic question but it
+does give us an opportunity to play with
+the spatial data which could be
+what rest area
+closest to me
+has a public phone
+yeah yeah
+not that anybody needs a public phone
+still with smartphones
+abundantly available but
+sometimes your battery dies and then you
+might need a public phone
+exactly or no signal or
+kid through your phone in the pond you
+know
+it happens yes phone got stolen many
+things
+yeah okay
+let's pick and you might want to also
+check if a public phone and the police
+station is at the same space because you
+want to report your stolen phone
+exactly
+so oh yeah police station but we'll keep
+pitching for that but that's funny yeah
+add the extra bits
+so
+what else might we ask
+[Music]
+again if you've got any thoughts for
+questions chuck them in the chat yeah
+exactly put them in chat if you if you
+can think of anything
+vending machines could be also
+interesting
+i'm hungry
+it's a
+second breakfast kind of time
+[Laughter]
+oh you know i'm gonna pick i want to
+i think we should do something about the
+handicap spaces yeah that's a good idea
+because i think that's a good sort of
+thing to be awareness of
+you know awareness of those kinds of
+things so let's do something along the
+lines of
+what routes
+have the most
+available handicap spaces
+that's good
+yeah that's a good idea
+ro has the most
+handy
+spaces available
+all right so we've got a few questions
+here so i think this is going to be we
+don't have as many questions as we
+normally do but there's probably a fair
+bit of processing that needs to get done
+to get this working so
+i think that's fair enough so
+let's think about that data model so
+this is going to be re this is going to
+be an interesting one to do so
+oh my goodness how are we going to make
+this graphy
+well i think we could what we could do
+is we could start with the
+should we start with the direction also
+with the
+you know with the travel direction or
+with the the root if we put like
+root has always
+a travel direction so we could say
+we put the interstate 84 whatever it was
+called as a node then pull off
+eastbound westbound as
+as travel direction uh relationships off
+of it
+so that we say oh she means something
+like this hang on let's do
+roots
+and then you're saying you might have
+um yeah
+maybe
+let's think about this i think this
+one's going to be
+non-obvious
+but let's have a little think about what
+this looks like oh mike's just asked a
+question
+say i want to get info that shows root
+on google maps between two rest areas
+using the various parameters like root
+and location
+latitude
+yeah so anything we can't do i love that
+question right i don't think i don't
+think we'll be able to hook into google
+maps to get the api but
+you probably what you
+i'm just trying to think what can we do
+to help answer that so
+we're a little bit limited with the data
+let me let's try and get some data and
+then i'll come back to that question see
+if we can do something about that
+and compare leaving or adding
+child direction parameters let's have
+let's sit on that one for a moment and
+think about how we might answer that one
+okay so we've got route eastbound i'm
+just trying to think this kind of makes
+sense anything here i'm thinking about
+is obviously you'll have lots of rest
+spots on that so
+let me just think
+ah this thing this kind of works to be
+able to help answer distances between
+the stops so
+okay let's do that for now so root this
+will have a name
+then rest stop we will
+have oh
+yeah does it
+should we yeah would we have all the
+properties in there or
+or would we have another
+i'm just trying to think because
+this is it depends question isn't it yes
+it
+is uh
+this is the thing with there is no
+that there is that you know there is no
+right wrong it's all an art
+no
+because you do have a couple of things
+uh i talked about handicapped spaces
+truck spaces um
+yeah and the other information public
+phone i mean i don't know what you want
+to include in the end but
+um
+i mean it should have it should have
+yeah location like you said longitude do
+we do we want to look into that longer
+that it should probably
+oh yeah that definitely is a property on
+the stock because that's related to that
+oh county where it's located i think
+that can be a separate note
+yeah
+so let's do that so let's quickly this
+has got a location this will also have a
+name
+based in the county
+and we could we could status could be a
+separate node
+no no i was thinking status for
+something else oh okay
+i think it could be an extra label
+actually yes
+yeah
+so we could have another label which
+could be
+something like open
+i was thinking something like this maybe
+we could double label it
+and then oh yeah because we've not done
+double labels so let's do that yeah
+maybe different ways we do this but just
+for fun
+let's double label a node because we i
+think it's been a while since we've done
+something like that so
+okay so it's got account keep pressing
+that one got county we've got direction
+i think a lot of these things are
+probably going to be
+properties
+ah
+police station probably skipped that one
+car spaces
+that sound all like properties to me
+i love this it's got a description the
+architecture showcases victorian style
+interpret
+this place
+okay
+now
+oh you know i'd be really nice so that
+would probably be out right because
+obviously we only got an hour here but
+i'd love if we could just pull out this
+extra information like that thinking the
+same thing yes totally yeah
+and that would be also a little bit like
+what mike suggested is the the the where
+do i have to get off
+uh to to get to this rest area
+um
+the the google maps approach saying okay
+between exit
+1989 this is your exit this is where you
+have to
+i think we can slightly fudge we can
+slightly fudge mike's question i think
+okay
+and i'll show you how we can fudge that
+in a bit so it's not the neatest
+prettiest option but
+all right okay
+right so i think we've got that so let's
+just quickly stick in the other bit so
+we're not going to put all the
+properties in i think we'll just do the
+bits that we need to
+just answer the questions that we've got
+for now so go in here so we've got name
+location
+we've got
+handicap spaces handicapped spaces yeah
+so um
+box bases
+and car spaces
+and i think we've public phone
+public phone
+and the location is that the long last
+thing
+we're going to use a spatial variable a
+special type for that so yeah
+right
+okay i think that was the main thing so
+we're not putting all the data in i
+think we've got enough here to answer
+the questions that we've got and i'm
+going to show you fudge for mike's
+question hopefully it's going to work
+fingers crossed fingers crossed indeed
+okay right so i think this is roughly
+what our date model is going to be so
+roo
+so rest stop
+i'm going to just change the
+relationships around i think it probably
+i think they should
+point yeah it's a rest stop eastbound
+and route westbound on route routes
+basin county that
+okay cool i think that's
+that's that i think let's
+give this a go
+and i guess i guess responding
+eastbourne needs to be direction
+a and b probably because we have
+southeastern north as well we might have
+south oh do we have south do we have
+south and north let's have quick looks
+oh yeah it says here line three serving
+southbound traffic on i-87
+serving northbound traffic on interstate
+okay yeah let's do that we can we can
+add them into just for completeness
+oh actually
+do we do this
+i i've decided actually maybe i prefer
+this i'm going to be a pain in the bum
+let's do
+direction and have it as a property
+yeah direction
+i don't know what to call this what's
+the name good property name
+driving driving or something like that
+direction
+heading oh yeah
+oh yes perfect yes that's good
+let's do that and then like that we then
+just we can put the
+direction filter on here
+okay i feel a bit happy with that it's
+not perfect this is just our first
+iteration of the data model so
+don't judge shoot
+too harshly everybody right okay let's
+get some data in
+so
+let's go go back here gonna recycle this
+query and we're gonna do
+merge c
+county
+and that was
+that's just county let's just cut yeah
+oh i'll keep pressing the wrong buttons
+i've got too many tabs
+we're gonna merge
+county we are going to
+merge the roots
+that was also just root
+name
+root thanking you and then we're going
+to do a create because we assume all of
+those stations are going to be unique
+so we're going to create a
+rest stop wasn't it so
+did we call it rest stop we called it
+yeah
+all right rest stop
+rest stop and we're gonna have a name
+name description
+we are going to have a location
+i'm going to look up how to location a
+second because just
+going to look it up in the box
+we had a description we had
+phone
+public phones public phone yeah that is
+sorry a public phone with space in
+between
+thank you
+and we have
+handicapped spaces
+that was also with us
+a space in between so handicapped
+exactly
+i know handicapped
+double peel one p a double p
+like this exactly perfect and then we
+have drop truck spaces exactly
+also with space in between
+so for those of you wondering why am i
+using these back ticks
+so if you're
+if you're using something from
+say lotus v and it's got spaces in the
+header or some weird characters then
+using the backticks basically let's
+uh cipher know
+that it's got some weird things going on
+so it doesn't break your query so that's
+why we've got the back ticks in there
+because otherwise it would space would
+assume oh we're moving on to the next
+thing so that's why we've got all those
+backticks in there
+and then we had was it what was the
+other one parking spaces
+uh car
+is it car spaces
+car spaces yes exactly
+perfect right row
+car spaces
+and then last but not least is location
+so location and let me just quickly
+look up the box
+right so i'm going to think about in
+here
+so we've got spatial so we just going to
+check to see how we need to
+store those
+so
+usually there's an example in here
+aha so we're going to use points
+and we're going to say it's not
+cartesian what's the other cartesian
+okay so this is the syntax we're going
+to use here
+to store our location
+so let's do
+back in here
+so location is going to be
+point
+latitude latitude
+latitude wasn't it yes exactly
+and yes
+and then we've got long
+longitude
+it's going to be ro dot long etudes
+i think that's correct isn't it
+i haven't misspelled anything however
+that's a quick look
+oh no wrong button
+long
+etude lat etude those two perfect
+so stirring latitude storing the
+longitude we don't need to tell it
+anything more because we've told its
+longitude and latitude and i think it's
+all about data so right then then we're
+gonna link it all together so we are
+going to say
+create
+rest stop
+on route
+i know good direction is it
+i don't know it was
+travel direction or something wasn't it
+it was uh travel direction exactly yes
+to
+a
+root
+i'm going to create oh create
+rs
+you miss a c at the beginning in
+oh yeah
+in states
+in county even
+yeah
+and i was counting
+empty and let's just
+just set that to create
+and the other thing we need to do is we
+need to set
+we may need to put within here it's all
+good so let's go we're going to do set
+i need to do an if if if
+with
+root stop rest stop
+row
+dots
+was it close was it closed status what
+did we call the video
+it was just status
+status open and closed and is it a yes
+no
+it just is open open and close yeah
+okay
+sweet so
+dots
+status
+where
+to
+closed
+set
+rs
+oh let's double check
+i think it's
+i think it sounds like this
+i will double check
+actually open that's easy one
+open and i'm just going to double check
+the syntax for setting labels
+this is the one that we want
+so
+we want to set a label on a node oh it's
+just that one yeah set perfect
+and hopefully that's going to load all
+our data
+i've already missed something so i'm
+expecting
+some point but
+i like how i use i use like sort of my
+queries as a debug method oh hello
+first
+oh
+i knew it's nothing good
+right location
+what have you got so invalid dot
+expected colon so what did we do
+hmm
+let's just split these out so that we
+ah here we go
+there we go there it is
+there it is
+okay
+oh well we missed
+latitude not defined
+um ah i got to wrap it in curly braces
+that's all good right so we need to do
+this yep that completely makes sense
+ah yes okay
+you did it at the end
+oh okay almost there almost there right
+so of course we've got to set because
+it's a string so we need to tell it that
+it's not a string so let's do
+floats
+floats
+oh what have we what have we missed
+this is exciting
+ah okay all right let's see what's going
+on here so we let's have a look so we
+have got
+name description that's fine
+phone
+handicap spaces
+truck spaces
+car spaces
+location
+right so
+that looks okay to me that looks okay to
+me
+that looks okay that looks okay
+that looks okay that looks okay so is it
+in here somewhere so
+it was complaining at location points so
+that looks okay to me
+oh yeah no no no no this is what i did
+wrong
+that should go
+here
+hey
+got there in the end
+super cool
+all right
+okay that's just gonna copy make a copy
+of that query so let's bring back what
+we've got so match and return start
+this is exciting
+actually let me can i zoom out a little
+bit because this is quite cool
+i just like this this is just
+what's pretty
+here because obviously you've got some
+linking happening via the counters
+so you can see obviously you see some
+count obviously counters are going to
+have more than one interstate connecting
+them so it's nice to in here
+you've got uh delaware county it's got
+the
+interstate interstate i-88 as well as
+the new york 17
+and then obviously you've got these two
+counties are sharing these two oh that's
+quite fun so oh so another fun question
+we could have had now that we've loaded
+the data
+but sometimes you need the visual that
+that's that's exactly i mean this is
+just a prime example of we looked at the
+table we thought what could be
+interesting then we loaded the data and
+now we see the graph and now it makes
+such so much more sense it's it's just
+the visual aspect is here and then we
+see oh actually
+yeah
+because we almost asked a question here
+such as
+what
+what interstates could we use to get
+between uh algonie and
+sago
+the pronunciation of those so obviously
+there's going to be lots of roots but as
+a very broad brush you know
+what rest stops would we be going to get
+between those two totally yes yeah
+oh that's fun that's great fun okay cool
+wow that looks very exciting doesn't it
+and all of a sudden you can start doing
+things like which county's got the most
+which county's got the most rest stops
+so here we can see
+clinton's got three well i can ask
+obviously you're gonna have joining so
+these two got two oh this is fun this is
+fun all right i'm gonna stick to the
+questions we actually set rather than
+inventing new ones
+but you start to get an idea and yeah
+immediately you can say like what
+interstate what count is does a certain
+interstate touch and all that kind of
+thing oh that's fun right okay we've got
+data in there
+so let's start asking some interesting
+questions of this so let's let's stick
+to the questions we actually set
+absolutely oh this is exciting right
+okay
+so
+let's
+think about what we're going to ask here
+so we are going to ask and get rid of
+this so the first question we had was
+if i'm traveling x direction and root y
+what stops are available so let's pick i
+should have kept that visualization
+option let's bring it back
+useful for us to pick stuff so
+so what interstate should we pick let's
+pick
+i'll just pick this one the i87 there's
+a bunch of stuff coming off of it
+so let's say we want to know
+if i'm traveling in x direction on route
+y
+what stops are available so
+southbound northbound northbound
+northbound southbound i'll pick
+northbound then let's go for that i 87
+and northbound so let's say
+match
+uh
+boots
+what's going on here why is it not
+showing
+being helpful
+that's fine we'll use it office i mean
+i've got roots that are
+roots
+actually you know what let's i'm going
+to do this
+so with
+root
+with
+i
+87
+and roots
+south bound
+as direction so we can edit these nice
+quickly
+good idea
+southbound as direction
+match our route and then that's going to
+be in here
+we could have we could yeah
+could have shown names as well
+sorry we could have shown this in bloom
+as well with the
+but oh we could have done actually
+should we do it blue
+no let's let's do cipher to begin with
+they know we can switch exactly
+so
+i'm going to say
+direction
+this one here actually i'm going to be
+late i'm not going to bother putting in
+the queer
+direction
+that's gonna be
+oh no
+that's on route wasn't it and yeah i was
+just wanted to say
+correction
+rest stop
+rest stop
+oh and now we can use this open
+you want to know about the open ones
+and because we've double labeled it it's
+just going to pull the ones with the
+which are open
+so we can return
+rest stop dot name and rest stop dot
+location oops
+and let's have a little play with this
+query because we can order them
+based on
+the lat long
+oh i can't spell today
+all right
+okay cool so
+how nice
+she got three stops better open you're
+going to go in the i87 you've got these
+three stops now
+i want to do is to order these
+so we can kind of do a little bit of a
+cheaty hack because we're going
+southbound
+so that means that
+the x isn't really going to change and
+it's the y that we're interested in so
+what we can do
+is we can order by y
+so if we do
+order by
+rs.location dot
+why i'm hoping
+those should be in order so it should be
+glen falls
+then high peak south
+then
+beak man's town
+big man town how you pronounce that so
+those would be the three rest stops that
+you would see
+going down so let's just quickly test
+this theory out
+yeah what about ascending
+so if we do
+blends
+full
+[Music]
+all right let's bring this in so glenn's
+full
+and then if i
+oh i'm going to do this
+brain stop working uh
+just add add a stop just pretend yeah
+yeah and i need any start point to begin
+with oh i see yes
+this is gonna work
+oh i've got the same time it'll be light
+shade i think you need to remove the x
+and y and then it's
+probably going to work
+yes
+well it's the wrong way around because
+it's that weird thing where it does yx
+when you do like longitude
+that looks better
+it flips it through so if we now do
+directions we can
+flip them round
+now if i copy and paste this one
+actually you know what i'm gonna do
+make my life easier
+hopefully we're going to walk it though
+and then if we add the last one
+i should have cheated i'm going to do
+that next crew i'll concatenate the
+camera in there
+oh
+wrong direction what have i got wrong
+here
+cause it's i know is it called no that's
+the right way around okay so we said we
+were going i'm probably getting my lats
+and longs confused so i probably need to
+order it by
+x not y but we'll have you get the idea
+so you get the idea is that we've got
+the route
+so we're starting there because we're
+supposed to be going surfboard so we
+should have started from here again but
+you get the idea we've we've got them in
+you can see maybe you want to change to
+car
+maybe it doesn't matter i think it
+really makes difference does it but uh
+it will be the same but you kind of get
+the idea of what's going on here so it's
+a bit of fun
+so um
+so glenn so what we said was glen falls
+high piece of bickman's town so we've
+done those ones so it is
+let's see what what what's gone wrong
+here we're going from smallest to lot ah
+yeah no i know no it i
+no i got it so it is right so what we
+need to do
+is it's because it's about the distance
+from the equator so yes it increments as
+it goes up
+away from the equator and we're going
+southbound so we want it to go from
+biggest to smallest which would be
+southbound so that's what's gone wrong
+there so
+so if we do order by that descending
+yeah
+then that's gonna be correct so that's
+just that's just basically that the
+whole how spatial data works so that's
+yeah so the process is right yeah so
+there we go so that's what we want and
+that's what we're getting on the map so
+happy days
+right okay so we've answered the
+question about what the stops are
+spatial data
+and what we can do as well just for
+bonus points for a bit of fun is we can
+say
+uh the distances between those as well
+so i'm just trying to think what's the
+easiest way of doing this i i think
+we'll have to chain it i'm gonna leave
+that because that's quite a complicated
+query but i think keep an eye on the
+repo we'll probably put some information
+in there about that for a bit of fun
+so we've got those two right so next
+question
+oh truck spaces so let's add a little
+bit for so what if you're driving a
+truck and you want to know about the
+ones that have got spaces
+so what we can do here is we can do
+where
+rs dot truck
+don't know what's going with the auto
+suggest it's not working today so a
+truck stops is greater than zero i've
+just realized we've forgotten to
+wrap that in an integer so i'm just
+going to do this quickly
+to integer
+i will when we write up the repo
+uh we'll make sure that we split this
+one up so
+it's greater than zero so how many of
+these
+i think i mean i don't know how but what
+does it take automatically i think the
+the
+strings that's what it needs to be
+okay why is this not working integer
+did i misspell it oh so there's no truck
+stops
+if you were going down
+the ie 87 in a truck there's no truck
+stops
+disaster
+that's not good
+let's have a look at the cast cast break
+oh no spaces spaces spaces
+well it's not stopped in spaces that's
+why
+oh that's right yes
+there we go oh they've all got truck
+spaces and how many truck spaces are
+there
+oh 14 36 and 15. okay there we go
+you're driving a truck yes sorted all
+right cool cool
+let's have a look oh we got a question
+oh
+yeah mike was asking about the comparing
+adding travel direction parentheses
+which we've done we've got a query there
+so that's all good what was the other
+question that we had what rest area
+closest to me has a public telephone
+let's do that let's do that
+so i'm we're in new york state
+i want to pick a random location in here
+i'm picking utica
+so
+just gotta figure out how to get the lap
+long for this
+let's just pick a random thing here pick
+a random hotel does it give me
+how do i get
+actually let me just pick around
+i think uh we just lost lou oh here
+she's back
+you're back lou hello hello i'm just
+trying to find the random location
+oh there we go that's what we want right
+i'm gonna take this
+all right it won't let me copy it for
+some reason
+i'll do it like this yeah okay
+that's going to be my location
+it's a random location so with
+and we need to that's going to be our x
+and y so that's going to do with
+points
+that's going to be wrap this in
+that i'm going to say
+y is that
+x is that
+as
+location
+now i'm going to find the ones with
+phone boxes they're gonna do and i've
+got to wrap all of these things
+so we said in our data set didn't we
+that
+phone box
+public phone
+okay so it's either minus i assume
+minus what do they tell us what did i
+say about phone books minus one is it
+doesn't have one
+none of them
+oh my goodness our data sets none of
+them has got any
+boxes
+should we just maybe let's do something
+else then shall we do the handicapped
+spaces all right let's see handicap
+spaces yeah one with the nick with the
+closest handicapped spaces to us yeah
+that works so
+right we're going to do
+match
+stop
+let's open
+and then we're gonna do a distance thing
+as well so
+where
+to integer oh nice oh lowercase
+rs dot
+and the cap
+spaces
+is greater than zero
+turn
+rs rs.name
+and then we're going to do we're going
+to look at the spatial we're going to
+want to do distance so we can see here
+we use the distance
+keyword the distance functions function
+even to give us the distance between two
+points
+so let's go back here return
+this
+distance of this sorry got memory spent
+for goldfish
+distance distance it's going to be
+rs.location
+location
+that's this
+order by this and that should be the
+smallest distance to the biggest
+distance so let's have
+look out
+let's a
+oh what we got wrong here what have i
+done
+let's put some new lines we can see
+what's going on
+oh i've got to put this in here there we
+go
+so
+well distance null that can't be right
+yeah yeah just trying to see what's
+going on here so
+two seconds
+i'm spelt location correctly
+oh there'll be something obvious
+ah
+let's have a look at some look what have
+we got wrong do i need to be not lazy so
+i always get these
+wrongs i think we said that
+it's running so i think the
+longitude is going around that way isn't
+it so that's latitude
+maybe it's this
+there we go
+right okay cool
+so that's giving us our location so
+let's do
+i think this is in meters
+does it say here result
+it doesn't explain i think that is
+uh
+it's not meters because i know train
+station to copenhagen to malmo 27
+kilometers yeah sounds about right yes
+that looks about right so
+that's what we're saying is
+that the
+closest parking space to our place
+is 70 kilometers away so let's get the
+lat longs back so let's do
+rs dot
+ah rs stop
+well i think we said it was wasn't it rs
+no yeah i always thought
+why i'm going to concatenate this with a
+comma because i'm lazy
+this is this is me being lazy going back
+firing and it's just taking longer
+no it's not doing it what i wanted it to
+do either that's fine
+oh i know done dot location
+why
+there we go right so
+it can go away
+oh god that's what i wanted
+all right let's see if we are correct
+so let's do
+so obviously this isn't as the crow
+flies it's going wobbly
+but yeah that's about that makes sense
+that's about
+60 miles kilometers well 60 miles but
+it's not going in a straight line so
+60 miles is roughly 90 kilometers but
+it's not going to land so that is about
+70 kilometers as the crowd flies there
+we go so our nearest that's that's
+answer that question it's the
+in the roundabout way that's that's
+answering our question which is
+what's the closest uh rest stop
+from that random point we selected
+[Music]
+betting has a that has handicapped
+parking exactly
+but that's cool
+okay so those are the
+those are the questions that we had
+today so there's lots of stuff you can
+do so this is a very basic data set but
+there's lots of fun things you can do
+with this so we've had a little play
+with the spatial so do go and have a
+look at that and what we could have done
+as well is we could have imported some
+data as well with regards to
+importing stuff around
+oh sorry openstreetmap data we could
+have imported some very rough routes so
+that we could have actually maybe done
+some plotting of that data
+there's another really cool tool so
+uh estelle
+skiffo who's very active nifty
+communities put together a really cool
+graph app called neo maps and you could
+we could have put those points onto the
+map and visualize that so maybe that's
+what we can play with next time but just
+wanted to highlight this as a fun data
+set for us to play with special data so
+again play with special data on ifj aura
+free so i think we've got all those
+questions so
+we are at time wow we've we've
+got on there but you get the idea of
+yeah
+how are you going to get an idea of how
+we can play with special data and i'll
+try and see as well if we can find some
+nice ways of pulling in some like high
+level
+road information so that we can start to
+do the route playing as mike's
+suggesting there in the chat so rather
+than as the crow flies more accurately
+with the roots but yeah i think that was
+it
+totally yeah i think that's cool and and
+again like like i said earlier when when
+you see it visually in the graph it
+opens up so much so much more uh
+possibilities once you see it that is i
+think that was very
+for me it was an another graph graph
+moment so it was really cool
+yeah nice it's good fun i love that you
+can have so much fun here to just sort
+of like do the
+yeah
+our count is connected so another fun
+question would be are counters connected
+to the interstates you can see here
+they're not so we can build a query to
+help answer those kinds of questions but
+yeah fun times that's cool
+do we i mean just to finish it off
+isalias asked
+a question on twitch if we if you have
+some tips on how to easy
+remodel a graph i i pointed obviously to
+discord where where we have the big
+community and where everybody can can
+help you ask your questions but maybe if
+you have lou maybe a
+quick
+tips and tricks thing
+on remodeling
+yes so the best way of doing it you've
+got
+two you've got two things to do so i
+think the first one is you've correctly
+identified is
+you need to figure out what exactly you
+want to change so absolutely you're
+going to go back to your model so
+i think there's a bit of a
+there's a bit of a fallacy this idea of
+oh you don't need to do any data
+modelling you can just chuck your data
+into neo4j so
+yes you don't need to define a schema
+ahead of time you don't have to
+do that thing so with the with the
+relational database you have to say what
+your tables are going to be what the
+rows are all that kind of thing yeah you
+don't need to do that with an fj however
+you still need to think about what your
+data model is going to be irrespective
+of what data source you're going to land
+it in so first thing absolutely you go
+back and have a look at what was your
+original
+data model doing that so that's thing
+the next part is you don't need to
+figure out what are you changing
+and then based on what you are changing
+so for example
+you let's say
+i don't know for argument's okay let's
+say we've got public phone and let's say
+for argument's sake that was a true or
+false thing and we decide for often that
+being a property and the node we want to
+create that as a node in its own right
+so that what that's going to mean that
+means we're going to have to create a
+new relationship and a new node so let's
+say this is going to be
+phone
+for argument's sake and this could be
+something like
+as
+phone
+so we've identified that we're pulling
+this property out and we're going to do
+that so that's the first step so the
+first step is just figuring out what
+change are we making to our data model
+and then the next stop you've got a
+couple of options realistically so
+option one will be
+you know what it's pretty
+straightforward for me to just
+re-import my data so i'm just going to
+change what my import rules are going to
+be and i'll load that data room so
+that's number one number two you're
+gonna go well actually i don't wanna do
+that i've got i've got a lot of data in
+there it's an absolute platform to go
+away
+and re-import everything i don't want to
+do that i just want to change what i've
+already got so you can do that
+and you have got a lot of very useful
+tools so have a look in for example in
+the apoc library where it is very easy
+when you do your match statement so here
+you'd be doing your match statement to
+find this node and then you've got tools
+within apoc to help you
+pull out the relationships very quickly
+create a new node so you then write your
+query and it should be really
+straightforward and the thing that's
+going to save you a lot of hassle is
+just being very clear what changes are
+you making to your model
+and then it then it's pretty
+straightforward to then go off and
+then write the query to update your
+thing so you got two options so number
+one always always always figure out what
+your new day model is going to look like
+and then you either a get rid of
+everything and then re-import it or b
+you can use the really helpful tools
+that you've got in apoc and cyphers will
+help you do that to do that very very
+quickly to make those changes so
+hopefully that helps answer that
+question
+i'm sure it does cool thank you very
+much lou fantastic
+cool i think with that we we are at the
+end today
+thank you all for for joining us i think
+it was another interesting data set uh
+looking forward to to doing this uh next
+time again
+and um
+yeah if you have any questions any
+feedback any um
+[Music]
+data sets exactly
+share with us
+in all the channels
+and then we'll see you another time
+absolutely have a fabulous week
+everybody and see you next week
+thank you

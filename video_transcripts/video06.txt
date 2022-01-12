@@ -1,0 +1,960 @@
+- We will discuss a few things today.
+So again, the plan is as usual,
+quick recap of what Neo4j AuraDB Free is.
+I think we hinted on a few points already,
+but I'll give a quick summary as well.
+We pick a data set,
+always the door is open for you,
+so if you have a data set you'd like us to explore,
+if you discover something that's interesting,
+if you see something or this will be a good fit
+for us to go through,
+let us know, you can reach us on Discord,
+you can reach us on Twitter obviously,
+you can reach us on our community page,
+or just type it here in YouTube or Twitch chat,
+we will follow up on that.
+Then we think about a couple of questions we might ask,
+basically develop that model, find out what makes sense
+and where does it fit together,
+and then we load that dataset into Neo4j AuraDB Free
+and to run a few queries.
+That's the plan.
+What is Neo4j AuraDB Free?
+So I think you mentioned this but just quickly,
+it's the free version of AuraDB,
+so you saw maybe briefly before when I share the screen,
+you have three
+basically flavors of Neo4j AuraDB,
+so one is the free version,
+this is the one we are using today,
+and this is the one we just launched publicly last week.
+But then there is also a professional and a enterprise tier,
+so that gives you more options
+and a wider range of use cases
+if you go into let's say production scale.
+AuraDB Free is limited to 50,000 nodes
+and 175,000 relationships.
+That is plenty to give it a go
+and to see if it's something you wanna explore further,
+you get access to obviously Neo4j browser
+which is our development tool,
+you'll see in a bit some more,
+and also Neo4j Bloom
+which is a visualization platform
+we are using for pretty good visualization of graphs,
+and that's great to get this for free.
+It's free forever,
+so like Michael said, "It's gonna be paused,
+but not deleted if you don't use it."
+And yeah, go to this link,
+I'll share it in a second,
+but let's get going.
+Today's topic is HR, human resources,
+persons, people skills,
+maybe, I don't know, actually to be honest,
+but it's a dataset,
+maybe Michael, you can share a few words.
+- Yeah, so I was actually looking at Kaggle
+and it's one of the trending days and so...
+You know, Kaggle has these kind of popular data sets
+and training datasets,
+let me just share my screen
+so that you can look at that.
+Only one second.
+Okay, and so one of the datasets
+that kind of caught my attention is an HR dataset,
+it's called like the IBM attrition dataset.
+So it's machine learning dataset,
+it's actually about predicting if an employee
+will leave the company or not.
+And that's why it is interesting
+because I have seen a number of HR data sets
+being used with Neo4j like for skill management
+or employee development,
+and some customers using Neo4j for HR systems as well
+because you can imagine deep hierarchies of people
+are easy to manage,
+also like skill development and like paths,
+learning paths and progressions and so on.
+But I hadn't seen like a nice public data set as such.
+And so I looked at this
+and I thought it's actually not that bad,
+and so I wanted to kind of this time
+do it a little bit differently
+by not doing everything upfront,
+but more interactively with you Alex
+kind of discuss how we can model this
+and hope you can turn this into a graph data and...
+So this is like,
+I think
+1400 rows or something like that.
+So it's a nice size to handle within while free
+and then we can see what you can do with that as well.
+And so there are a number of attributes of the employee,
+like the age, if they left or not,
+if they traveled frequently or rarely,
+which department they are on,
+if they work from home or not,
+and if they work in office,
+how far do they have to travel,
+gender of the employee,
+how involved they are in their job
+and kind of at which level are they working,
+what role do they have?
+What satisfaction do they have?
+And there's a bunch adults as well.
+Let's see,
+there was two other columns.
+Why doesn't it show the column selection?
+Oh, here, sorry.
+Let's look at all columns.
+And by the way,
+it's also quite nice that Kaggle shows us
+like an overview of histograms and values and so on,
+so you can make more sense out of these three columns,
+so it would be nice to have some other tools,
+have a similar display for--
+- Loudly misses the graph.
+- Exactly what we looking for.
+So distance from home, job involvement, job level,
+but they have at the job satisfaction,
+income distribution,
+how many companies they worked at
+they're working overtime or not,
+something other that happens.
+And then how much do your salary increase over time
+from performance ratings, stock options,
+and lots of other stuff as well.
+Just all sort of things like promotion
+use of current miniature
+and then his level which is interesting,
+date of hire,
+and if they've worked from home or from an office,
+and then how many leaves they took
+and if they had focused even themselves, right?
+So it's a nice
+full picture of an employee
+from our point of view.
+And so I thought, okay, this is like tabular data,
+but what can we do when we wanted to listen
+into a graph and such?
+So looking at his fields,
+I thought we do the following approach.
+We initially import all the fields
+into just a single employee note,
+and then we decide what do we want to pull out,
+which of those are interesting enough
+for us to pull out and how we would pull them out.
+So that's kind of in different approach
+than we did in the past,
+kind of pre modeled everything,
+it's also a way of importing the data
+into like a single note first
+and then creating the graph from that as we go.
+- Yeah.
+- Okay, and so if you look at our data model,
+so we have like the employee here.
+And then we have all these fields that I just mentioned
+and let's see what we can do with this.
+So I created a new Aura database,
+so an AuraDB Free database,
+quoted HR and made it pick the empty ones.
+So you need to watch out and the movie data set,
+fifth movie example that is preselected,
+so you need to click on a blank database
+and then click on Create Database,
+and then it will show you the screen.
+You need to copy this password
+otherwise it's going to have to redo this.
+After we do this, so I've already done this,
+so it takes a few minutes,
+three to five minutes to create your database.
+So I've done this already
+in the background so they can get started immediately,
+but that's kind of the steps that you would take
+for getting your Aura database created
+after logging in to Aura.
+So basically here is my HR database running
+and I do open with browser,
+and then basically let me probably do this again.
+So you see this?
+So the interesting bit is sometimes this connection dialogue
+is not shown,
+and then you need to click on silver connect
+to pull it up just in case you need this.
+So I'll just copy my password here as you know,
+we copied our password.
+So, don't save just connect,
+and now we connected to our database,
+it's empty right now,
+so there's nothing in the Neo4j database,
+it's all empty and it's just our starting point.
+So I took this CSP data from Kaggle
+and put it into GitHub Gist,
+so it's basically just create new,
+just go to the top of the column,
+you create a new gist,
+and then you can
+just direct DCSP onto it,
+and then you get this nice even searchable.
+So I could, for instance, search for let's say
+sales manager or something like that,
+or sales, then you see you can even search
+and search which is quite nice and we also sort.
+But at least searching them.
+And what you want to do is you want to go to the row view,
+which is kind of this you have the CSV,
+and this is what you can load from Neo4j.
+Github has this, you are intruder that I use
+because I didn't want to have to hug along UL
+and so I just went to git.io and co from GitHub,
+and then I just created a short URL for that,
+just in case you're wondering.
+- And you can use any data store
+wherever you wanna save your data,
+and the CSV file doesn't matter,
+we use GitHub here because it's easy,
+but if you have something else
+where you wanna upload your CSV file too,
+that's perfectly fine.
+Exactly, so you can use a three or a Google sheet,
+which we showed like two weeks ago
+or something like that from a Google sheet,
+or three weeks ago from a Google sheet,
+you can use Pastebin whatever,
+or if you have an HP server yourself,
+then you can do that as well.
+Okay, cool.
+So let's get going,
+so we have our short URL
+for our CSV file and there's a lot of CSV file
+because all these CSV file had had us here, right?
+So we want to have our columns named,
+And if we turn this SD row variable.
+And if you do this and take the first five rows,
+you get this kind of data, right?
+So we have a work from home overtime,
+all your columns that we've looked at so far, right?
+- Yeah.
+- The only thing that's kind of missing in this dataset
+is all employees don't have an ID,
+if you look at those there's no ID of any kind here,
+so we need to create some kind of something
+that identifies each row in there.
+- Doesn't even have a name, right?
+It looks like...
+- I mean, it's an anonymised ID--
+- Yeah, I mean a fake name obviously, but all in one...
+- There's nothing to identify them
+so we need to do something about this,
+and what you can do as just and function
+Neo4j that can for 200 line number of CSV.
+So if you do this, then you'll see
+you get a line number here,
+it starts with two,
+I think it counts the header as its own roles,
+we could say if we do line number minus one,
+and then it starts at one and that's all employee ID.
+So we just call it ID.
+And then that's the data we can use for putting our data
+into the database.
+And it's actually pretty straightforward,
+what you do is basically we get our data here
+on line number and our row,
+and then we can say,
+Create.
+So if you only do it once we could use create,
+if you want to be able to be around this multiple times,
+you would use merge.
+Let's use merge for the time being
+'cause it's not so many data sets,
+so we say let's create our employee.
+And the ID is all ID
+that we just created from the line number here,
+and then we say
+on create set
+because you want to set the other columns as attributes
+on this reset E plus equals rows of all the attributes
+from this row the reset on the employee.
+So that's number one that you can do.
+Something that I just realized is or remembered
+is of course there is
+some stuff that we actually wanted to turn
+into numbers probably.
+- Yeah, or dates even if you wanna go there.
+- Or dates, right?
+So like date of hire.
+That's something that you don't want to look at.
+So in a reverse scenario,
+what you can do is you can basically set this
+and then basically we can do either run an update later,
+or as we need the data,
+so we can initially store the strings
+and later change it to data types,
+plus just to show you how we can do this
+so one option is basically to say, for instance,
+distance from home,
+if you want to turn this into an integer,
+we could say to integer row distance from home.
+So just as an example, how you would do this, right?
+Or for instance for over time, the yes, no,
+you can say I turned this into a Boolean value,
+which would be a little bit more involved,
+but let's perhaps run this first
+and then we can look at data in the graph
+and then take it from here.
+- That's good. - So, okay.
+If I run this, then let's see.
+Okay, it's 1400 notes,
+and now we have our employees in here,
+and we don't have a name,
+so that's a little bit sad, but what we can do,
+we can click on the employee note here
+and pick another attribute as an identification,
+for instance, you could say drop roll
+or something like that,
+so we see what kind of people are these rights,
+and make it a little bit bigger, sort of considered, right?
+So we see kind of what kind of people you have imported,
+so that's just 2515.
+So the first thing that I wanted to suggest
+is you want to see kind of who of those people
+has actually left the company, right?
+So there's this attrition
+yes, no field, right?
+And to make it very visible,
+I thought we can actually add a label for those notes,
+so if you say,
+you find our employees and then say where e.attrition,
+oops.
+Attrition equals yes,
+set e colon.
+Either we call it attrition
+or something that left or...
+So let's call it left.
+So, I added 253 levels,
+so now we have two levels in our database,
+the employee on the left level.
+And if you just get employees here,
+we see also the blue ones, orange ones at that left,
+so we can quickly see it as this person left
+or not left the company.
+- Oh, that's good.
+- Okay, cool.
+So that's basically something that you can add to our model.
+So we can say,
+we can turn this employee into a label
+and then we can add another label just quote left.
+Okay, cool.
+So one other thing that's interesting here
+is that working in a certain department,
+we've seen there's a department field here,
+so which is kind of department related.
+And so what I thought we can do
+is we could connect the employee to this department,
+so we create departments and connect them.
+So that will be our next thing that we would want to do,
+because that's kind of interesting is certain departments
+have more or less likelihood for people to leave as such.
+- Yeah it's two things, right?
+I mean, by this we get the hierarchy
+of the company where our teams, you know,
+connected to which departments,
+and then also, like you said, we also see okay,
+if one department has lots of people leaving all the time,
+then it's worth maybe having a look what's going here.
+- Exactly.
+So that's something that we can do.
+So for instance as we've done before
+we found our employees again.
+Well, let me pull this up,
+let me pull this up here.
+And we just take the department value,
+so we can just for instance see
+return e.department limit five.
+So we would see, okay,
+these are all departments that we have here.
+And basically for each of those departments,
+we create a note.
+Of course, you only want to have each department only once.
+So we use merge again,
+so it would not create like five sales departments on,
+but just one sales department.
+And we give it a name and the name is e.department.
+And then we connect the two,
+maybe say how merge e
+for instance works in and then the department, right?
+- Okay, cool.
+And by this, you don't need a distinct by using merge.
+- Yeah, exactly.
+So it would only create a relationship once,
+if it only already exists,
+it would not be create the relationship, okay?
+So if you do this,
+it creates 1400 relationships as expected,
+and now we have these works in...
+And you already see here,
+direct ones under departments
+and then the people around these departments.
+So which actually gives us the first opportunity
+to look at a little bit of statistic, right?
+So, because now we can say, food department
+how many people have actually left the company, right?
+So we can say,
+we find our departments,
+and say, the people that work in these departments,
+and we just turn the total in each department,
+and then we also count where the person has left basically.
+So we can either use count or sum,
+so for count because aggregation functions
+count non-normal values,
+we could say case then the left,
+then one as null,
+or if you don't like this kind of implicit thing,
+you can just use sum as summing up all the people
+that have left, right?
+And then you just say order by total descending,
+so we look at the largest departments.
+So research and development has 961 and 133 left,
+and sales and so on,
+so we have three departments.
+And what we can of course also do
+is kind of calculate percentages.
+So we could say, now we need to do an in between row here,
+and then we say,
+department total less and to float of left right here,
+total as percent.
+And then we can look at how many percent,
+so which department had most leavers.
+And actually, interestingly,
+not the largest department
+is it's a research and development department leads,
+but the sales department is the one
+with the highest percentage of leavers as such.
+And then one of the sources is actually the second one,
+which is already interesting inside, right?
+So they're not each department is the same
+and you should actually also see this visually
+where we can actually just use a blue for this.
+Let me just grab the password again,
+because in blue we can visualize all our 1500 notes
+under departments.
+Let's just quickly do this.
+So employee left department,
+and we want to see basically in settings, yeah.
+1500 notes, so we just show all of them
+and now can see employee department
+as kind of the natural search.
+They should pull all of this data in bloom.
+Then we should also be able to see this visually as such.
+Let's see.
+- Now we see it should take three clusters, right?
+- Yeah, you did three clusters
+but I want you to also to see the left label,
+why doesn't it show you this other label as well?
+- I think it can.
+I think Bloom can only show one label at a time.
+At least that's what I discovered.
+I was looking for this to say that as well
+and then--
+- But what we can do is you can color
+it by a rule-based coloring
+that actually says use attrition.
+- Oh yeah, that's a good idea, yeah.
+- And it's just unique values
+and should give us different colors, apply color.
+So we see here
+yellow ones have left
+and they'll probably ones have not left here.
+And we see kind of how many--
+- Maybe we change the color,
+maybe do you want to make a left red
+and not not having left green or something.
+- Not 100% sure,
+let's see if we can actually configure this or not.
+Can you do this?
+- Oh, if you just go by default,
+if you go on default on the top here.
+Now here you can just change the color
+and then I think it's saved.
+If you change the color here and--
+- Default one to green or?
+- Something like that, yeah.
+- Okay.
+I think we can do to conditions
+when it's basically lower than we make it green,
+and then we can add another one
+for the people that have left.
+Anyway, I just wanted to show--
+(indistinct chattering)
+Just looking at the time because we wanted to--
+- Yeah.
+- So another interesting question
+is we have all these role information,
+so we have a job role,
+job level, job involvement, job satisfaction,
+which are more job related, right?
+So what you can do is basically pull this out into a job
+for this person,
+basically and then say, okay,
+this person in this job with this role
+worked in this department,
+so we can basically pull these kind of things
+into their job as such, right?
+So we could basically say yes, and just a job note,
+which has all these job related things like salaries
+and things like that we can put on that,
+and then basically say,
+this is a job in this department.
+All right, so that's something that we could also do
+with our data here.
+So let's see.
+So similar to how you pulled out the...
+Let me just increase my history size
+so that we can keep these for later.
+So similar to how we pulled out the departments here,
+we would do the job role,
+but this time we actually want to have,
+because that's kind of our job,
+not a department for this one person.
+I want to actually make sure that we create one job
+per employee, so it's another 1400 nodes basically.
+So we create, the job role with create this time.
+So we create one for the employee to this job, right?
+Has brought or--
+- Makes sense, yeah.
+- So just employ looks in this job.
+And then the other things that you can set here
+on this job note would be things like job satisfaction
+and so on so-and-so,
+things if you also seen like job involvement,
+job level, job satisfaction,
+even the income could go into this job as such.
+- Yeah.
+- So then we can pick some of them.
+So we have trouble involvement, job satisfactions
+which are all numeric,
+and then monthly income is also numeric as such.
+Okay, then let's do this.
+So we searched, we have--
+- Do we need to change the e.job role
+to j.jobrole in--
+- No, we take it from the employee,
+so the value is currently on the employee,
+- Oh, yeah.
+So we have job satisfaction,
+we just turned this into an integer as such,
+e.job satisfaction,
+and then we have j.job involvement.
+Sorry, it's switching e.job involvement,
+then we have j.job level.
+(keyboard typing)
+And the other thing was the salary I think...
+- Salary, yeah.
+- Monthly income.
+Okay.
+Yeah it's actually a modeling discussion
+which we could have,
+but I just realized that you forgot something
+because you have now blocks S
+but you forgot to add the relationship
+from the job to the department,
+so that's something that we need to add
+as well if you want to, but I think it makes sense.
+So what we can do now
+is because you already created this blocks S,
+so each employee now has a role, basically.
+What you can do is you can just use this
+to connect it to the department as well.
+So basically we find our employee and their jobs.
+(keyboard typing)
+Works s.
+And of course the employer also works in an department,
+so that's actually one of the nice things
+about the graph now that we can say we just express
+just pet on
+that we want to see here just one, right?
+So if you have an employee who works as a certain job,
+and works in a certain department,
+we have our nice little graph pet on
+what could be difficult also to draw, or had drawn here
+in our modeling tool.
+So we say, looks in, works as,
+and then our new...
+We can for instance call job in departments
+or something like that, right?
+So we can basically say we draw out
+this pattern employed to job unemployed to department
+and we've kind of closed his closest triangle as such
+so we can spell out this tool
+and then we want to close the triangle
+between job and department.
+And so we specified a little pattern here,
+and you can now say,
+okay, now we create the relationship
+between job role
+in department.
+So, and if you do this,
+now we have the new relationship here.
+So we have like all these jobs,
+let me make this a little bigger.
+So you see that for instance,
+did lots of lab techs
+and research director of research centers,
+so you see that kind of similar job roles
+are working in for instance,
+and in the sales department
+there're people like sales reps, sales executors and so on.
+- Makes sense to. - Yeah.
+So it's also interesting or good to see
+that the the data actually differentiated to these.
+On relationship between the person
+to that person id,
+blue one in this...
+Actually you should have the...
+Oh no! Sorry, if you put not on the relationship,
+but on your job role, do you put these attributes,
+like job satisfaction,
+job involvement and monthly income, right?
+What's now actually nice in blue
+is that you could just refresh our perspective.
+Refresh.
+And now if you say, let me just clear the scene.
+And if you specified as a employee to job,
+didn't pull it in.
+That's interesting why it didn't pull in the job?
+Okay, then let's do it manually.
+So yesterday.
+Okay.
+Employee drop.
+And what you can do now is again
+after styling, for instance,
+for those people that have left,
+so that are yellow here in our case
+actually that's changed the default color to red,
+so we see the ones that have left actually as red.
+Now we can say, okay, for those that have left,
+can we identify for instance,
+something like job satisfaction.
+We can color this one
+by job satisfaction, for instance, right?
+And then say unique values or range actually.
+- Or range actually, yeah.
+- So mean is, I guess, low satisfaction.
+I hope so at least.
+- Yeah, let's pretend it is.
+I mean, we don't--
+- We can take red as a color for the low point.
+Let's do this here.
+And then the midpoint would be something like a 2.5
+and we pick a yellowish,
+so it looks like a,
+not a pretty yellow, but that's good enough.
+And then say, Apply Color.
+So that means...
+- It means a little bit, yeah.
+and we see that people that have red jobs satisfaction
+are also more likely you have like green pairs.
+So people that are happy with your job
+are not as likely to leave.
+And then also red pairs or red orange pairs
+that indicate that people that are--
+- They have already left or--
+- Have left.
+So these things as well.
+Right.
+Cool, what else do we have?
+The other thing that I found interesting
+is kind of developed from home versus work remotely as such,
+and how far did they have to travel,
+and the education as well which I found also interesting.
+And education embedded it come from basically, right?
+So basically recruited or did very inbound
+in their education level as well.
+So these are some other dimensions
+that I found interesting.
+So let's say if you also want to pull it out,
+like the education,
+then we would say basically
+something like has degree or something like that.
+- Yeah.
+- I mean, degree it's a little bit too wide costs,
+but I guess for us, it's okay to say education, right?
+And then we could also do something like hiring as well,
+and the other thing is do you've worked from home or office,
+which I found interesting as well.
+So for the education,
+again, similar to what you had before,
+you basically say we create an education,
+but this time education
+it's a note and we say higher education,
+and then whatever you call it has degree or something.
+So each employee should now get an education note
+associated with it,
+and there'll be a number of education notes.
+So you have few new notes for education results,
+and we say I see like postgraduate graduate PhD,
+and I don't know if that means 12th grade
+or like high school.
+- Maybe high school,
+you know, something like that, maybe.
+- Right.
+And now we can use this as well as such.
+What's interesting
+about these kind of pulling out attributes
+that you can start matching people again,
+as well over these, right?
+So I can for instance say now,
+okay, I want to find all the people that have left
+for instance,
+Well, a similar people to them, for instance,
+who shares an education with them.
+So for instance, edu.
+So most frequently shares an education with them, right?
+So you can say
+for these people that have left,
+we want to see how many people of those
+that share an education have also left.
+So we want to see edu.name
+and e2.left.
+All right, so does this kind of an expression
+that says justice label X just on this note.
+And then how often did this happen?
+How many of those have also left basically, right?
+Order by ascending.
+So if you can see that for those people
+that have count stars, probably count...
+Cost count is a little bit high here.
+Oops.
+Gave me the wrong one.
+So, for instance, for post-graduates 332 have not left,
+and for graduates like those have ultimately left.
+But you see that actually post-grads
+have the highest rate of people leaving
+than graduates and PhDs have,
+I mean, by a small amount.
+All right, so you can start doing things like this as well,
+so where you can basically compare people.
+These are two different people,
+like two different employees by different attributes,
+like for instance, education, role, department and so on
+and find similarities.
+And then you can even use this to compare
+or credit similarity networks,
+or you basically take up different attributes.
+And then you overlay this network,
+different similarity network,
+where you basically run similar to algorithm
+and to create who is most similar to this person
+across these attributes as such,
+which is pretty interesting.
+So usually I would use the graph design library for that
+in Aura db Free.
+It's unfortunately not available,
+so that's something where I today
+would then go back to either sandbox or desktop
+to use it such.
+But that's definitely an option
+because it's similarity network
+then allow you to cluster people and say,
+okay, by which attributes are the similar
+to have the same behavior as paid, for instance,
+having left so you can use this then to predict
+leaving as well.
+- Yeah, and you probably tie it together
+like departments or something like that.
+- Exactly.
+And so the other thing that would be interesting now
+especially around COVID, that is to say okay,
+people that are working from home
+versus not working from home,
+I mean, the dataset is probably too old,
+your original data set let's look at
+the min-max date, employee.
+Date of hire max.
+- Does that work if it's a string?
+Yeah, because it's..
+Oh no, it's goes up all the way up to 2020, interesting.
+And of course, this is kind of just the date of hire,
+unfortunately, for whatever reason,
+the date of termination, this now in all of them.
+Something went wrong in the data set,
+so it's really empty for a long time.
+But what we have basically is we have the year.
+I said, yes, that company, right?
+- Yeah.
+- And that's actually something
+that I wanted to show you quickly
+because it's a nice feature,
+let's see if you can make this work.
+So we just let's say update the date of hire
+to a date field.
+So currently it's a string, but you can say,
+set e.date of hire equals date of e.hire,
+so if you can turn this date.
+Oh no, we can't
+because the format is the other way round actually.
+So the Neo4J date of temporary functions
+only support ISO dates so it's 2005,
+so the 31st.
+So we can use a park temporal,
+so a park is in utility library
+and we can use this to turn this state
+into a Neo4J date.
+So we say, if you have a date months year as a format.
+If I didn't do anything wrong this should work, let's see.
+What temporal format.
+Oh, no, sorry, two zone temporal...
+Okay, what's not pause but two zone temporal.
+So unhelpful.
+So, and I think because you could just once a day time,
+I think you can do date around the day time
+and hopefully get just a bit.
+Yep, so it's at 1400 properties and no am in a mix,
+actually shows us that it goes all the way til June 2021.
+- Nice, okay.
+- The first one I actually joined 1969.
+- That is a long time ago.
+- So, but what we can do now is actually finally
+we can say how long have you been with the company,
+which is basically--
+- You can basically--
+- Yeah, exactly.
+So yes.
+And then we say duration years I think it was this.
+And then e.years at company,
+and we need to put this into an integer.
+Let's see if I can remember this right.
+Don't know if it was probably this.
+(keyboard typing)
+Just temporary functions have a really large, yeah.
+Really large surface so there's a lot of stuff.
+So that's definitely something that--
+- Maybe you show the original date of hire
+so we can see that the knowledge,
+the new data file is plus one,
+or plus gets a company, let's say.
+- So if it's zero it's of course not so helpful.
+Let's see.
+- And at where as a company is not zero.
+(keyboard typing)
+- Come on.
+So to see that it's adding the correct.
+So, and then we can set this value here
+as our new current debt or whatever you want to call this e.
+Employed until I find that,
+which is of course for those people that left,
+it's the final date,
+but for those people that are still there
+it means that they are still employed, right?
+- Yep.
+- So we can separate this
+and so now we have the employee data as well,
+so we also see how long have you been with the company
+and are they still working there?
+So it was just a quick show of the date time functions,
+which is important to know.
+So my colleague, Jennifer actually did a lot of articles
+about us if you're interested
+into like date and time functionality
+there's a lot of--
+- It's a super powerful feature.
+- Super powerful but it also has a lot of complexity--
+- Exactly.
+- Because you have time zones,
+and daytime and local time and so on.
+So she did like dealing with dates part one to five block
+calls 30 as a ton of material.
+If you want to dive into this deep, it's a pretty deep.
+- That's cool, we can add this link to the top recap
+so you can have a look.
+- And so I would kind of continue to use,
+I'm just talking at a time and see that theory.
+So I would kind of pull out different attributes
+into notes and see what kind of structures
+would we see here as such,
+would we see certain clusters evolving and so on, right?
+And then you can look at the different things
+as a holistic view of an employee, right?
+So it's basically, if you had to graph adds context,
+so it's not just a table of values,
+but you basically see an employee
+and basically just the roundings and all.
+So even now,
+if you look at our employees here and say,
+if we fetch a few of them and if I expand and explore,
+you already see basically this person has certain
+attributes that's it?
+Yeah, so it has a certain degree,
+it has a certain role,
+it works in a certain department and then so on.
+So I already see more context about this person
+immediately visually as well, right?
+And the more I add, for instance,
+if I had let's say geo which country are they
+in or things like that.
+So I get a more complete picture of the context
+of this employee,
+and then I can use this context to say,
+okay, I know which of these attributes have contributed
+to them leaving,
+or which of doors kind of make them similar to others,
+so for instance, imagine we can say, okay,
+this place are similar in most of the attributes basically,
+or in a high degree across all the attributes,
+and then this one employee has already left
+and the other company,
+the other employee has not left yet,
+but if they are very similar to this employee
+who has already left,
+perhaps there's a risk of them leaving.
+So I could actually predict and prevent leaving
+by talking to them, giving them better opportunities,
+seeing what you're lacking for instance, right?
+So that's something, for instance,
+someone in sales who has, you know,
+only two years of the company
+has the low or mid-sized job satisfaction,
+works at a certain level has left
+and several of those people have left.
+And then if I have similar people like them,
+then I can predict because you have to have not left yet,
+perhaps it's more likely that they have left.
+So most people are to leave us, basically,
+the more likely they are to leave as well
+and then you can use that to prevent that,
+so it's basically doing caring for folks
+before they decide to leave the company as such,
+which I find really important, et cetera.
+And so oftentimes people don't speak up
+and don't say it out loud,
+but I think it's good to identify things like that as well,
+or for instance if you have a certain manager
+or where you know, lots of people are leaving
+or they have not left,
+but their job satisfactions low,
+and, you know, like for instance,
+the times since the last salary in Greece
+or something like that is too long ago,
+and we see this as a pattern happening
+and we can say, hey, we should talk to this manager
+perhaps they are not taking good care of their team
+for instance, right?
+And make sure to make the necessary changes
+in that structure as well.
+So that will be another thing that we could do as well.
+The other thing that I just realized that we could do
+at some point is we have these roles as well,
+and lifter roles once we had this.
+- Maybe we'd have a look at this again next week,
+just continue from there.
+- Exactly, at least something that I found interesting,
+but actually we should probably leave it as a homework
+to all of you watching this video,
+kind of what else can you do with this?
+And, you know, could pull it back to us,
+send us a tweet and send us a message
+of what you found in this data set
+or what you think is a good foot
+or a kind of destructuring of the original data.
