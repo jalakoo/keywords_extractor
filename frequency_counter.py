@@ -15,8 +15,8 @@ nltk.download('punkt')
 
 
 def main(path, shouldLog):
-    output_with_rake(path, shouldLog)
-    output_with_yake(path, shouldLog)
+    # output_with_rake(path, shouldLog)
+    # output_with_yake(path, shouldLog)
     output_all_words(path, shouldLog)
 
 
@@ -62,9 +62,9 @@ def output_dict(filepath, suffix, dict, shouldLog):
             f'frequency_counter: output_file_from: base filename: {filename}')
     with open(f'output/{filename}{suffix}.csv', "w") as csvfile:
         writer = csv.writer(csvfile)
-        writer.writerow(["word", "count"])
+        writer.writerow(["video", "word", "count"])
         for key, value in dict.items():
-            writer.writerow([key, value])
+            writer.writerow([filename, key, value])
 
 
 def dictionary_frequency(filepath, shouldLog):
@@ -154,7 +154,7 @@ def dir_path(string):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     working_path = os.getcwd()
-    default_path = os.path.dirname(working_path + "/video_transcripts/")
+    default_path = os.path.dirname(working_path + "/input/")
     parser.add_argument(
         "-p", '--path', help='Path of text files to process', type=dir_path, default=default_path)
     parser.add_argument(
