@@ -6,6 +6,8 @@ import argparse
 import os
 import csv
 import yake
+import requests
+import re
 
 # Rake Support
 from rake_nltk import Rake
@@ -13,8 +15,12 @@ import nltk
 nltk.download('stopwords')
 nltk.download('punkt')
 
+stopwords_list = requests.get(
+    "https://gist.githubusercontent.com/jalakoo/3fbb0370f1710a445d91a9bfd8d0c480/raw/602f07b67ee35c037137e1d5d744c8a21d521498/stop_words.txt").content
+stopwords = set(stopwords_list.decode().splitlines())
 
-def main(path, shouldLog):
+
+def get_keywords(path, shouldLog):
     # output_with_rake(path, shouldLog)
     # output_with_yake(path, shouldLog)
     output_all_words(path, shouldLog)
@@ -61,7 +67,8 @@ def output_dict(filepath, suffix, dict, shouldLog):
         print(
             f'frequency_counter: output_file_from: base filename: {filename}')
     with open(f'output/{filename}{suffix}.csv', "w") as csvfile:
-        writer = csv.writer(csvfile)
+        #
+        writer = csv.writer(csvfile, quoting=csv.QUOTE_NONNUMERIC)
         writer.writerow(["video", "word", "count"])
         for key, value in dict.items():
             writer.writerow([filename, key, value])
@@ -73,7 +80,12 @@ def dictionary_frequency(filepath, shouldLog):
         text = file.read()
         words = text.split()
         for word in words:
-            lowercased = word.lower()
+            stripped_word = re.sub(r"[^a-zA-Z0-9 ]", "", word)
+            lowercased = stripped_word.lower()
+            if lowercased == "":
+                continue
+            if any(stopword for stopword in stopwords if(stopword.lower() == lowercased)):
+                continue
             if lowercased in d:
                 d[lowercased] = d[lowercased] + 1
             else:
@@ -160,4 +172,4 @@ if __name__ == "__main__":
     parser.add_argument(
         "-v", '--verbose', help='Log function outputs', type=bool, default=False)
     args = parser.parse_args()
-    main(args.path, args.verbose)
+    get_keywords(args.path, args.verbose)
