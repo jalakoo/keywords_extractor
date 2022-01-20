@@ -8,6 +8,8 @@ import csv
 import yake
 import requests
 import re
+import nltk
+from nltk.corpus import words
 
 # Rake Support
 from rake_nltk import Rake
@@ -15,15 +17,21 @@ import nltk
 nltk.download('stopwords')
 nltk.download('punkt')
 
+# SETUP
 stopwords_list = requests.get(
     "https://gist.githubusercontent.com/jalakoo/3fbb0370f1710a445d91a9bfd8d0c480/raw/602f07b67ee35c037137e1d5d744c8a21d521498/stop_words.txt").content
 stopwords = set(stopwords_list.decode().splitlines())
+nltk.download('words')
+englishwords = set(words.words())
 
 
-def get_keywords(path, shouldLog):
-    # output_with_rake(path, shouldLog)
-    # output_with_yake(path, shouldLog)
-    output_all_words(path, shouldLog)
+def get_keywords(path, shouldLog, enableAllWords, enableYake, enableRake):
+    if enableAllWords:
+        output_all_words(path, shouldLog)
+    if enableRake:
+        output_with_rake(path, shouldLog)
+    if enableYake:
+        output_with_yake(path, shouldLog)
 
 
 # OUTPUT OPTIONS
@@ -83,6 +91,8 @@ def dictionary_frequency(filepath, shouldLog):
             stripped_word = re.sub(r"[^a-zA-Z0-9 ]", "", word)
             lowercased = stripped_word.lower()
             if lowercased == "":
+                continue
+            if lowercased not in englishwords:
                 continue
             if any(stopword for stopword in stopwords if(stopword.lower() == lowercased)):
                 continue
@@ -171,5 +181,11 @@ if __name__ == "__main__":
         "-p", '--path', help='Path of text files to process', type=dir_path, default=default_path)
     parser.add_argument(
         "-v", '--verbose', help='Log function outputs', type=bool, default=False)
+    parser.add_argument(
+        "-a", '--allwords', help='Extract all english words', type=bool, default=True)
+    parser.add_argument(
+        "-y", '--yake', help='Extract words using Yake', type=bool, default=False)
+    parser.add_argument(
+        "-r", '--rake', help='Extract words using Rake', type=bool, default=False)
     args = parser.parse_args()
-    get_keywords(args.path, args.verbose)
+    get_keywords(args.path, args.verbose, args.allwords, args.yake, args.rake)
