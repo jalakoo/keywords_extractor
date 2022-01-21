@@ -1,9 +1,11 @@
-## Running
-`python3 frequency_counter.py`
+# Brief
+Simple python scripts for keywords extraction.
 
-## References
+| File | Description |
+| -----| ----- |
+| keywords_generator.py | Extracts keywords from .txt dumps using naive split, yake or rake libraries and exports a .csv with video,word,count for headers |
+| unique_keywords_only.py | Extracts just the keywords into a .csv file with just a 'word' header item |
 
-[Keyword extraction process in Python with Natural Language Processing(NLP)](https://towardsdatascience.com/keyword-extraction-process-in-python-with-natural-language-processing-nlp-d769a9069d5c)
 
-
-[Neo4j: TF/IDF (and variants) with Cypher](https://www.markhneedham.com/blog/2015/03/08/neo4j-tfidf-and-variants-with-cypher/)
+## Running locally
+`python3 src/keywords_generator`
