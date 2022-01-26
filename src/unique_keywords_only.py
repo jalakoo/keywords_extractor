@@ -7,7 +7,7 @@ import csv
 import requests
 import re
 import nltk
-
+import logging
 
 #  SETUP
 nltk.download('words')
@@ -17,8 +17,10 @@ stopwords = set(stopwords_list.decode().splitlines())
 englishwords = set(words.words())
 
 
-def get_keywords(path, shouldLog):
-    output_all_words(path, shouldLog)
+def get_keywords(path, loglevel):
+    logging.basicConfig( level=loglevel )
+    logging.info( f'unique_keywords.py: get_keywords: loglevel set to: {loglevel}' )
+    output_all_words(path)
 
 
 # OUTPUT OPTIONS
@@ -117,7 +119,13 @@ if __name__ == "__main__":
     default_path = os.path.dirname(working_path + "/input/")
     parser.add_argument(
         "-p", '--path', help='Path of text files to process', type=dir_path, default=default_path)
-    parser.add_argument(
-        "-v", '--verbose', help='Log function outputs', type=bool, default=False)
+    # parser.add_argument(
+    #     "-v", '--verbose', help='Log function outputs', type=bool, default=False)
+    parser.add_argument( '-l',
+                    '--loglevel',
+                    default='warning',
+                    help='Console log level. Example --loglevel debug, default=warning' )
     args = parser.parse_args()
-    get_keywords(args.path, args.verbose)
+    # logging.basicConfig( level=args.loglevel.upper() )
+    # logging.info( f'unique_keywords.py: loglevel set to: {args.loglevel.upper()}' )
+    get_keywords(args.path, args.verbose, args.loglevel.upper())

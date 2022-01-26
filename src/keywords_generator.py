@@ -8,6 +8,7 @@ import csv
 import yake
 import requests
 import re
+import logging
 import nltk
 from nltk.corpus import words
 
@@ -25,55 +26,56 @@ nltk.download('words')
 englishwords = set(words.words())
 
 
-def get_keywords(path, shouldLog, enableAllWords, enableYake, enableRake):
+def get_keywords(path, enableAllWords, enableYake, enableRake, loglevel):
+    logging.basicConfig( level=loglevel )
+    logging.info( f'keywords_generator.py: loglevel set to: {loglevel}' )
     if enableAllWords:
-        output_all_words(path, shouldLog)
+        output_all_words(path)
     if enableRake:
-        output_with_rake(path, shouldLog)
+        output_with_rake(path)
     if enableYake:
-        output_with_yake(path, shouldLog)
+        output_with_yake(path)
 
 
 # OUTPUT OPTIONS
 
 
-def output_with_yake(path, shouldLog):
+def output_with_yake(path):
     # Update to export files
-    files = text_filepaths_from_dirpath(path, shouldLog)
+    files = text_filepaths_from_dirpath(path)
     for filepath in files:
         with open(filepath, "r") as file:
             text = file.read()
-            dictionary = extract_with_yake(text, shouldLog)
-            output_dict(filepath, "_yake", dictionary, shouldLog)
+            dictionary = extract_with_yake(text)
+            output_dict(filepath, "_yake", dictionary)
 
 
-def output_with_rake(path, shouldLog):
-    files = text_filepaths_from_dirpath(path, shouldLog)
+def output_with_rake(path):
+    files = text_filepaths_from_dirpath(path)
     for filepath in files:
         with open(filepath, "r") as file:
             text = file.read()
-            dictionary = extract_with_rake(text, shouldLog)
-            output_dict(filepath, "_rake", dictionary, shouldLog)
+            dictionary = extract_with_rake(text)
+            output_dict(filepath, "_rake", dictionary)
 
 
-def output_all_words(path, shouldLog):
-    files = text_filepaths_from_dirpath(path, shouldLog)
+def output_all_words(path):
+    files = text_filepaths_from_dirpath(path)
     # Run through each file
     for filepath in files:
         # Find word count frequency for each file
-        dictionary = dictionary_frequency(filepath, shouldLog)
+        dictionary = dictionary_frequency(filepath)
         # Output word counts to a csv file named after the text file
-        output_dict(filepath, "_allwords", dictionary, shouldLog)
+        output_dict(filepath, "_allwords", dictionary)
 
 # SUPPORTING FUNCTIONS
 
 
-def output_dict(filepath, suffix, dict, shouldLog):
+def output_dict(filepath, suffix, dict):
     filename_with_extension = os.path.basename(filepath)
     filename = filename_with_extension.rsplit(".", 1)[0]
-    if shouldLog == True:
-        print(
-            f'frequency_counter: output_file_from: base filename: {filename}')
+    logging.info(
+        f'frequency_counter: output_file_from: base filename: {filename}')
     with open(f'output/{filename}{suffix}.csv', "w") as csvfile:
         #
         writer = csv.writer(csvfile, quoting=csv.QUOTE_NONNUMERIC)
@@ -82,7 +84,7 @@ def output_dict(filepath, suffix, dict, shouldLog):
             writer.writerow([filename, key, value])
 
 
-def dictionary_frequency(filepath, shouldLog):
+def dictionary_frequency(filepath):
     with open(filepath, "r") as file:
         d = dict()
         text = file.read()
@@ -102,38 +104,34 @@ def dictionary_frequency(filepath, shouldLog):
                 d[lowercased] = 1
         sortedlist = sorted(d.items(), key=lambda x: x[1])
         sorteddict = dict(sortedlist)
-        if shouldLog == True:
-            print(
+        logging.info(
                 f'frequency_counter: dictionary_frequency: dict: {sorteddict}')
         return sorteddict
 
 
-def all_text_from(filepaths, shouldLog):
+def all_text_from(filepaths):
     text = ""
     for path in filepaths:
         with open(path, "r") as file:
             content = file.read()
-            if shouldLog == True:
-                print(
-                    f'frequency_counter: text_from: file content read: {content}')
+            logging.info(
+                f'frequency_counter: text_from: file content read: {content}')
             text = text + f" {content}"
-    if shouldLog == True:
-        print(f'frequency_counter: text_from: all text:{text}')
+    logging.info(f'frequency_counter: text_from: all text:{text}')
     return text
 
 
-def text_filepaths_from_dirpath(path, shouldLog):
+def text_filepaths_from_dirpath(path):
     ext = ('.txt')
     txt_files = [
         f'{path}/{file}' for file in os.listdir(path) if file.endswith(ext)]
-    if shouldLog == True:
-        for file in txt_files:
-            print(
-                f"frequency_counter.py: text_filepaths: txt_files:{txt_files}")
+    for file in txt_files:
+        logging.info(
+            f"frequency_counter.py: text_filepaths: txt_files:{txt_files}")
     return txt_files
 
 
-def extract_with_yake(text, shouldLog):
+def extract_with_yake(text):
     language = "en"
     max_ngram_size = 3
     deduplication_threshold = 0.9
@@ -145,12 +143,11 @@ def extract_with_yake(text, shouldLog):
     keywords = dict()
     for key, value in keywords_tuple:
         keywords[key] = value
-    if shouldLog == True:
-        print(f"frequency_counter.py: extract_with_yake: {keywords}")
+    logging.info(f"frequency_counter.py: extract_with_yake: {keywords}")
     return keywords
 
 
-def extract_with_rake(text, shouldLog):
+def extract_with_rake(text):
     r = Rake()
     r.extract_keywords_from_text(text)
     # Produces a tuple
@@ -159,9 +156,8 @@ def extract_with_rake(text, shouldLog):
     keywords = dict()
     for value, key in keywords_tuple:
         keywords[key] = value
-    if shouldLog == True:
-        print(f'frequency_counter: extract_with_rake: text input: {text}')
-        print(f'frequency_counter: extract_with_rake: keywords: {keywords}')
+    logging.info(f'frequency_counter: extract_with_rake: text input: {text}')
+    logging.info(f'frequency_counter: extract_with_rake: keywords: {keywords}')
     return keywords
 
 
@@ -179,13 +175,17 @@ if __name__ == "__main__":
     default_path = os.path.dirname(working_path + "/input/")
     parser.add_argument(
         "-p", '--path', help='Path of text files to process', type=dir_path, default=default_path)
-    parser.add_argument(
-        "-v", '--verbose', help='Log function outputs', type=bool, default=False)
+    # parser.add_argument(
+    #     "-v", '--verbose', help='Log function outputs', type=bool, default=False)
     parser.add_argument(
         "-a", '--allwords', help='Extract all english words', type=bool, default=True)
     parser.add_argument(
         "-y", '--yake', help='Extract words using Yake', type=bool, default=False)
     parser.add_argument(
         "-r", '--rake', help='Extract words using Rake', type=bool, default=False)
+    parser.add_argument( '-l',
+            '--loglevel',
+            default='warning',
+            help='Console log level. Example --loglevel debug, default=warning' )
     args = parser.parse_args()
-    get_keywords(args.path, args.verbose, args.allwords, args.yake, args.rake)
+    get_keywords(args.path, args.allwords, args.yake, args.rake, args.loglevel.upper())
